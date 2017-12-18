@@ -1,0 +1,44 @@
+﻿<Page x:Name="game_page" x:Class="Mota.page.FloorFactory"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Mota.page"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Floor_zero"
+      Height="650" Width="650">
+    <Grid Name="mapBox" FocusManager.FocusedElement="{Binding ElementName=panelCenter}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="11*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="11*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0" Grid.Column="0" ItemHeight="50" ItemWidth="50">
+            <Image Source="/res/icons/background/3.png" Height="50" Width="50"></Image>
+        </WrapPanel>
+        <WrapPanel Grid.Row="0" Grid.Column="1" Name="panelUp" ItemHeight="50" ItemWidth="50"/>
+        <WrapPanel Grid.Row="0" Grid.Column="2" ItemHeight="50" ItemWidth="50">
+            <Image Source="/res/icons/background/3.png" Height="50" Width="50"></Image>
+        </WrapPanel>
+        <WrapPanel Grid.Row="1" Grid.Column="0" Name="panelLeft" ItemHeight="50" ItemWidth="50"/>
+        <WrapPanel Grid.Row="1" Grid.Column="1" Name="panelCenter" ItemHeight="50" ItemWidth="50">
+            <WrapPanel.Background>
+                <ImageBrush ImageSource="/res/icons/background/00.png"></ImageBrush>
+            </WrapPanel.Background>
+        </WrapPanel>
+        <WrapPanel Grid.Row="1" Grid.Column="2" Name="panelRight" ItemHeight="50" ItemWidth="50"/>
+        <WrapPanel Grid.Row="2" Grid.Column="0" ItemHeight="50" ItemWidth="50">
+            <Image Source="/res/icons/background/3.png" Height="50" Width="50"></Image>
+        </WrapPanel>
+        <WrapPanel Grid.Row="2" Grid.Column="1" Name="panelDown" ItemHeight="50" ItemWidth="50"/>
+        <WrapPanel Grid.Row="2" Grid.Column="2" ItemHeight="50" ItemWidth="50">
+            <Image Source="/res/icons/background/3.png" Height="50" Width="50"></Image>
+        </WrapPanel>
+    </Grid>
+</Page>

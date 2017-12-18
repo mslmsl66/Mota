@@ -1,0 +1,88 @@
+﻿<Page x:Class="Mota.page.State"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Mota.page"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="State"
+      Height="650" Width="350">
+
+    <Grid>
+        <WrapPanel Name="panel">
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/characters/hero0.png" Height="50" Width="50"></Image>
+            <TextBox Text="状" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="态" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="正" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="常" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <TextBox Text="等" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="级" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="1" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <TextBox Text="血" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="量" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="1000" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <TextBox Text="攻" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="击" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="10" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <TextBox Text="防" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="御" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="10" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <TextBox Text="魔" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="防" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <TextBox Text="经" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="验" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/item/a0.png" Height="50" Width="50"></Image>
+            <TextBox FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <Image Source="/res/icons/item/cha.jpg" Height="50" Width="50"></Image>
+            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/item/a1.png" Height="50" Width="50"></Image>
+            <TextBox FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <Image Source="/res/icons/item/cha.jpg" Height="50" Width="50"></Image>
+            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/item/a2.png" Height="50" Width="50"></Image>
+            <TextBox FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <Image Source="/res/icons/item/cha.jpg" Height="50" Width="50"></Image>
+            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
+            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
+            <Image Source="/res/icons/item/e3.png" Height="50" Width="50"></Image>
+            <TextBox FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
+            <Image Source="/res/icons/item/cha.jpg" Height="50" Width="50"></Image>
+            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
+
+        </WrapPanel>
+    </Grid>
+</Page>
