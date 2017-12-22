@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Mota.CommonUtility.ItemType
 {
-    public class key
+    public class Key
     {
-        public enum key_type { 黄钥匙, 蓝钥匙, 红钥匙 };
+        public enum KeyType { 黄钥匙, 蓝钥匙, 红钥匙 };
 
-        public static String getImagePath(key_type ktype)
+        public static String GetImagePath(KeyType ktype)
         {
             switch (ktype)
             {
-                case key_type.黄钥匙:
+                case KeyType.黄钥匙:
                     return "/res/icons/item/a0.png";
-                case key_type.蓝钥匙:
+                case KeyType.蓝钥匙:
                     return "/res/icons/item/a1.png";
-                case key_type.红钥匙:
+                case KeyType.红钥匙:
                     return "/res/icons/item/a2.png";
 
             }

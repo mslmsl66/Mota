@@ -26,7 +26,7 @@ namespace Mota.page
             InitializeComponent();
         }
 
-        public static Index getInstance()
+        public static Index GetInstance()
         {
             if (instance == null)
             {
@@ -42,9 +42,9 @@ namespace Mota.page
         /// <param name="e"></param>
         private void StartClick(object sender, RoutedEventArgs e)
         {
-            MainWindow.global_viewbox.Stretch = Stretch.Fill;
-            MainWindow.global_left.Navigate(State.getInstance());
-            MainWindow.global_right.Navigate(FloorFactory.getInstance());
+            MainWindow.GlobalViewbox.Stretch = Stretch.Fill;
+            MainWindow.GlobalLeft.Navigate(State.GetInstance());
+            MainWindow.GlobalRight.Navigate(FloorFactory.GetInstance());
         }
         private void ContinueClick(object sender, RoutedEventArgs e)
         {

@@ -23,15 +23,15 @@ namespace Mota
     /// 
     public partial class MainWindow : Window
     {
-        public static Frame global_right,global_left;
-        public static Viewbox global_viewbox;
+        public static Frame GlobalRight, GlobalLeft;
+        public static Viewbox GlobalViewbox;
         public MainWindow()
         {
             InitializeComponent();
-            right.Navigate(Index.getInstance());
-            global_right = right;
-            global_left = left;
-            global_viewbox = viewbox;
+            right.Navigate(Index.GetInstance());
+            GlobalRight = right;
+            GlobalLeft = left;
+            GlobalViewbox = viewbox;
         }
 
         /// <summary>
@@ -39,25 +39,25 @@ namespace Mota
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void directionKeyDown(object sender, KeyEventArgs e)
+        private void DirectionKeyDown(object sender, KeyEventArgs e)
         {
-            if (!FloorFactory.isInitialize())
+            if (!FloorFactory.GetInstance().IsInitialize())
             {
                 return;
             }
             switch (e.Key)
             {
                 case Key.Up:
-                    FloorFactory.getInstance().move(Key.Up);
+                    Hero.getInstance().MoveUp();
                     break;
                 case Key.Down:
-                    FloorFactory.getInstance().move(Key.Down);
+                    Hero.getInstance().MoveDown();
                     break;
                 case Key.Left:
-                    FloorFactory.getInstance().move(Key.Left);
+                    Hero.getInstance().MoveLeft();
                     break;
                 case Key.Right:
-                    FloorFactory.getInstance().move(Key.Right);
+                    Hero.getInstance().MoveRight();
                     break;
             }
         }

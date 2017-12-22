@@ -26,7 +26,7 @@ namespace Mota.page
         {
             InitializeComponent();
         }
-        public static State getInstance()
+        public static State GetInstance()
         {
             if(instance == null)
             {

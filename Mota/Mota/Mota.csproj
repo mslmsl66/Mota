@@ -64,11 +64,12 @@
     </Compile>
     <Compile Include="CommonUtility\CellImage.cs" />
     <Compile Include="CommonUtility\Hero.cs" />
-    <Compile Include="CommonUtility\ItemType\floor.cs" />
-    <Compile Include="CommonUtility\ItemType\gemstone.cs" />
-    <Compile Include="CommonUtility\ItemType\key.cs" />
+    <Compile Include="CommonUtility\ItemType\Door.cs" />
+    <Compile Include="CommonUtility\ItemType\Floor.cs" />
+    <Compile Include="CommonUtility\ItemType\Gemstone.cs" />
+    <Compile Include="CommonUtility\ItemType\Key.cs" />
     <Compile Include="CommonUtility\ItemType\Monster.cs" />
-    <Compile Include="CommonUtility\ItemType\special_item.cs" />
+    <Compile Include="CommonUtility\ItemType\SpecialItem.cs" />
     <Compile Include="CommonUtility\MapUtility.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

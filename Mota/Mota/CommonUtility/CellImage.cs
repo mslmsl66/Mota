@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using Mota.CommonUtility.ItemType;
 using System.Windows.Threading;
+using System.Threading;
 
 namespace Mota.CommonUtility
 {
@@ -15,62 +16,78 @@ namespace Mota.CommonUtility
     /// </summary>
     public class CellImage : Image
     {
+        public enum Atype { 宝石, 钥匙, 怪物, 特殊物品, 地板, 英雄, 门 };
+
+        //存放动图中各张图片的路径
         private string[] dynamic_path;
-        int i = 0;
-        public enum atype { 宝石, 钥匙, 怪物, 特殊物品, 地板, 英雄};
+        //存放图片动态消失的路径
+        private string[] hide_path;
+        //图片切换计数
+        int i = 0, j = 0;
+        //实现图片动态消失的定时器
+        private DispatcherTimer timer;
+
+        //粗分类、细分类
+        private Atype coarse_classification;
+        private Enum fine_classification;
 
         /// <summary>
         /// </summary>
         /// <param name="a">粗分类,eg:怪物</param>
         /// <param name="e">细分类,eg:绿史莱姆</param>
         /// <param name="isDynamic">是否动图</param>
-        public CellImage(atype a, Enum e, bool isDynamic = false)
+        public CellImage(Atype a, Enum e, bool isDynamic = false)
         {
+            this.coarse_classification = a;
+            this.fine_classification = e;
             //图片路径
             string path = null;
             //动态图片有四张，切换图片形成动画
             string[] dynamic_path = null;
             switch (a)
             {
-                case atype.宝石:
-                    path = gemstone.getImagePath((gemstone.gemstone_type)e);
+                case Atype.宝石:
+                    path = Gemstone.GetImagePath((Gemstone.GemstoneType)e);
                     break;
 
-                case atype.钥匙:
-                    path = key.getImagePath((key.key_type)e);
+                case Atype.钥匙:
+                    path = Key.GetImagePath((Key.KeyType)e);
                     break;
 
-                case atype.怪物:
+                case Atype.怪物:
                     dynamic_path = null;
                     break;
 
-                case atype.特殊物品:
-                    path = special_item.getImagePath((special_item.special_item_type)e);
+                case Atype.特殊物品:
+                    path = SpecialItem.GetImagePath((SpecialItem.SpecialItemType)e);
                     break;
 
-                case atype.英雄:
-                    path = "/res/icons/characters/hero0.png"; 
+                case Atype.英雄:
+                    path = "/res/icons/characters/hero0.png";
                     break;
 
-                case atype.地板:
+                case Atype.地板:
                     if (isDynamic == true)
                     {
-                        dynamic_path = floor.getImagePaths((floor.floor_type)e);
+                        dynamic_path = Floor.GetImagePaths((Floor.FloorType)e);
                     }
                     else
                     {
-                        path = floor.getImagePath((floor.floor_type)e);
-                    } 
+                        path = Floor.GetImagePath((Floor.FloorType)e);
+                    }
+                    break;
+                case Atype.门:
+                    path = Door.GetImagePath((Door.DoorType)e);
                     break;
             }
             if (path != null)
             {
-                setImageSource(path);
+                SetImageSource(path);
             }
-            else if(dynamic_path != null)
+            else if (dynamic_path != null)
             {
                 this.dynamic_path = dynamic_path;
-                setImageSource();
+                SetImageSource();
             }
         }
 
@@ -78,7 +95,7 @@ namespace Mota.CommonUtility
         /// 设置图片路径
         /// </summary>
         /// <param name="path">图片路径</param>
-        private void setImageSource(string path)
+        private void SetImageSource(string path)
         {
             this.Source = new BitmapImage(new Uri(path, UriKind.Relative));
         }
@@ -86,12 +103,12 @@ namespace Mota.CommonUtility
         /// <summary>
         /// 读取动态图图片路径，开启定时器实现动态图片
         /// </summary>
-        private void setImageSource()
+        private void SetImageSource()
         {
             this.Source = new BitmapImage(new Uri(dynamic_path[i], UriKind.Relative));
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(500);
-            timer.Tick += new EventHandler(dTimer_Tick);
+            timer.Tick += new EventHandler(DTimerTick);
             timer.Start();
         }
 
@@ -100,14 +117,62 @@ namespace Mota.CommonUtility
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dTimer_Tick(object sender, EventArgs e)
+        private void DTimerTick(object sender, EventArgs e)
         {
             i++;
             if (i == 4)
             {
                 i = 0;
             }
-            this.Source = new BitmapImage(new Uri(dynamic_path[i], UriKind.Relative));   
+            this.Source = new BitmapImage(new Uri(dynamic_path[i], UriKind.Relative));
+        }
+
+        public Atype GetCoarseType()
+        {
+            return coarse_classification;
+        }
+
+        public Enum GetFineType()
+        {
+            return fine_classification;
+        }
+
+        /// <summary>
+        /// 判断英雄触碰的类型，执行相关行为
+        /// </summary>
+        /// <param name="e"></param>
+        public void HideImage(Enum e)
+        {
+            hide_path = Door.GetImagePaths((Door.DoorType)e); ;
+            ChangeImage(hide_path);
+        }
+
+        /// <summary>
+        /// 切换四张图片，实现关门效果
+        /// </summary>
+        /// <param name="o"></param>
+        private void ChangeImage(String[] imageStr)
+        {
+            timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(100)
+            };
+            timer.Tick += new EventHandler(ChangeTick);
+            timer.Start();
+        }
+
+        private void ChangeTick(object sender, EventArgs e)
+        {
+            if (j == 3)
+            {
+                this.Source = new BitmapImage(new Uri("/res/icons/background/0.png", UriKind.Relative));
+                coarse_classification = Atype.地板;
+                fine_classification = Floor.FloorType.地板;
+                timer.Stop();
+
+                return;
+            }
+            this.Source = new BitmapImage(new Uri(hide_path[j++], UriKind.Relative));
         }
     }
 }

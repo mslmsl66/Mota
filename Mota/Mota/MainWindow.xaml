@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mota"
         mc:Ignorable="d"
-        Title="魔塔" Height="650" Width="1000" KeyDown="directionKeyDown">
+        Title="魔塔" Height="650" Width="1000" KeyDown="DirectionKeyDown">
     <Window.Background>
         <ImageBrush ImageSource="res/background.jpg"></ImageBrush>
     </Window.Background>

@@ -28,22 +28,22 @@ namespace Mota.page
         private CellImage[,] current_floor;
 
         //核心地图panel
-        public static WrapPanel panel;
+        public static WrapPanel Panel;
 
         private FloorFactory()
         {
             InitializeComponent();
             //读取记录，获取保存的楼层
             //getRecordFloor();
-            panel = panelCenter;
-            addMap();
+            Panel = panelCenter;
+            AddMap();
         }
 
         /// <summary>
         /// 单例模式
         /// </summary>
         /// <returns></returns>
-        public static FloorFactory getInstance()
+        public static FloorFactory GetInstance()
         {
             if (instance == null)
             {
@@ -53,10 +53,10 @@ namespace Mota.page
         }
 
         /// <summary>
-        /// 给window调用查看楼层是否初始化
+        /// 查看楼层是否初始化
         /// </summary>
         /// <returns></returns>
-        public static bool isInitialize()
+        public bool IsInitialize()
         {
             return !(instance == null);
         }
@@ -64,10 +64,10 @@ namespace Mota.page
         /// <summary>
         /// 构建地图
         /// </summary>
-        private void addMap()
+        private void AddMap()
         {
-            MapUtility.addBorder(panelUp, panelLeft, panelRight, panelDown);
-            current_floor = coreMap();
+            MapUtility.AddBorder(panelUp, panelLeft, panelRight, panelDown);
+            current_floor = CoreMap();
         }
 
         /// <summary>
@@ -75,53 +75,14 @@ namespace Mota.page
         /// </summary>
         /// <param name="floor"></param>
         /// <returns></returns>
-        private CellImage[,] coreMap(int floor = 0)
+        private CellImage[,] CoreMap(int floor = 0)
         {
-            return MapUtility.getFloor(floor);
+            return MapUtility.GetFloor(floor);
         }
 
-        int x = 0;
-        int y = 0;
-
-        /// <summary>
-        /// 控制人物移动
-        /// </summary>
-        /// <param name="key"></param>       
-        public void move(Key key)
+        public CellImage[,] GetCurrentFloor()
         {
-            switch (key)
-            {
-                case Key.Up:
-                    locate(x, --y);
-                    break;
-
-                case Key.Down:
-                    locate(x, ++y);
-                    break;
-
-                case Key.Left:
-                    locate(--x, y);
-                    break;
-
-                case Key.Right:
-                    locate(++x, y);
-                    break;
-            }
-        }
-
-        private void locate(int x, int y)
-        {
-            TransformGroup transformGroup = new TransformGroup();
-            TranslateTransform translateTransform = new TranslateTransform();
-
-            var X = 50 * x;
-            var Y = 50 * y;
-            translateTransform.X += X;
-            translateTransform.Y += Y;
-
-            transformGroup.Children.Add(translateTransform);
-
-            current_floor[MapUtility.getPosition().x, MapUtility.getPosition().y].RenderTransform = transformGroup;
+            return current_floor;
         }
     }
 }
