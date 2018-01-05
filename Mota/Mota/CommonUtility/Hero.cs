@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using Mota.page;
 using Mota.CommonUtility;
@@ -18,17 +17,17 @@ namespace Mota.CommonUtility
         /// <summary>
         /// 血量
         /// </summary>
-        private int hp;
+        private int hp = 1000;
 
         /// <summary>
         /// 攻击力
         /// </summary>
-        private int atk;
+        private int atk = 10;
 
         /// <summary>
         /// 防御力
         /// </summary>
-        private int def;
+        private int def = 10;
 
         /// <summary>
         /// 魔防
@@ -63,7 +62,8 @@ namespace Mota.CommonUtility
         private static Hero instance;
         private Hero()
         {
-            current_floor = FloorFactory.GetInstance().GetCurrentFloor();
+            floorFactory = FloorFactory.GetInstance();
+            current_floor = floorFactory.GetCurrentFloor();
         }
         public static Hero getInstance()
         {
@@ -73,11 +73,18 @@ namespace Mota.CommonUtility
             }
             return instance;
         }
-        //英雄位置标记
+
+        /// <summary>
+        /// 英雄位置标记
+        /// </summary>
         private int x = 10;
         private int y = 10;
 
-        //英雄当前楼层
+        private FloorFactory floorFactory;
+
+        /// <summary>
+        /// 英雄当前楼层
+        /// </summary>
         private CellImage[,] current_floor;
 
         /// <summary>
@@ -91,30 +98,38 @@ namespace Mota.CommonUtility
             switch (a)
             {
                 case CellImage.Atype.地板:
-                    if ((Floor.FloorType)e != Floor.FloorType.地板 && (Floor.FloorType)e != Floor.FloorType.楼梯上 && (Floor.FloorType)e != Floor.FloorType.楼梯下)
+                    if ((Floor.FloorType)e == Floor.FloorType.地板)
                     {
-                        return false;
+                        return true;
                     }
-                    return true;
+                    else if ((Floor.FloorType)e == Floor.FloorType.楼梯上)
+                    {
+                        current_floor = floorFactory.CoreMap(floorFactory.GetFloorNum() + 1);
+                    }
+                    else if ((Floor.FloorType)e == Floor.FloorType.楼梯下)
+                    {
+                        current_floor = floorFactory.CoreMap(floorFactory.GetFloorNum() - 1);
+                    }
+                    return false;
                 case CellImage.Atype.门:
                     if ((Door.DoorType)e == Door.DoorType.黄门 && yellowKey > 0)
                     {
-                        current_floor[y - 1, x].HideImage(Door.DoorType.黄门);
+                        current_floor[y - 1, x].HideImage(a, Door.DoorType.黄门);
                         yellowKey--;
                     }
                     else if ((Door.DoorType)e == Door.DoorType.蓝门 && blueKey > 0)
                     {
-                        current_floor[y - 1, x].HideImage(Door.DoorType.蓝门);
+                        current_floor[y - 1, x].HideImage(a, Door.DoorType.蓝门);
                         blueKey--;
                     }
                     else if ((Door.DoorType)e == Door.DoorType.红门 && redKey > 0)
                     {
-                        current_floor[y - 1, x].HideImage(Door.DoorType.红门);
+                        current_floor[y - 1, x].HideImage(a, Door.DoorType.红门);
                         redKey--;
                     }
                     else if ((Door.DoorType)e == Door.DoorType.铁门)
                     {
-                        current_floor[y - 1, x].HideImage(Door.DoorType.铁门);
+                        current_floor[y - 1, x].HideImage(a, Door.DoorType.铁门);
                     }
                     return false;
                 case CellImage.Atype.宝石:
@@ -166,6 +181,25 @@ namespace Mota.CommonUtility
                             def += 100;
                             break;
                     }
+                    current_floor[y - 1, x].HideImage(a);
+                    return true;
+                case CellImage.Atype.特殊物品:
+                    return true;
+                case CellImage.Atype.钥匙:
+                    switch ((Key.KeyType)e)
+                    {
+                        case Key.KeyType.黄钥匙:
+                            yellowKey++;
+                            break;
+                        case Key.KeyType.蓝钥匙:
+                            blueKey++;
+                            break;
+                        case Key.KeyType.红钥匙:
+                            redKey++;
+                            break;
+                    }
+                    return true;
+                case CellImage.Atype.怪物:
                     return true;
             }
             return false;
@@ -256,7 +290,5 @@ namespace Mota.CommonUtility
 
             current_floor[MapUtility.GetPosition().x, MapUtility.GetPosition().y].RenderTransform = transformGroup;
         }
-
-
     }
 }

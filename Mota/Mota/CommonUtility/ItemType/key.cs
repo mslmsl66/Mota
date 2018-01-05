@@ -20,7 +20,6 @@ namespace Mota.CommonUtility.ItemType
                     return "/res/icons/item/a1.png";
                 case KeyType.红钥匙:
                     return "/res/icons/item/a2.png";
-
             }
             return null;
         }

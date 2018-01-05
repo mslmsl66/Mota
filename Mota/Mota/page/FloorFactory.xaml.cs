@@ -18,17 +18,26 @@ using Mota.CommonUtility.ItemType;
 namespace Mota.page
 {
     /// <summary>
-    /// 楼层工厂类，初始化楼层、保存楼层记录数组、控制人物移动
+    /// 楼层工厂类，初始化楼层、保存楼层记录数组
     /// </summary>
     public partial class FloorFactory : Page
     {
         private static FloorFactory instance;
 
-        //当前人物所处楼层，对应的地图数组
+        /// <summary>
+        /// 当前人物所处楼层，对应的地图数组
+        /// </summary>
         private CellImage[,] current_floor;
 
-        //核心地图panel
+        /// <summary>
+        /// 核心地图panel
+        /// </summary>
         public static WrapPanel Panel;
+
+        /// <summary>
+        /// 当前楼层
+        /// </summary>
+        private int floorNum;
 
         private FloorFactory()
         {
@@ -75,14 +84,28 @@ namespace Mota.page
         /// </summary>
         /// <param name="floor"></param>
         /// <returns></returns>
-        private CellImage[,] CoreMap(int floor = 0)
+        public CellImage[,] CoreMap(int floor = 0)
         {
+            floorNum = floor;
             return MapUtility.GetFloor(floor);
         }
 
+        /// <summary>
+        /// 返回英雄所在的楼层
+        /// </summary>
+        /// <returns></returns>
         public CellImage[,] GetCurrentFloor()
         {
             return current_floor;
+        }
+        
+        /// <summary>
+        /// 返回当前楼层的层数
+        /// </summary>
+        /// <returns></returns>
+        public int GetFloorNum()
+        {
+            return floorNum;
         }
     }
 }

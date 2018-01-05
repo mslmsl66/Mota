@@ -18,16 +18,29 @@ namespace Mota.CommonUtility
     {
         public enum Atype { 宝石, 钥匙, 怪物, 特殊物品, 地板, 英雄, 门 };
 
-        //存放动图中各张图片的路径
+        /// <summary>
+        /// 存放动图中各张图片的路径
+        /// </summary>
         private string[] dynamic_path;
-        //存放图片动态消失的路径
+
+        /// <summary>
+        /// 存放图片动态消失的路径
+        /// </summary>
         private string[] hide_path;
-        //图片切换计数
+
+        /// <summary>
+        /// 图片切换计数
+        /// </summary>
         int i = 0, j = 0;
-        //实现图片动态消失的定时器
+
+        /// <summary>
+        /// 实现图片动态消失的定时器
+        /// </summary>
         private DispatcherTimer timer;
 
-        //粗分类、细分类
+        /// <summary>
+        /// 粗分类、细分类
+        /// </summary>
         private Atype coarse_classification;
         private Enum fine_classification;
 
@@ -55,7 +68,7 @@ namespace Mota.CommonUtility
                     break;
 
                 case Atype.怪物:
-                    dynamic_path = null;
+                    dynamic_path = Monster.GetImagePaths((Monster.MonsterType)e);
                     break;
 
                 case Atype.特殊物品:
@@ -113,7 +126,7 @@ namespace Mota.CommonUtility
         }
 
         /// <summary>
-        /// 定时器触发任务
+        /// 定时器触发任务，循环切换四张图
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -138,13 +151,22 @@ namespace Mota.CommonUtility
         }
 
         /// <summary>
-        /// 判断英雄触碰的类型，执行相关行为
+        /// 判断英雄触碰的类型，执行图片更改
         /// </summary>
         /// <param name="e"></param>
-        public void HideImage(Enum e)
+        public void HideImage(CellImage.Atype a, Enum e = null)
         {
-            hide_path = Door.GetImagePaths((Door.DoorType)e); ;
-            ChangeImage(hide_path);
+            if (a == Atype.门)
+            {
+                hide_path = Door.GetImagePaths((Door.DoorType)e); ;
+                ChangeImage(hide_path);
+            }
+            else
+            {
+                this.Source = new BitmapImage(new Uri("/res/icons/background/0.png", UriKind.Relative));
+                coarse_classification = Atype.地板;
+                fine_classification = Floor.FloorType.地板;
+            }
         }
 
         /// <summary>

@@ -72,13 +72,15 @@ namespace Mota.CommonUtility
         /// <param name="coreImag">第X层的地图数组</param>
         private static void DrawFloor(CellImage[,] coreImag)
         {
+            FloorFactory.Panel.Children.Clear();
             for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 11; j++)
                 {
-                    if (coreImag[i, j] == null)
+                    if (coreImag[i, j].GetCoarseType() == CellImage.Atype.英雄)
                     {
-                        coreImag[i, j] = new CellImage(CellImage.Atype.地板, Floor.FloorType.地板);
+                        hero_positon.x = i;
+                        hero_positon.y = j;
                     }
                     FloorFactory.Panel.Children.Add(coreImag[i, j]);
                 }
@@ -115,8 +117,7 @@ namespace Mota.CommonUtility
         {
             #region 初始化英雄
             floor_list[0][10, 10] = new CellImage(CellImage.Atype.英雄, null);
-            hero_positon.x = 10;
-            hero_positon.y = 10;
+            floor_list[1][0, 4] = new CellImage(CellImage.Atype.英雄, null);
 
             #endregion
             #region 第0层地图
@@ -147,7 +148,7 @@ namespace Mota.CommonUtility
                 if (i != 5)
                     floor_list[0][5, i] = new CellImage(CellImage.Atype.地板, Floor.FloorType.熔浆, true);
             }
-
+            floor_list[0][5, 5] = new CellImage(CellImage.Atype.宝石, Gemstone.GemstoneType.红宝石);
             floor_list[0][10, 3] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
 
             floor_list[0][9, 3] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
@@ -167,6 +168,27 @@ namespace Mota.CommonUtility
 
             #endregion
 
+            #region 第1层地图
+
+            floor_list[1][0, 3] = new CellImage(CellImage.Atype.怪物, Monster.MonsterType.绿史莱姆);
+            floor_list[1][0, 5] = new CellImage(CellImage.Atype.地板, Floor.FloorType.楼梯下);
+
+            #endregion
+
+            //默认添加为地板
+            foreach (CellImage[,] image in floor_list)
+            {
+                for (int i = 0; i < 11; i++)
+                {
+                    for (int j = 0; j < 11; j++)
+                    {
+                        if (image[i, j] == null)
+                        {
+                            image[i, j] = new CellImage(CellImage.Atype.地板, Floor.FloorType.地板);
+                        }
+                    }
+                }
+            }
         }
     }
 }

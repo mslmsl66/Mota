@@ -19,12 +19,15 @@ namespace Mota.CommonUtility.ItemType
             }
         }
 
-        public static String GetImagePath(MonsterType gtype)
+        /**
+         * 返回四张图片 形成动画
+         */
+        public static String[] GetImagePaths(MonsterType mtype)
         {
-            switch (gtype)
+            switch (mtype)
             {
                 case MonsterType.绿史莱姆:
-                    return "/res/icons/background/0.png";
+                    return new string[] { "/res/icons/monster/1_01.png", "/res/icons/monster/1_02.png", "/res/icons/monster/1_03.png", "/res/icons/monster/1_04.png" };
             }
             return null;
         }

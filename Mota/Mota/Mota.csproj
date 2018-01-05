@@ -213,52 +213,15 @@
     <Resource Include="res\icons\equipment\a10.png" />
     <Resource Include="res\icons\equipment\a11.png" />
     <Resource Include="res\icons\equipment\a12.png" />
-    <Resource Include="res\icons\equipment\a13.png" />
-    <Resource Include="res\icons\equipment\a14.png" />
-    <Resource Include="res\icons\equipment\a15.png" />
-    <Resource Include="res\icons\equipment\a2.png" />
     <Resource Include="res\icons\equipment\a3.png" />
     <Resource Include="res\icons\equipment\a4.png" />
     <Resource Include="res\icons\equipment\a8.png" />
     <Resource Include="res\icons\equipment\a9.png" />
-    <Resource Include="res\icons\equipment\b0.png" />
-    <Resource Include="res\icons\equipment\b1.png" />
-    <Resource Include="res\icons\equipment\b10.png" />
-    <Resource Include="res\icons\equipment\b11.png" />
-    <Resource Include="res\icons\equipment\b12.png" />
-    <Resource Include="res\icons\equipment\b13.png" />
-    <Resource Include="res\icons\equipment\b14.png" />
-    <Resource Include="res\icons\equipment\b15.png" />
-    <Resource Include="res\icons\equipment\b2.png" />
-    <Resource Include="res\icons\equipment\b3.png" />
-    <Resource Include="res\icons\equipment\b4.png" />
-    <Resource Include="res\icons\equipment\b5.png" />
-    <Resource Include="res\icons\equipment\b6.png" />
-    <Resource Include="res\icons\equipment\b7.png" />
-    <Resource Include="res\icons\equipment\b8.png" />
-    <Resource Include="res\icons\equipment\b9.png" />
-    <Resource Include="res\icons\equipment\c0.png" />
-    <Resource Include="res\icons\equipment\c1.png" />
-    <Resource Include="res\icons\equipment\c10.png" />
-    <Resource Include="res\icons\equipment\c12.png" />
-    <Resource Include="res\icons\equipment\c13.png" />
-    <Resource Include="res\icons\equipment\c14.png" />
-    <Resource Include="res\icons\equipment\c2.png" />
-    <Resource Include="res\icons\equipment\c3.png" />
-    <Resource Include="res\icons\equipment\c4.png" />
-    <Resource Include="res\icons\equipment\c5.png" />
-    <Resource Include="res\icons\equipment\c6.png" />
-    <Resource Include="res\icons\equipment\c7.png" />
-    <Resource Include="res\icons\equipment\c8.png" />
-    <Resource Include="res\icons\equipment\c9.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="res\icons\item\a0.png" />
     <Resource Include="res\icons\item\a1.png" />
     <Resource Include="res\icons\item\a12.png" />
-    <Resource Include="res\icons\item\a13.png" />
-    <Resource Include="res\icons\item\a14.png" />
-    <Resource Include="res\icons\item\a15.png" />
     <Resource Include="res\icons\item\a2.png" />
     <Resource Include="res\icons\item\a3.png" />
     <Resource Include="res\icons\item\a4.png" />
@@ -266,58 +229,16 @@
     <Resource Include="res\icons\item\a6.png" />
     <Resource Include="res\icons\item\a7.png" />
     <Resource Include="res\icons\item\a8.png" />
-    <Resource Include="res\icons\item\a9.png" />
     <Resource Include="res\icons\item\b0.png" />
     <Resource Include="res\icons\item\b1.png" />
-    <Resource Include="res\icons\item\b10.png" />
-    <Resource Include="res\icons\item\b11.png" />
     <Resource Include="res\icons\item\b2.png" />
     <Resource Include="res\icons\item\b3.png" />
-    <Resource Include="res\icons\item\b4.png" />
-    <Resource Include="res\icons\item\b5.png" />
-    <Resource Include="res\icons\item\b6.png" />
-    <Resource Include="res\icons\item\b7.png" />
-    <Resource Include="res\icons\item\b8.png" />
-    <Resource Include="res\icons\item\b9.png" />
-    <Resource Include="res\icons\item\c0.png" />
-    <Resource Include="res\icons\item\c1.png" />
-    <Resource Include="res\icons\item\c10.png" />
-    <Resource Include="res\icons\item\c11.png" />
-    <Resource Include="res\icons\item\c12.png" />
-    <Resource Include="res\icons\item\c13.png" />
-    <Resource Include="res\icons\item\c14.png" />
-    <Resource Include="res\icons\item\c15.png" />
-    <Resource Include="res\icons\item\c2.png" />
-    <Resource Include="res\icons\item\c3.png" />
     <Resource Include="res\icons\item\c4.png" />
     <Resource Include="res\icons\item\c5.png" />
-    <Resource Include="res\icons\item\c6.png" />
-    <Resource Include="res\icons\item\c7.png" />
-    <Resource Include="res\icons\item\c8.png" />
-    <Resource Include="res\icons\item\c9.png" />
     <Resource Include="res\icons\item\d0.png" />
     <Resource Include="res\icons\item\d1.png" />
-    <Resource Include="res\icons\item\d10.png" />
-    <Resource Include="res\icons\item\d11.png" />
-    <Resource Include="res\icons\item\d12.png" />
-    <Resource Include="res\icons\item\d13.png" />
-    <Resource Include="res\icons\item\d14.png" />
-    <Resource Include="res\icons\item\d15.png" />
     <Resource Include="res\icons\item\d2.png" />
-    <Resource Include="res\icons\item\d3.png" />
-    <Resource Include="res\icons\item\d4.png" />
-    <Resource Include="res\icons\item\d5.png" />
-    <Resource Include="res\icons\item\d6.png" />
-    <Resource Include="res\icons\item\d7.png" />
-    <Resource Include="res\icons\item\d8.png" />
-    <Resource Include="res\icons\item\d9.png" />
     <Resource Include="res\icons\item\e0.png" />
-    <Resource Include="res\icons\item\e1.png" />
-    <Resource Include="res\icons\item\e11.png" />
-    <Resource Include="res\icons\item\e12.png" />
-    <Resource Include="res\icons\item\e13.png" />
-    <Resource Include="res\icons\item\e14.png" />
-    <Resource Include="res\icons\item\e15.png" />
     <Resource Include="res\icons\item\e2.png" />
     <Resource Include="res\icons\item\e3.png" />
     <Resource Include="res\icons\item\e4.png" />
@@ -332,6 +253,15 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\icons\item\e10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\icons\monster\1_01.png" />
+    <Resource Include="res\icons\monster\1_02.png" />
+    <Resource Include="res\icons\monster\1_03.png" />
+    <Resource Include="res\icons\monster\1_04.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
