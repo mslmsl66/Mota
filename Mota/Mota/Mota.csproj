@@ -69,6 +69,7 @@
     <Compile Include="CommonUtility\ItemType\Gemstone.cs" />
     <Compile Include="CommonUtility\ItemType\Key.cs" />
     <Compile Include="CommonUtility\ItemType\Monster.cs" />
+    <Compile Include="CommonUtility\ItemType\NPC.cs" />
     <Compile Include="CommonUtility\ItemType\SpecialItem.cs" />
     <Compile Include="CommonUtility\MapUtility.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -258,12 +259,6 @@
     <Resource Include="res\icons\item\e10.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="res\icons\monster\1_01.png" />
-    <Resource Include="res\icons\monster\1_02.png" />
-    <Resource Include="res\icons\monster\1_03.png" />
-    <Resource Include="res\icons\monster\1_04.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="res\snow.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +269,114 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="res\bg2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\icons\characters\NPC01-01.png" />
+    <Resource Include="res\icons\characters\NPC01-02.png" />
+    <Resource Include="res\icons\characters\NPC01-03.png" />
+    <Resource Include="res\icons\characters\NPC01-04.png" />
+    <Resource Include="res\icons\characters\NPC02-01.png" />
+    <Resource Include="res\icons\characters\NPC02-02.png" />
+    <Resource Include="res\icons\characters\NPC02-03.png" />
+    <Resource Include="res\icons\characters\NPC02-04.png" />
+    <Resource Include="res\icons\characters\NPC03-01.png" />
+    <Resource Include="res\icons\characters\NPC03-02.png" />
+    <Resource Include="res\icons\characters\NPC03-03.png" />
+    <Resource Include="res\icons\characters\NPC03-04.png" />
+    <Resource Include="res\icons\characters\NPC04-01.png" />
+    <Resource Include="res\icons\characters\NPC04-02.png" />
+    <Resource Include="res\icons\characters\NPC04-03.png" />
+    <Resource Include="res\icons\characters\NPC04-04.png" />
+    <Resource Include="res\icons\characters\NPC05-01.png" />
+    <Resource Include="res\icons\characters\NPC05-02.png" />
+    <Resource Include="res\icons\characters\NPC05-03.png" />
+    <Resource Include="res\icons\characters\NPC05-04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\icons\monster\Monster02-01_01.png" />
+    <Resource Include="res\icons\monster\Monster02-01_02.png" />
+    <Resource Include="res\icons\monster\Monster02-01_03.png" />
+    <Resource Include="res\icons\monster\Monster02-01_04.png" />
+    <Resource Include="res\icons\monster\Monster02-01_05.png" />
+    <Resource Include="res\icons\monster\Monster02-01_06.png" />
+    <Resource Include="res\icons\monster\Monster02-01_07.png" />
+    <Resource Include="res\icons\monster\Monster02-01_08.png" />
+    <Resource Include="res\icons\monster\Monster02-01_09.png" />
+    <Resource Include="res\icons\monster\Monster02-01_10.png" />
+    <Resource Include="res\icons\monster\Monster02-01_11.png" />
+    <Resource Include="res\icons\monster\Monster02-01_12.png" />
+    <Resource Include="res\icons\monster\Monster02-01_13.png" />
+    <Resource Include="res\icons\monster\Monster02-01_14.png" />
+    <Resource Include="res\icons\monster\Monster02-01_15.png" />
+    <Resource Include="res\icons\monster\Monster02-01_16.png" />
+    <Resource Include="res\icons\monster\Monster03-01_01.png" />
+    <Resource Include="res\icons\monster\Monster03-01_02.png" />
+    <Resource Include="res\icons\monster\Monster03-01_03.png" />
+    <Resource Include="res\icons\monster\Monster03-01_04.png" />
+    <Resource Include="res\icons\monster\Monster03-01_05.png" />
+    <Resource Include="res\icons\monster\Monster03-01_06.png" />
+    <Resource Include="res\icons\monster\Monster03-01_07.png" />
+    <Resource Include="res\icons\monster\Monster03-01_08.png" />
+    <Resource Include="res\icons\monster\Monster03-01_09.png" />
+    <Resource Include="res\icons\monster\Monster03-01_10.png" />
+    <Resource Include="res\icons\monster\Monster03-01_11.png" />
+    <Resource Include="res\icons\monster\Monster03-01_12.png" />
+    <Resource Include="res\icons\monster\Monster03-01_13.png" />
+    <Resource Include="res\icons\monster\Monster03-01_14.png" />
+    <Resource Include="res\icons\monster\Monster03-01_15.png" />
+    <Resource Include="res\icons\monster\Monster03-01_16.png" />
+    <Resource Include="res\icons\monster\Monster06-01_01.png" />
+    <Resource Include="res\icons\monster\Monster06-01_02.png" />
+    <Resource Include="res\icons\monster\Monster06-01_03.png" />
+    <Resource Include="res\icons\monster\Monster06-01_04.png" />
+    <Resource Include="res\icons\monster\Monster06-01_05.png" />
+    <Resource Include="res\icons\monster\Monster06-01_06.png" />
+    <Resource Include="res\icons\monster\Monster06-01_07.png" />
+    <Resource Include="res\icons\monster\Monster06-01_08.png" />
+    <Resource Include="res\icons\monster\Monster06-01_09.png" />
+    <Resource Include="res\icons\monster\Monster06-01_10.png" />
+    <Resource Include="res\icons\monster\Monster06-01_11.png" />
+    <Resource Include="res\icons\monster\Monster06-01_12.png" />
+    <Resource Include="res\icons\monster\Monster06-01_13.png" />
+    <Resource Include="res\icons\monster\Monster06-01_14.png" />
+    <Resource Include="res\icons\monster\Monster06-01_15.png" />
+    <Resource Include="res\icons\monster\Monster06-01_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\icons\monster\Monster09-01_01.png" />
+    <Resource Include="res\icons\monster\Monster09-01_02.png" />
+    <Resource Include="res\icons\monster\Monster09-01_03.png" />
+    <Resource Include="res\icons\monster\Monster09-01_04.png" />
+    <Resource Include="res\icons\monster\Monster09-01_05.png" />
+    <Resource Include="res\icons\monster\Monster09-01_06.png" />
+    <Resource Include="res\icons\monster\Monster09-01_07.png" />
+    <Resource Include="res\icons\monster\Monster09-01_08.png" />
+    <Resource Include="res\icons\monster\Monster09-01_09.png" />
+    <Resource Include="res\icons\monster\Monster09-01_10.png" />
+    <Resource Include="res\icons\monster\Monster09-01_11.png" />
+    <Resource Include="res\icons\monster\Monster09-01_12.png" />
+    <Resource Include="res\icons\monster\Monster09-01_13.png" />
+    <Resource Include="res\icons\monster\Monster09-01_14.png" />
+    <Resource Include="res\icons\monster\Monster09-01_15.png" />
+    <Resource Include="res\icons\monster\Monster09-01_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\icons\monster\Monster01-01_01.png" />
+    <Resource Include="res\icons\monster\Monster01-01_02.png" />
+    <Resource Include="res\icons\monster\Monster01-01_03.png" />
+    <Resource Include="res\icons\monster\Monster01-01_04.png" />
+    <Resource Include="res\icons\monster\Monster01-01_05.png" />
+    <Resource Include="res\icons\monster\Monster01-01_06.png" />
+    <Resource Include="res\icons\monster\Monster01-01_07.png" />
+    <Resource Include="res\icons\monster\Monster01-01_08.png" />
+    <Resource Include="res\icons\monster\Monster01-01_09.png" />
+    <Resource Include="res\icons\monster\Monster01-01_10.png" />
+    <Resource Include="res\icons\monster\Monster01-01_11.png" />
+    <Resource Include="res\icons\monster\Monster01-01_12.png" />
+    <Resource Include="res\icons\monster\Monster01-01_13.png" />
+    <Resource Include="res\icons\monster\Monster01-01_14.png" />
+    <Resource Include="res\icons\monster\Monster01-01_15.png" />
+    <Resource Include="res\icons\monster\Monster01-01_16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

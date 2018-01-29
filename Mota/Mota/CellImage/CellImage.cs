@@ -14,7 +14,7 @@ namespace Mota.CommonUtility
     /// <summary>
     /// 作为地图小方块的基础类，为方便设计，分类地图上物品的类型 
     /// </summary>
-    public class CellImage : Image
+    public class CellImage :Image
     {
         /// <summary>
         /// 粗分类、细分类
@@ -43,9 +43,9 @@ namespace Mota.CommonUtility
         int i = 0, j = 0;
 
         /// <summary>
-        /// 实现图片动态消失的定时器
+        /// 标记图片是否还存在
         /// </summary>
-        private DispatcherTimer hideTimer;
+        public bool isImageExist = true;
 
         /// <summary>
         /// </summary>
@@ -98,6 +98,9 @@ namespace Mota.CommonUtility
                     break;
                 case Atype.门:
                     path = Door.GetImagePath((DoorType)e);
+                    break;
+                case Atype.NPC:
+                    dynamic_path = NPC.GetImagePaths()
                     break;
             }
             if (path != null)
@@ -212,5 +215,5 @@ namespace Mota.CommonUtility
         }
     }
 
-    public enum Atype { 宝石, 钥匙, 怪物, 特殊物品, 地板, 英雄, 门 };
+    public enum Atype { 宝石, 钥匙, 怪物, 特殊物品, 地板, 英雄, 门, NPC };
 }

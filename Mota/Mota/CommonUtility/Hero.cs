@@ -4,6 +4,14 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
+/// <summary>
+/// Todo List
+/// 1.显伤脚本
+/// 2.存档读档
+/// 3.ESC界面
+/// 4.NPC对话界面
+/// 5.剧情
+/// </summary>
 namespace Mota.CommonUtility
 {
     public class Hero
@@ -11,7 +19,7 @@ namespace Mota.CommonUtility
         /// <summary>
         /// 血量
         /// </summary>
-        private int hp = 1000;
+        private int hp = 300;
 
         /// <summary>
         /// 攻击力
@@ -31,7 +39,7 @@ namespace Mota.CommonUtility
         /// <summary>
         /// 等级
         /// </summary>
-        private int level;
+        private int level = 1;
 
         /// <summary>
         /// 金币
@@ -116,35 +124,36 @@ namespace Mota.CommonUtility
                     }
                     return false;
                 case Atype.门:
-                    switch ((DoorType)e)
+                    if (current_floor[x, y].isImageExist)
                     {
-                        case DoorType.黄门:
-                            if (yellowKey > 0)
-                            {
-                                current_floor[x, y].HideImage(a, DoorType.黄门);
-                                yellowKey--;
-                                return true;
-                            }
-                            break;
-                        case DoorType.蓝门:
-                            if (blueKey > 0)
-                            {
-                                current_floor[x, y].HideImage(a, DoorType.蓝门);
-                                blueKey--;
-                                return true;
-                            }
-                            break;
-                        case DoorType.红门:
-                            if (redKey > 0)
-                            {
-                                current_floor[x, y].HideImage(a, DoorType.红门);
-                                redKey--;
-                                return true;
-                            }
-                            break;
-                        case DoorType.铁门:
-                            current_floor[x, y].HideImage(a, DoorType.铁门);
-                            break;
+                        switch ((DoorType)e)
+                        {
+                            case DoorType.黄门:
+                                if (yellowKey > 0)
+                                {
+                                    current_floor[x, y].HideImage(a, DoorType.黄门);
+                                    yellowKey--;
+                                }
+                                break;
+                            case DoorType.蓝门:
+                                if (blueKey > 0)
+                                {
+                                    current_floor[x, y].HideImage(a, DoorType.蓝门);
+                                    blueKey--;
+                                }
+                                break;
+                            case DoorType.红门:
+                                if (redKey > 0)
+                                {
+                                    current_floor[x, y].HideImage(a, DoorType.红门);
+                                    redKey--;
+                                }
+                                break;
+                            case DoorType.铁门:
+                                current_floor[x, y].HideImage(a, DoorType.铁门);
+                                break;
+                        }
+                        current_floor[x, y].isImageExist = false;
                     }
                     return false;
                 case Atype.宝石:
@@ -205,12 +214,15 @@ namespace Mota.CommonUtility
                     {
                         case KeyType.黄钥匙:
                             yellowKey++;
+                            current_floor[x, y].HideImage(a, KeyType.黄钥匙);
                             break;
                         case KeyType.蓝钥匙:
                             blueKey++;
+                            current_floor[x, y].HideImage(a, KeyType.蓝钥匙);
                             break;
                         case KeyType.红钥匙:
                             redKey++;
+                            current_floor[x, y].HideImage(a, KeyType.红钥匙);
                             break;
                     }
                     return true;
