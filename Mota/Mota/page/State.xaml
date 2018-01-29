@@ -7,82 +7,71 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="State"
-      Height="650" Width="350">
+      Height="650" Width="250">
 
     <Grid>
-        <WrapPanel Name="panel">
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/characters/hero0.png" Height="50" Width="50"></Image>
-            <TextBox Text="状" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="态" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="正" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="常" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <TextBox Text="等" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="级" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="1" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <TextBox Text="血" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="量" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="1000" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <TextBox Text="攻" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="击" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="10" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <TextBox Text="防" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="御" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="10" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <TextBox Text="魔" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="防" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <TextBox Text="经" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="验" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="：" FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/item/a0.png" Height="50" Width="50"></Image>
-            <TextBox FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <Image Source="/res/icons/item/cha.jpg" Height="50" Width="50"></Image>
-            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/item/a1.png" Height="50" Width="50"></Image>
-            <TextBox FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <Image Source="/res/icons/item/cha.jpg" Height="50" Width="50"></Image>
-            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/item/a2.png" Height="50" Width="50"></Image>
-            <TextBox FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <Image Source="/res/icons/item/cha.jpg" Height="50" Width="50"></Image>
-            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
-            <Image Source="/res/icons/background/2.png" Height="50" Width="50"></Image>
-            <Image Source="/res/icons/item/e3.png" Height="50" Width="50"></Image>
-            <TextBox FontSize="36" TextAlignment="Center" Height="50" Width="50"/>
-            <Image Source="/res/icons/item/cha.jpg" Height="50" Width="50"></Image>
-            <TextBox Text="0" FontSize="36" TextAlignment="Center" Height="50" Width="150"/>
-
-        </WrapPanel>
+        <Canvas Name="StateCanvas">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/res/bg2.jpg" Opacity="0.8"></ImageBrush>
+            </Canvas.Background>
+            <Image Source="/res/icons/characters/hero0.png" Height="60" Canvas.Left="40" Canvas.Top="50"></Image>
+            <TextBlock Height="80" Background="Transparent" FontSize="60" Canvas.Left="142" Canvas.Top="37">
+                <Run Name="floorNum" Foreground="#FF3D6999">0F</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="30" Canvas.Left="40" Canvas.Top="120">
+                <Run Foreground="#FFC5341D" FontWeight="Bold">等级</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="35" Canvas.Left="162" Canvas.Top="117">
+                <Run Name="level" Foreground="#FFC13333" FontWeight="Bold">1</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="204">
+                <Run Foreground="#FFD1852A" FontWeight="Bold">生命值</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="204">
+                <Run Name="hp" Foreground="#FFE8AB29" FontWeight="Bold">300</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="244">
+                <Run Foreground="#FFD1852A" FontWeight="Bold">攻击</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="244">
+                <Run Name="atk" Foreground="#FFE8AB29" FontWeight="Bold">10</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="284">
+                <Run Foreground="#FFD1852A" FontWeight="Bold">防御</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="284">
+                <Run Name="def" Foreground="#FFE8AB29" FontWeight="Bold">10</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="324">
+                <Run Foreground="#FFD1852A" FontWeight="Bold">魔防</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="324">
+                <Run Name="res" Foreground="#FFE8AB29" FontWeight="Bold">0</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="364">
+                <Run Foreground="#FFB9B928" FontWeight="Bold">经验值</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="364">
+                <Run Name="exp" Foreground="#FFB9B928" FontWeight="Bold">0</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="404">
+                <Run Foreground="#FFB9B928" FontWeight="Bold">金币</Run>
+            </TextBlock>
+            <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="404">
+                <Run Name="gold" Foreground="#FFB9B928" FontWeight="Bold">0</Run>
+            </TextBlock>
+            <Image Source="/res/icons/item/a0.png" Height="45" Canvas.Left="40" Canvas.Top="460"></Image>
+            <TextBlock Height="60" Background="Transparent" FontSize="30" Canvas.Left="155" Canvas.Top="460">
+                <Run Name="yellowKey" Foreground="#FFC5A45D" FontWeight="Bold">x0</Run>
+            </TextBlock>
+            <Image Source="/res/icons/item/a1.png" Height="50" Canvas.Left="40" Canvas.Top="510"></Image>
+            <TextBlock Height="60" Background="Transparent" FontSize="30" Canvas.Left="155" Canvas.Top="510">
+                <Run Name="blueKey" Foreground="#FF4D87C1" FontWeight="Bold">x0</Run>
+            </TextBlock>
+            <Image Source="/res/icons/item/a2.png" Height="50" Canvas.Left="40" Canvas.Top="560"></Image>
+            <TextBlock Height="60" Background="Transparent" FontSize="30" Canvas.Left="155" Canvas.Top="565">
+                <Run Name="redKey" Foreground="#FFB0432B" FontWeight="Bold">x0</Run>
+            </TextBlock>
+        </Canvas>
     </Grid>
 </Page>

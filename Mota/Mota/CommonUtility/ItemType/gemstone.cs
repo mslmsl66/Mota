@@ -8,46 +8,6 @@ namespace Mota.CommonUtility.ItemType
 {
     public class Gemstone
     {
-        public enum GemstoneType { 红宝石, 蓝宝石, 绿宝石, 铁剑, 铁盾, 银剑, 银盾, 骑士剑, 骑士盾, 圣剑, 圣盾, 红血瓶, 蓝血瓶, 绿血瓶, 黄血瓶 };
-
-        private int atk, def, m_def, hp;
-        public Gemstone(GemstoneType gtype)
-        {
-            switch (gtype)
-            {
-                case GemstoneType.红宝石:
-                    atk = 3; def = 0; m_def = 0; hp = 0; break;
-                case GemstoneType.蓝宝石:
-                    atk = 0; def = 3; m_def = 0; hp = 0; break;
-                case GemstoneType.绿宝石:
-                    atk = 0; def = 0; m_def = 3; hp = 0; break;
-                case GemstoneType.铁剑:
-                    atk = 10; def = 0; m_def = 0; hp = 0; break;
-                case GemstoneType.铁盾:
-                    atk = 0; def = 10; m_def = 0; hp = 0; break;
-                case GemstoneType.银剑:
-                    atk = 20; def = 0; m_def = 0; hp = 0; break;
-                case GemstoneType.银盾:
-                    atk = 0; def = 20; m_def = 0; hp = 0; break;
-                case GemstoneType.骑士剑:
-                    atk = 50; def = 0; m_def = 0; hp = 0; break;
-                case GemstoneType.骑士盾:
-                    atk = 0; def = 50; m_def = 0; hp = 0; break;
-                case GemstoneType.圣剑:
-                    atk = 100; def = 0; m_def = 0; hp = 0; break;
-                case GemstoneType.圣盾:
-                    atk = 0; def = 100; m_def = 0; hp = 0; break;
-                case GemstoneType.红血瓶:
-                    atk = 0; def = 0; m_def = 0; hp = 200; break;
-                case GemstoneType.蓝血瓶:
-                    atk = 0; def = 0; m_def = 0; hp = 500; break;
-                case GemstoneType.绿血瓶:
-                    atk = 0; def = 0; m_def = 0; hp = 1000; break;
-                case GemstoneType.黄血瓶:
-                    atk = 0; def = 0; m_def = 0; hp = 2000; break;
-            }
-        }
-
         public static String GetImagePath(GemstoneType gtype)
         {
             switch (gtype)
@@ -87,4 +47,6 @@ namespace Mota.CommonUtility.ItemType
         }
 
     }
+
+    public enum GemstoneType { 红宝石, 蓝宝石, 绿宝石, 铁剑, 铁盾, 银剑, 银盾, 骑士剑, 骑士盾, 圣剑, 圣盾, 红血瓶, 蓝血瓶, 绿血瓶, 黄血瓶 };
 }

@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Mota.CommonUtility;
+using System;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Mota.CommonUtility;
-using Mota.CommonUtility.ItemType;
 
 namespace Mota.page
 {
@@ -25,6 +13,11 @@ namespace Mota.page
         private static FloorFactory instance;
 
         /// <summary>
+        /// 英雄图片
+        /// </summary>
+        private Image heroImage;
+
+        /// <summary>
         /// 当前人物所处楼层，对应的地图数组
         /// </summary>
         private CellImage[,] current_floor;
@@ -32,7 +25,7 @@ namespace Mota.page
         /// <summary>
         /// 核心地图panel
         /// </summary>
-        public static WrapPanel Panel;
+        public static Canvas canvas;
 
         /// <summary>
         /// 当前楼层
@@ -44,8 +37,9 @@ namespace Mota.page
             InitializeComponent();
             //读取记录，获取保存的楼层
             //getRecordFloor();
-            Panel = panelCenter;
+            canvas = panelCenter;
             AddMap();
+            heroImage = CreateHeroImage(500, 500);
         }
 
         /// <summary>
@@ -62,10 +56,27 @@ namespace Mota.page
         }
 
         /// <summary>
+        /// 创建英雄图片，放置顶层
+        /// </summary>
+        /// <returns></returns>
+        internal Image CreateHeroImage(int left, int top)
+        {
+            Image hero = new Image();
+            hero.Source = new BitmapImage(new Uri("/res/icons/characters/hero0.png", UriKind.Relative));
+            hero.Height = 50;
+            hero.Width = 50;
+            Canvas.SetLeft(hero, left);
+            Canvas.SetTop(hero, top);
+            Panel.SetZIndex(hero, 9);
+            canvas.Children.Add(hero);
+            return hero;
+        }
+
+        /// <summary>
         /// 查看楼层是否初始化
         /// </summary>
         /// <returns></returns>
-        public bool IsInitialize()
+        internal bool IsInitialize()
         {
             return !(instance == null);
         }
@@ -73,7 +84,7 @@ namespace Mota.page
         /// <summary>
         /// 构建地图
         /// </summary>
-        private void AddMap()
+        internal void AddMap()
         {
             MapUtility.AddBorder(panelUp, panelLeft, panelRight, panelDown);
             current_floor = CoreMap();
@@ -84,9 +95,15 @@ namespace Mota.page
         /// </summary>
         /// <param name="floor"></param>
         /// <returns></returns>
-        public CellImage[,] CoreMap(int floor = 0)
+        internal CellImage[,] CoreMap(int floor = 0)
         {
             floorNum = floor;
+            //删除canvas容器里的元素
+            canvas.Children.Clear();
+            if (heroImage != null)
+            {
+                canvas.Children.Add(heroImage);
+            }
             return MapUtility.GetFloor(floor);
         }
 
@@ -94,18 +111,27 @@ namespace Mota.page
         /// 返回英雄所在的楼层
         /// </summary>
         /// <returns></returns>
-        public CellImage[,] GetCurrentFloor()
+        internal CellImage[,] GetCurrentFloor()
         {
             return current_floor;
         }
-        
+
         /// <summary>
         /// 返回当前楼层的层数
         /// </summary>
         /// <returns></returns>
-        public int GetFloorNum()
+        internal int GetFloorNum()
         {
             return floorNum;
+        }
+
+        /// <summary>
+        /// 返回英雄图片
+        /// </summary>
+        /// <returns></returns>
+        internal Image GetHeroImage()
+        {
+            return heroImage;
         }
     }
 }

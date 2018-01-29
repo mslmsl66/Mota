@@ -8,8 +8,6 @@ namespace Mota.CommonUtility.ItemType
 {
     public class Door
     {
-        public enum DoorType { 黄门, 蓝门, 红门, 铁门 };
-
         public static String GetImagePath(DoorType ftype)
         {
             switch (ftype)
@@ -25,6 +23,7 @@ namespace Mota.CommonUtility.ItemType
             }
             return null;
         }
+
         /// <summary>
         /// 返回四张图片 形成动画
         /// </summary>
@@ -48,4 +47,6 @@ namespace Mota.CommonUtility.ItemType
             return null;
         }
     }
+
+    public enum DoorType { 黄门, 蓝门, 红门, 铁门 };
 }

@@ -8,8 +8,6 @@ namespace Mota.CommonUtility.ItemType
 {
     public class Key
     {
-        public enum KeyType { 黄钥匙, 蓝钥匙, 红钥匙 };
-
         public static String GetImagePath(KeyType ktype)
         {
             switch (ktype)
@@ -24,4 +22,6 @@ namespace Mota.CommonUtility.ItemType
             return null;
         }
     }
+
+    public enum KeyType { 黄钥匙, 蓝钥匙, 红钥匙 };
 }

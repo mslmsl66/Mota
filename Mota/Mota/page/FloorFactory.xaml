@@ -27,11 +27,11 @@
             <Image Source="/res/icons/background/3.png" Height="50" Width="50"></Image>
         </WrapPanel>
         <WrapPanel Grid.Row="1" Grid.Column="0" Name="panelLeft" ItemHeight="50" ItemWidth="50"/>
-        <WrapPanel Grid.Row="1" Grid.Column="1" Name="panelCenter" ItemHeight="50" ItemWidth="50">
-            <WrapPanel.Background>
+        <Canvas Grid.Row="1" Grid.Column="1" Name="panelCenter">
+            <Canvas.Background>
                 <ImageBrush ImageSource="/res/icons/background/00.png"></ImageBrush>
-            </WrapPanel.Background>
-        </WrapPanel>
+            </Canvas.Background>
+        </Canvas>
         <WrapPanel Grid.Row="1" Grid.Column="2" Name="panelRight" ItemHeight="50" ItemWidth="50"/>
         <WrapPanel Grid.Row="2" Grid.Column="0" ItemHeight="50" ItemWidth="50">
             <Image Source="/res/icons/background/3.png" Height="50" Width="50"></Image>

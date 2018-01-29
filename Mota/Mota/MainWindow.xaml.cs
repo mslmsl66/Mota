@@ -15,12 +15,15 @@ using System.Windows.Shapes;
 using Mota.page;
 using Mota.CommonUtility;
 
+/// <summary>
+/// Todo List
+/// 1.CellImage CoreMap改变clear children逻辑
+/// </summary>
 namespace Mota
 {
     /// <summary>
     /// 游戏窗口
     /// </summary>
-    /// 
     public partial class MainWindow : Window
     {
         public static Frame GlobalRight, GlobalLeft;

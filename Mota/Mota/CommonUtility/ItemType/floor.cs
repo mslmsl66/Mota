@@ -8,7 +8,6 @@ namespace Mota.CommonUtility.ItemType
 {
     public class Floor
     {
-        public enum FloorType { 地板, 木墙, 蓝墙, 银墙, 黄墙, 紫墙, 白墙, 天空, 熔浆, 商店左, 商店右, 楼梯上, 楼梯下};
 
         public static String GetImagePath(FloorType ftype)
         {
@@ -55,4 +54,6 @@ namespace Mota.CommonUtility.ItemType
             return null;
         }
     }
+
+    public enum FloorType { 地板, 木墙, 蓝墙, 银墙, 黄墙, 紫墙, 白墙, 天空, 熔浆, 商店左, 商店右, 楼梯上, 楼梯下 };
 }

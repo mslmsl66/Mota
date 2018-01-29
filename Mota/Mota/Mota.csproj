@@ -263,5 +263,17 @@
     <Resource Include="res\icons\monster\1_03.png" />
     <Resource Include="res\icons\monster\1_04.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\snow.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\snow2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\bg1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\bg2.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

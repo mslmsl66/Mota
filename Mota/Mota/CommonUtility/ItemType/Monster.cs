@@ -8,14 +8,42 @@ namespace Mota.CommonUtility.ItemType
 {
     public class Monster
     {
-        public int atk, def, hp, exp, gold;
-        public enum MonsterType { 绿史莱姆 };
+        /// <summary>
+        /// 攻击
+        /// </summary>
+        public int atk { get; }
+
+        /// <summary>
+        /// 防御
+        /// </summary>
+        public int def { get; }
+
+        /// <summary>
+        /// 血量
+        /// </summary>
+        public int hp { get; }
+
+        /// <summary>
+        /// 经验值
+        /// </summary>
+        public int exp { get; }
+
+        /// <summary>
+        /// 金币
+        /// </summary>
+        public int gold { get; }
+
+        /// <summary>
+        /// 怪物的特殊能力(只能选一种)
+        /// </summary>
+        public SpecialAbility specialAbility { get; }
+
         public Monster(MonsterType gtype)
         {
             switch (gtype)
             {
                 case MonsterType.绿史莱姆:
-                    atk = 15; def = 3; hp = 40; exp = 1; gold = 1; break;
+                    atk = 15; def = 3; hp = 40; exp = 1; gold = 1; specialAbility = SpecialAbility.普通; break;
             }
         }
 
@@ -31,5 +59,9 @@ namespace Mota.CommonUtility.ItemType
             }
             return null;
         }
+
+        public enum SpecialAbility { 普通, 魔攻, 坚固, 二连击, 先攻 };
     }
+
+    public enum MonsterType { 绿史莱姆 };
 }

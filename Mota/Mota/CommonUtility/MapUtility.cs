@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using Mota.CommonUtility.ItemType;
+﻿using Mota.CommonUtility.ItemType;
 using Mota.page;
+using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace Mota.CommonUtility
 {
@@ -21,19 +16,6 @@ namespace Mota.CommonUtility
         private static List<CellImage[,]> floor_list;
 
         /// <summary>
-        /// 表示当前楼层中某元素的坐标位置
-        /// </summary>
-        public struct Position
-        {
-            public int x;
-            public int y;
-
-        }
-
-        //表示英雄坐标位置
-        private static Position hero_positon;
-
-        /// <summary>
         /// 给地图添加四边
         /// </summary>
         /// <param name="panelUp">边框上部分</param>
@@ -44,10 +26,10 @@ namespace Mota.CommonUtility
         {
             for (int i = 0; i < 11; i++)
             {
-                panelUp.Children.Add(new CellImage(CellImage.Atype.地板, Floor.FloorType.银墙));
-                panelDown.Children.Add(new CellImage(CellImage.Atype.地板, Floor.FloorType.银墙));
-                panelLeft.Children.Add(new CellImage(CellImage.Atype.地板, Floor.FloorType.银墙));
-                panelRight.Children.Add(new CellImage(CellImage.Atype.地板, Floor.FloorType.银墙));
+                panelUp.Children.Add(new CellImage(Atype.地板, FloorType.银墙));
+                panelDown.Children.Add(new CellImage(Atype.地板, FloorType.银墙));
+                panelLeft.Children.Add(new CellImage(Atype.地板, FloorType.银墙));
+                panelRight.Children.Add(new CellImage(Atype.地板, FloorType.银墙));
             }
         }
 
@@ -72,17 +54,14 @@ namespace Mota.CommonUtility
         /// <param name="coreImag">第X层的地图数组</param>
         private static void DrawFloor(CellImage[,] coreImag)
         {
-            FloorFactory.Panel.Children.Clear();
             for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 11; j++)
                 {
-                    if (coreImag[i, j].GetCoarseType() == CellImage.Atype.英雄)
-                    {
-                        hero_positon.x = i;
-                        hero_positon.y = j;
-                    }
-                    FloorFactory.Panel.Children.Add(coreImag[i, j]);
+                    Canvas.SetLeft(coreImag[i, j], 50 * j);
+                    Canvas.SetTop(coreImag[i, j], 50 * i);
+                    Panel.SetZIndex(coreImag[i, j], 1);
+                    FloorFactory.canvas.Children.Add(coreImag[i, j]);
                 }
             }
         }
@@ -102,80 +81,66 @@ namespace Mota.CommonUtility
         }
 
         /// <summary>
-        /// 返回英雄在当前楼层的坐标位置
-        /// </summary>
-        /// <returns></returns>
-        public static Position GetPosition()
-        {
-            return hero_positon;
-        }
-
-        /// <summary>
         /// 初始化所有楼层地图内容
         /// </summary>
         private static void DesignFloor()
         {
-            #region 初始化英雄
-            floor_list[0][10, 10] = new CellImage(CellImage.Atype.英雄, null);
-            floor_list[1][0, 4] = new CellImage(CellImage.Atype.英雄, null);
-
-            #endregion
             #region 第0层地图
 
-            floor_list[0][0, 0] = new CellImage(CellImage.Atype.特殊物品, SpecialItem.SpecialItemType.怪物手册);
-            floor_list[0][0, 3] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][0, 5] = new CellImage(CellImage.Atype.地板, Floor.FloorType.楼梯上);
-            floor_list[0][0, 7] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][0, 10] = new CellImage(CellImage.Atype.特殊物品, SpecialItem.SpecialItemType.楼层飞跃器);
+            floor_list[0][0, 0] = new CellImage(Atype.特殊物品, SpecialItemType.怪物手册);
+            floor_list[0][0, 3] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][0, 5] = new CellImage(Atype.地板, FloorType.楼梯上);
+            floor_list[0][0, 7] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][0, 10] = new CellImage(Atype.特殊物品, SpecialItemType.楼层飞跃器);
 
-            floor_list[0][1, 3] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][1, 7] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
+            floor_list[0][1, 3] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][1, 7] = new CellImage(Atype.地板, FloorType.白墙);
 
-            floor_list[0][2, 3] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][2, 7] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
+            floor_list[0][2, 3] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][2, 7] = new CellImage(Atype.地板, FloorType.白墙);
 
-            floor_list[0][3, 0] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][3, 1] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][3, 2] = new CellImage(CellImage.Atype.门, Door.DoorType.黄门);
-            floor_list[0][3, 3] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][3, 7] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][3, 8] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][3, 9] = new CellImage(CellImage.Atype.门, Door.DoorType.铁门);
-            floor_list[0][3, 10] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
+            floor_list[0][3, 0] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][3, 1] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][3, 2] = new CellImage(Atype.门, DoorType.黄门);
+            floor_list[0][3, 3] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][3, 7] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][3, 8] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][3, 9] = new CellImage(Atype.门, DoorType.铁门);
+            floor_list[0][3, 10] = new CellImage(Atype.地板, FloorType.白墙);
 
             for (int i = 0; i < 11; i++)
             {
                 if (i != 5)
-                    floor_list[0][5, i] = new CellImage(CellImage.Atype.地板, Floor.FloorType.熔浆, true);
+                    floor_list[0][5, i] = new CellImage(Atype.地板, FloorType.熔浆, true);
             }
-            floor_list[0][5, 5] = new CellImage(CellImage.Atype.宝石, Gemstone.GemstoneType.红宝石);
-            floor_list[0][10, 3] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
+            floor_list[0][5, 5] = new CellImage(Atype.宝石, GemstoneType.红宝石);
+            floor_list[0][10, 3] = new CellImage(Atype.地板, FloorType.白墙);
 
-            floor_list[0][9, 3] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][9, 7] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
+            floor_list[0][9, 3] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][9, 7] = new CellImage(Atype.地板, FloorType.白墙);
 
-            floor_list[0][8, 3] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][8, 7] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
+            floor_list[0][8, 3] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][8, 7] = new CellImage(Atype.地板, FloorType.白墙);
 
-            floor_list[0][7, 0] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][7, 1] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][7, 2] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][7, 3] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][7, 7] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][7, 8] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][7, 9] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
-            floor_list[0][7, 10] = new CellImage(CellImage.Atype.地板, Floor.FloorType.白墙);
+            floor_list[0][7, 0] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][7, 1] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][7, 2] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][7, 3] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][7, 7] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][7, 8] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][7, 9] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][7, 10] = new CellImage(Atype.地板, FloorType.白墙);
 
             #endregion
 
             #region 第1层地图
 
-            floor_list[1][0, 3] = new CellImage(CellImage.Atype.怪物, Monster.MonsterType.绿史莱姆);
-            floor_list[1][0, 5] = new CellImage(CellImage.Atype.地板, Floor.FloorType.楼梯下);
+            floor_list[1][0, 3] = new CellImage(Atype.怪物, MonsterType.绿史莱姆);
+            floor_list[1][0, 5] = new CellImage(Atype.地板, FloorType.楼梯下);
 
             #endregion
 
-            //默认添加为地板
+            //默认添加地板
             foreach (CellImage[,] image in floor_list)
             {
                 for (int i = 0; i < 11; i++)
@@ -184,7 +149,7 @@ namespace Mota.CommonUtility
                     {
                         if (image[i, j] == null)
                         {
-                            image[i, j] = new CellImage(CellImage.Atype.地板, Floor.FloorType.地板);
+                            image[i, j] = new CellImage(Atype.地板, FloorType.地板);
                         }
                     }
                 }

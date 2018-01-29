@@ -8,8 +8,6 @@ namespace Mota.CommonUtility.ItemType
 {
     class SpecialItem
     {
-        public enum SpecialItemType { 怪物手册, 楼层飞跃器, 大金币, 圣水, 十字架, 解毒剂, 解衰剂};
-
         public static String GetImagePath(SpecialItemType stype)
         {
             switch (stype)
@@ -32,4 +30,6 @@ namespace Mota.CommonUtility.ItemType
             return null;
         }
     }
+
+    public enum SpecialItemType { 怪物手册, 楼层飞跃器, 大金币, 圣水, 十字架, 解毒剂, 解衰剂 };
 }
