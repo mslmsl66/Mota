@@ -1,66 +1,69 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
-namespace Mota.CommonUtility.ItemType
+namespace Mota.CellImage
 {
-    public class Monster
+    public class MonsterImage : DynamicImageImpl
     {
         /// <summary>
         /// 攻击
         /// </summary>
-        public int atk { get; }
+        public int Atk { get; }
 
         /// <summary>
         /// 防御
         /// </summary>
-        public int def { get; }
+        public int Def { get; }
 
         /// <summary>
         /// 血量
         /// </summary>
-        public int hp { get; }
+        public int Hp { get; }
 
         /// <summary>
         /// 经验值
         /// </summary>
-        public int exp { get; }
+        public int Exp { get; }
 
         /// <summary>
         /// 金币
         /// </summary>
-        public int gold { get; }
+        public int Gold { get; }
 
         /// <summary>
         /// 怪物的特殊能力(只能选一种)
         /// </summary>
-        public SpecialAbility specialAbility { get; }
+        public SpecialAbility Ability { get; set; }
 
-        public Monster(MonsterType gtype)
+        public MonsterImage(MonsterType type)
         {
-            switch (gtype)
+            switch (type)
             {
                 case MonsterType.绿史莱姆:
-                    atk = 15; def = 3; hp = 40; exp = 0; gold = 1; specialAbility = SpecialAbility.普通; break;
+                    Atk = 15; Def = 3; Hp = 40; Exp = 0; Gold = 1; Ability = SpecialAbility.普通; break;
                 case MonsterType.红史莱姆:
-                    atk = 20; def = 5; hp = 50; exp = 1; gold = 1; specialAbility = SpecialAbility.普通; break;
+                    Atk = 20; Def = 5; Hp = 50; Exp = 1; Gold = 1; Ability = SpecialAbility.普通; break;
                 case MonsterType.小蝙蝠:
-                    atk = 30; def = 2; hp = 41; exp = 1; gold = 2; specialAbility = SpecialAbility.先攻; break;
+                    Atk = 30; Def = 2; Hp = 41; Exp = 1; Gold = 2; Ability = SpecialAbility.先攻; break;
                 case MonsterType.骷髅:
-                    atk = 50; def = 0; hp = 70; exp = 1; gold = 2; specialAbility = SpecialAbility.普通; break;
+                    Atk = 50; Def = 0; Hp = 70; Exp = 1; Gold = 2; Ability = SpecialAbility.普通; break;
                 case MonsterType.兽人:
-                    atk = 90; def = 35; hp = 140; exp = 3; gold = 5; specialAbility = SpecialAbility.普通; break;
+                    Atk = 90; Def = 35; Hp = 140; Exp = 3; Gold = 5; Ability = SpecialAbility.普通; break;
             }
+            SetImageSource(GetImagePaths(type));
+            coarseType = Atype.怪物;
+            fineType = type;
         }
 
-        /**
-         * 返回四张图片 形成动画
-         */
-        public static String[] GetImagePaths(MonsterType mtype)
+        /// <summary>
+        /// 返回四张图片 形成动画
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static String[] GetImagePaths(MonsterType type)
         {
-            switch (mtype)
+            switch (type)
             {
                 case MonsterType.绿史莱姆:
                     return new string[] { "/res/icons/monster/Monster01-01_01.png", "/res/icons/monster/Monster01-01_02.png", "/res/icons/monster/Monster01-01_03.png", "/res/icons/monster/Monster01-01_04.png" };
@@ -75,9 +78,8 @@ namespace Mota.CommonUtility.ItemType
             }
             return null;
         }
-
-        public enum SpecialAbility { 普通, 魔攻, 坚固, 二连击, 先攻 };
     }
-
     public enum MonsterType { 绿史莱姆, 红史莱姆, 小蝙蝠, 骷髅, 兽人 };
+
+    public enum SpecialAbility { 普通, 魔攻, 坚固, 二连击, 先攻 };
 }

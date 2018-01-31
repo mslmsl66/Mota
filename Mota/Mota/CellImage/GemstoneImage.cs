@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mota.CommonUtility.ItemType
+namespace Mota.CellImage
 {
-    public class Gemstone
+    public class GemstoneImage : StaticImageImpl
     {
-        public static String GetImagePath(GemstoneType gtype)
+        public GemstoneImage(GemstoneType type) : base()
+        {
+            SetImageSource(GetImagePath(type));
+            coarseType = Atype.宝石;
+            fineType = type;
+        }
+
+        public String GetImagePath(GemstoneType gtype)
         {
             switch (gtype)
             {
@@ -45,8 +52,6 @@ namespace Mota.CommonUtility.ItemType
             }
             return null;
         }
-
     }
-
     public enum GemstoneType { 红宝石, 蓝宝石, 绿宝石, 铁剑, 铁盾, 银剑, 银盾, 骑士剑, 骑士盾, 圣剑, 圣盾, 红血瓶, 蓝血瓶, 绿血瓶, 黄血瓶 };
 }

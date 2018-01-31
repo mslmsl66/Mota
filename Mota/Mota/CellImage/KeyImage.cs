@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mota.CommonUtility.ItemType
+namespace Mota.CellImage
 {
-    public class Key
+    public class KeyImage : StaticImageImpl
     {
-        public static String GetImagePath(KeyType ktype)
+        public KeyImage(KeyType type) : base()
+        {
+            SetImageSource(GetImagePath(type));
+            coarseType = Atype.钥匙;
+            fineType = type;
+        }
+
+        public String GetImagePath(KeyType ktype)
         {
             switch (ktype)
             {
@@ -22,6 +29,5 @@ namespace Mota.CommonUtility.ItemType
             return null;
         }
     }
-
     public enum KeyType { 黄钥匙, 蓝钥匙, 红钥匙 };
 }

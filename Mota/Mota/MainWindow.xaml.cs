@@ -38,7 +38,7 @@ namespace Mota
         }
 
         /// <summary>
-        /// 给窗口添加键盘事件，当楼层初始化后进行处理
+        /// 给窗口添加键盘事件,当楼层初始化后进行处理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -51,16 +51,16 @@ namespace Mota
             switch (e.Key)
             {
                 case Key.Up:
-                    Hero.getInstance().MoveUp();
+                    Hero.GetInstance().MoveUp();
                     break;
                 case Key.Down:
-                    Hero.getInstance().MoveDown();
+                    Hero.GetInstance().MoveDown();
                     break;
                 case Key.Left:
-                    Hero.getInstance().MoveLeft();
+                    Hero.GetInstance().MoveLeft();
                     break;
                 case Key.Right:
-                    Hero.getInstance().MoveRight();
+                    Hero.GetInstance().MoveRight();
                     break;
             }
         }

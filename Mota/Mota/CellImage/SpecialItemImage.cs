@@ -1,16 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Mota.CommonUtility.ItemType
+namespace Mota.CellImage
 {
-    class SpecialItem
+    public class SpecialItemImage : StaticImageImpl
     {
-        public static String GetImagePath(SpecialItemType stype)
+        public SpecialItemImage(SpecialItemType type) : base()
         {
-            switch (stype)
+            SetImageSource(GetImagePath(type));
+            coarseType = Atype.特殊物品;
+            fineType = type;
+        }
+
+        public String GetImagePath(SpecialItemType type)
+        {
+            switch (type)
             {
                 case SpecialItemType.怪物手册:
                     return "/res/icons/item/e0.png";
@@ -30,6 +33,5 @@ namespace Mota.CommonUtility.ItemType
             return null;
         }
     }
-
     public enum SpecialItemType { 怪物手册, 楼层飞跃器, 大金币, 圣水, 十字架, 解毒剂, 解衰剂 };
 }

@@ -1,17 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
-namespace Mota.CommonUtility.ItemType
+namespace Mota.CellImage
 {
-    public class Floor
+    public class FloorImage : DynamicImageImpl
     {
-
-        public static String GetImagePath(FloorType ftype)
+        public FloorImage(FloorType type) : base()
         {
-            switch (ftype)
+            if (type == FloorType.熔浆 || type == FloorType.天空)
+            {
+                SetImageSource(GetImagePaths(type));
+            }
+            else
+            {
+                SetImageSource(GetImagePath(type));
+            }
+            coarseType = Atype.地板;
+            fineType = type;
+        }
+
+        public String GetImagePath(FloorType type)
+        {
+            switch (type)
             {
                 case FloorType.地板:
                     return "/res/icons/background/0.png";
@@ -42,9 +53,9 @@ namespace Mota.CommonUtility.ItemType
         /**
          * 返回四张图片 形成动画
          */
-        public static String[] GetImagePaths(FloorType ftype)
+        public String[] GetImagePaths(FloorType type)
         {
-            switch (ftype)
+            switch (type)
             {
                 case FloorType.熔浆:
                     return new string[] { "/res/icons/background/c0.png", "/res/icons/background/c1.png", "/res/icons/background/c2.png", "/res/icons/background/c3.png" };
@@ -54,6 +65,5 @@ namespace Mota.CommonUtility.ItemType
             return null;
         }
     }
-
     public enum FloorType { 地板, 木墙, 蓝墙, 银墙, 黄墙, 紫墙, 白墙, 天空, 熔浆, 商店左, 商店右, 楼梯上, 楼梯下 };
 }

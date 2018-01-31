@@ -1,6 +1,7 @@
-﻿using Mota.CommonUtility.ItemType;
+﻿using Mota.CellImage;
 using Mota.page;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Mota.CommonUtility
@@ -13,7 +14,7 @@ namespace Mota.CommonUtility
         /// <summary>
         /// 存放楼层的list
         /// </summary>
-        private static List<CellImage[,]> floor_list;
+        private static List<IBaseImage[,]> floor_list;
 
         /// <summary>
         /// 给地图添加四边
@@ -26,10 +27,10 @@ namespace Mota.CommonUtility
         {
             for (int i = 0; i < 11; i++)
             {
-                panelUp.Children.Add(new CellImage(Atype.地板, FloorType.银墙));
-                panelDown.Children.Add(new CellImage(Atype.地板, FloorType.银墙));
-                panelLeft.Children.Add(new CellImage(Atype.地板, FloorType.银墙));
-                panelRight.Children.Add(new CellImage(Atype.地板, FloorType.银墙));
+                panelUp.Children.Add(new FloorImage(FloorType.银墙));
+                panelDown.Children.Add(new FloorImage(FloorType.银墙));
+                panelLeft.Children.Add(new FloorImage(FloorType.银墙));
+                panelRight.Children.Add(new FloorImage(FloorType.银墙));
             }
         }
 
@@ -38,7 +39,7 @@ namespace Mota.CommonUtility
         /// </summary>
         /// <param name="floor">表示第X层</param>
         /// <returns></returns>
-        public static CellImage[,] GetFloor(int floor = 0)
+        public static IBaseImage[,] GetFloor(int floor = 0)
         {
             if (floor_list == null)
             {
@@ -49,19 +50,19 @@ namespace Mota.CommonUtility
         }
 
         /// <summary>
-        ///  绘制地图，剩余地图用“地板”填充，添加至panel
+        ///  绘制地图,剩余地图用“地板”填充,添加至panel
         /// </summary>
         /// <param name="coreImag">第X层的地图数组</param>
-        private static void DrawFloor(CellImage[,] coreImag)
+        private static void DrawFloor(IBaseImage[,] coreImag)
         {
             for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 11; j++)
                 {
-                    Canvas.SetLeft(coreImag[i, j], 50 * j);
-                    Canvas.SetTop(coreImag[i, j], 50 * i);
-                    Panel.SetZIndex(coreImag[i, j], 1);
-                    FloorFactory.canvas.Children.Add(coreImag[i, j]);
+                    Canvas.SetLeft((UIElement)coreImag[i, j], 50 * j);
+                    Canvas.SetTop((UIElement)coreImag[i, j], 50 * i);
+                    Panel.SetZIndex((UIElement)coreImag[i, j], 1);
+                    FloorFactory.canvas.Children.Add((UIElement)coreImag[i, j]);
                 }
             }
         }
@@ -71,11 +72,11 @@ namespace Mota.CommonUtility
         /// </summary>
         private static void ConstructList()
         {
-            floor_list = new List<CellImage[,]>();
+            floor_list = new List<IBaseImage[,]>();
             //在list中添加20层楼
             for (int i = 0; i < 20; i++)
             {
-                floor_list.Add(new CellImage[11, 11]);
+                floor_list.Add(new IBaseImage[11, 11]);
             }
             DesignFloor();
         }
@@ -87,145 +88,145 @@ namespace Mota.CommonUtility
         {
             #region 第0层地图
 
-            floor_list[0][0, 0] = new CellImage(Atype.特殊物品, SpecialItemType.怪物手册);
-            floor_list[0][0, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][0, 5] = new CellImage(Atype.地板, FloorType.楼梯上);
-            floor_list[0][0, 7] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][0, 10] = new CellImage(Atype.特殊物品, SpecialItemType.楼层飞跃器);
+            floor_list[0][0, 0] = new SpecialItemImage(SpecialItemType.怪物手册);
+            floor_list[0][0, 3] = new FloorImage(FloorType.白墙);
+            floor_list[0][0, 5] = new FloorImage(FloorType.楼梯上);
+            floor_list[0][0, 7] = new FloorImage(FloorType.白墙);
+            floor_list[0][0, 10] = new SpecialItemImage(SpecialItemType.楼层飞跃器);
 
-            floor_list[0][1, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][1, 7] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][1, 3] = new FloorImage(FloorType.白墙);
+            floor_list[0][1, 7] = new FloorImage(FloorType.白墙);
 
-            floor_list[0][2, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][2, 7] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][2, 3] = new FloorImage(FloorType.白墙);
+            floor_list[0][2, 7] = new FloorImage(FloorType.白墙);
 
-            floor_list[0][3, 0] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][3, 1] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][3, 2] = new CellImage(Atype.门, DoorType.黄门);
-            floor_list[0][3, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][3, 7] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][3, 8] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][3, 9] = new CellImage(Atype.门, DoorType.铁门);
-            floor_list[0][3, 10] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][3, 0] = new FloorImage(FloorType.白墙);
+            floor_list[0][3, 1] = new FloorImage(FloorType.白墙);
+            floor_list[0][3, 2] = new DoorImage(DoorType.黄门);
+            floor_list[0][3, 3] = new FloorImage(FloorType.白墙);
+            floor_list[0][3, 7] = new FloorImage(FloorType.白墙);
+            floor_list[0][3, 8] = new FloorImage(FloorType.白墙);
+            floor_list[0][3, 9] = new DoorImage(DoorType.铁门);
+            floor_list[0][3, 10] = new FloorImage(FloorType.白墙);
 
             for (int i = 0; i < 11; i++)
             {
                 if (i != 5)
-                    floor_list[0][5, i] = new CellImage(Atype.地板, FloorType.熔浆, true);
+                    floor_list[0][5, i] = new FloorImage(FloorType.熔浆);
             }
-            floor_list[0][5, 5] = new CellImage(Atype.钥匙, KeyType.黄钥匙);
-            floor_list[0][10, 3] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][5, 5] = new KeyImage(KeyType.黄钥匙);
+            floor_list[0][10, 3] = new FloorImage(FloorType.白墙);
 
-            floor_list[0][9, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][9, 7] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][9, 3] = new FloorImage(FloorType.白墙);
+            floor_list[0][9, 7] = new FloorImage(FloorType.白墙);
 
-            floor_list[0][8, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][8, 7] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][8, 3] = new FloorImage(FloorType.白墙);
+            floor_list[0][8, 7] = new FloorImage(FloorType.白墙);
 
-            floor_list[0][7, 0] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][7, 1] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][7, 2] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][7, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][7, 7] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][7, 8] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][7, 9] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[0][7, 10] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[0][7, 0] = new FloorImage(FloorType.白墙);
+            floor_list[0][7, 1] = new FloorImage(FloorType.白墙);
+            floor_list[0][7, 2] = new FloorImage(FloorType.白墙);
+            floor_list[0][7, 3] = new FloorImage(FloorType.白墙);
+            floor_list[0][7, 7] = new FloorImage(FloorType.白墙);
+            floor_list[0][7, 8] = new FloorImage(FloorType.白墙);
+            floor_list[0][7, 9] = new FloorImage(FloorType.白墙);
+            floor_list[0][7, 10] = new FloorImage(FloorType.白墙);
 
             #endregion
 
             #region 第1层地图
 
-            floor_list[1][0, 3] = new CellImage(Atype.怪物, MonsterType.绿史莱姆);
-            floor_list[1][0, 5] = new CellImage(Atype.地板, FloorType.楼梯下);
-            floor_list[1][0, 6] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][0, 8] = new CellImage(Atype.门, DoorType.黄门);
-            floor_list[1][0, 9] = new CellImage(Atype.怪物, MonsterType.绿史莱姆);
+            floor_list[1][0, 3] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[1][0, 5] = new FloorImage(FloorType.楼梯下);
+            floor_list[1][0, 6] = new FloorImage(FloorType.白墙);
+            floor_list[1][0, 8] = new DoorImage(DoorType.黄门);
+            floor_list[1][0, 9] = new MonsterImage(MonsterType.绿史莱姆);
 
-            floor_list[1][1, 0] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][1, 1] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][1, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][1, 4] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][1, 5] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][1, 6] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][1, 8] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][1, 10] = new CellImage(Atype.宝石, GemstoneType.红宝石);
+            floor_list[1][1, 0] = new FloorImage(FloorType.白墙);
+            floor_list[1][1, 1] = new FloorImage(FloorType.白墙);
+            floor_list[1][1, 3] = new FloorImage(FloorType.白墙);
+            floor_list[1][1, 4] = new FloorImage(FloorType.白墙);
+            floor_list[1][1, 5] = new FloorImage(FloorType.白墙);
+            floor_list[1][1, 6] = new FloorImage(FloorType.白墙);
+            floor_list[1][1, 8] = new FloorImage(FloorType.白墙);
+            floor_list[1][1, 10] = new GemstoneImage(GemstoneType.红宝石);
 
-            floor_list[1][2, 1] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][2, 3] = new CellImage(Atype.怪物, MonsterType.小蝙蝠);
-            floor_list[1][2, 4] = new CellImage(Atype.怪物, MonsterType.红史莱姆);
-            floor_list[1][2, 8] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][2, 9] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][2, 10] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[1][2, 1] = new FloorImage(FloorType.白墙);
+            floor_list[1][2, 3] = new MonsterImage(MonsterType.小蝙蝠);
+            floor_list[1][2, 4] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[1][2, 8] = new FloorImage(FloorType.白墙);
+            floor_list[1][2, 9] = new FloorImage(FloorType.白墙);
+            floor_list[1][2, 10] = new FloorImage(FloorType.白墙);
 
-            floor_list[1][3, 1] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][3, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][3, 4] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][3, 5] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][3, 6] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][3, 8] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[1][3, 1] = new FloorImage(FloorType.白墙);
+            floor_list[1][3, 3] = new FloorImage(FloorType.白墙);
+            floor_list[1][3, 4] = new FloorImage(FloorType.白墙);
+            floor_list[1][3, 5] = new FloorImage(FloorType.白墙);
+            floor_list[1][3, 6] = new FloorImage(FloorType.白墙);
+            floor_list[1][3, 8] = new FloorImage(FloorType.白墙);
 
-            floor_list[1][4, 0] = new CellImage(Atype.怪物, MonsterType.绿史莱姆);
-            floor_list[1][4, 1] = new CellImage(Atype.门, DoorType.黄门);
-            floor_list[1][4, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][4, 4] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][4, 5] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][4, 6] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][4, 8] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][4, 10] = new CellImage(Atype.地板, FloorType.楼梯上);
+            floor_list[1][4, 0] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[1][4, 1] = new DoorImage(DoorType.黄门);
+            floor_list[1][4, 3] = new FloorImage(FloorType.白墙);
+            floor_list[1][4, 4] = new FloorImage(FloorType.白墙);
+            floor_list[1][4, 5] = new FloorImage(FloorType.白墙);
+            floor_list[1][4, 6] = new FloorImage(FloorType.白墙);
+            floor_list[1][4, 8] = new FloorImage(FloorType.白墙);
+            floor_list[1][4, 10] = new FloorImage(FloorType.楼梯上);
 
-            floor_list[1][5, 0] = new CellImage(Atype.怪物, MonsterType.红史莱姆);
-            floor_list[1][5, 1] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][5, 3] = new CellImage(Atype.怪物, MonsterType.红史莱姆);
-            floor_list[1][5, 5] = new CellImage(Atype.钥匙, KeyType.黄钥匙);
-            floor_list[1][5, 6] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][5, 8] = new CellImage(Atype.门, DoorType.黄门);
+            floor_list[1][5, 0] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[1][5, 1] = new FloorImage(FloorType.白墙);
+            floor_list[1][5, 3] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[1][5, 5] = new KeyImage(KeyType.黄钥匙);
+            floor_list[1][5, 6] = new FloorImage(FloorType.白墙);
+            floor_list[1][5, 8] = new DoorImage(DoorType.黄门);
 
-            floor_list[1][6, 0] = new CellImage(Atype.怪物, MonsterType.绿史莱姆);
-            floor_list[1][6, 1] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][6, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][6, 5] = new CellImage(Atype.怪物, MonsterType.绿史莱姆);
-            floor_list[1][6, 6] = new CellImage(Atype.门, DoorType.黄门);
-            floor_list[1][6, 8] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[1][6, 0] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[1][6, 1] = new FloorImage(FloorType.白墙);
+            floor_list[1][6, 3] = new FloorImage(FloorType.白墙);
+            floor_list[1][6, 5] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[1][6, 6] = new DoorImage(DoorType.黄门);
+            floor_list[1][6, 8] = new FloorImage(FloorType.白墙);
 
-            floor_list[1][7, 0] = new CellImage(Atype.宝石, GemstoneType.蓝宝石);
-            floor_list[1][7, 1] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][7, 2] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][7, 3] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][7, 4] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][7, 5] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][7, 6] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][7, 8] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[1][7, 0] = new GemstoneImage(GemstoneType.蓝宝石);
+            floor_list[1][7, 1] = new FloorImage(FloorType.白墙);
+            floor_list[1][7, 2] = new FloorImage(FloorType.白墙);
+            floor_list[1][7, 3] = new FloorImage(FloorType.白墙);
+            floor_list[1][7, 4] = new FloorImage(FloorType.白墙);
+            floor_list[1][7, 5] = new FloorImage(FloorType.白墙);
+            floor_list[1][7, 6] = new FloorImage(FloorType.白墙);
+            floor_list[1][7, 8] = new FloorImage(FloorType.白墙);
 
-            floor_list[1][8, 2] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][8, 3] = new CellImage(Atype.怪物, MonsterType.绿史莱姆);
-            floor_list[1][8, 4] = new CellImage(Atype.怪物, MonsterType.红史莱姆);
-            floor_list[1][8, 5] = new CellImage(Atype.宝石, GemstoneType.红宝石);
-            floor_list[1][8, 6] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][8, 8] = new CellImage(Atype.地板, FloorType.白墙);
+            floor_list[1][8, 2] = new FloorImage(FloorType.白墙);
+            floor_list[1][8, 3] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[1][8, 4] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[1][8, 5] = new GemstoneImage(GemstoneType.红宝石);
+            floor_list[1][8, 6] = new FloorImage(FloorType.白墙);
+            floor_list[1][8, 8] = new FloorImage(FloorType.白墙);
 
-            floor_list[1][9, 2] = new CellImage(Atype.门, DoorType.蓝门);
-            floor_list[1][9, 3] = new CellImage(Atype.怪物, MonsterType.小蝙蝠);
-            floor_list[1][9, 4] = new CellImage(Atype.怪物, MonsterType.兽人);
-            floor_list[1][9, 5] = new CellImage(Atype.宝石, GemstoneType.红血瓶);
-            floor_list[1][9, 6] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][9, 8] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][9, 9] = new CellImage(Atype.怪物, MonsterType.红史莱姆);
-            floor_list[1][9, 10] = new CellImage(Atype.怪物, MonsterType.红史莱姆);
+            floor_list[1][9, 2] = new DoorImage(DoorType.蓝门);
+            floor_list[1][9, 3] = new MonsterImage(MonsterType.小蝙蝠);
+            floor_list[1][9, 4] = new MonsterImage(MonsterType.兽人);
+            floor_list[1][9, 5] = new GemstoneImage(GemstoneType.红血瓶);
+            floor_list[1][9, 6] = new FloorImage(FloorType.白墙);
+            floor_list[1][9, 8] = new FloorImage(FloorType.白墙);
+            floor_list[1][9, 9] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[1][9, 10] = new MonsterImage(MonsterType.红史莱姆);
 
-            floor_list[1][10, 0] = new CellImage(Atype.NPC, NPCType.老人);
-            floor_list[1][10, 1] = new CellImage(Atype.钥匙, KeyType.黄钥匙);
-            floor_list[1][10, 2] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][10, 3] = new CellImage(Atype.怪物, MonsterType.绿史莱姆);
-            floor_list[1][10, 4] = new CellImage(Atype.怪物, MonsterType.红史莱姆);
-            floor_list[1][10, 5] = new CellImage(Atype.宝石, GemstoneType.蓝宝石);
-            floor_list[1][10, 6] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][10, 8] = new CellImage(Atype.地板, FloorType.白墙);
-            floor_list[1][10, 9] = new CellImage(Atype.宝石, GemstoneType.蓝血瓶);
-            floor_list[1][10, 10] = new CellImage(Atype.NPC, NPCType.老人);
+            floor_list[1][10, 0] = new NPCImage(NPCType.老人);
+            floor_list[1][10, 1] = new KeyImage(KeyType.黄钥匙);
+            floor_list[1][10, 2] = new FloorImage(FloorType.白墙);
+            floor_list[1][10, 3] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[1][10, 4] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[1][10, 5] = new GemstoneImage(GemstoneType.蓝宝石);
+            floor_list[1][10, 6] = new FloorImage(FloorType.白墙);
+            floor_list[1][10, 8] = new FloorImage(FloorType.白墙);
+            floor_list[1][10, 9] = new GemstoneImage(GemstoneType.蓝血瓶);
+            floor_list[1][10, 10] = new NPCImage(NPCType.老人);
             #endregion
 
             //默认添加地板
-            foreach (CellImage[,] image in floor_list)
+            foreach (IBaseImage[,] image in floor_list)
             {
                 for (int i = 0; i < 11; i++)
                 {
@@ -233,7 +234,7 @@ namespace Mota.CommonUtility
                     {
                         if (image[i, j] == null)
                         {
-                            image[i, j] = new CellImage(Atype.地板, FloorType.地板);
+                            image[i, j] = new FloorImage(FloorType.地板);
                         }
                     }
                 }

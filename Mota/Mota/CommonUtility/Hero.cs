@@ -1,4 +1,4 @@
-﻿using Mota.CommonUtility.ItemType;
+﻿using Mota.CellImage;
 using Mota.page;
 using System;
 using System.Windows.Controls;
@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 /// 3.ESC界面
 /// 4.NPC对话界面
 /// 5.剧情
+/// 6.图片 base64
 /// </summary>
 namespace Mota.CommonUtility
 {
@@ -75,23 +76,29 @@ namespace Mota.CommonUtility
         private FloorFactory floorFactory;
 
         /// <summary>
-        /// 英雄当前楼层
+        /// 英雄当前楼层地图
         /// </summary>
-        private CellImage[,] current_floor;
-
-        /// <summary>
-        /// 状态栏
-        /// </summary>
-        private State state;
+        private IBaseImage[,] current_floor;
 
         private static Hero instance;
+
+        public int Hp { get => hp; set => hp = value; }
+        public int Atk { get => atk; set => atk = value; }
+        public int Def { get => def; set => def = value; }
+        public int Res { get => res; set => res = value; }
+        public int Level { get => level; set => level = value; }
+        public int Gold { get => gold; set => gold = value; }
+        public int Exp { get => exp; set => exp = value; }
+        public int YellowKey { get => yellowKey; set => yellowKey = value; }
+        public int BlueKey { get => blueKey; set => blueKey = value; }
+        public int RedKey { get => redKey; set => redKey = value; }
+
         private Hero()
         {
             floorFactory = FloorFactory.GetInstance();
             current_floor = floorFactory.GetCurrentFloor();
-            state = State.GetInstance();
         }
-        public static Hero getInstance()
+        public static Hero GetInstance()
         {
             if (instance == null)
             {
@@ -111,7 +118,7 @@ namespace Mota.CommonUtility
             switch (a)
             {
                 case Atype.地板:
-                    switch ((FloorType)e)
+                    switch (e)
                     {
                         case FloorType.地板:
                             return true;
@@ -124,88 +131,88 @@ namespace Mota.CommonUtility
                     }
                     return false;
                 case Atype.门:
-                    if (current_floor[x, y].isImageExist)
+                    if (((DoorImage)current_floor[x, y]).isImageExist)
                     {
-                        switch ((DoorType)e)
+                        switch (e)
                         {
                             case DoorType.黄门:
-                                if (yellowKey > 0)
+                                if (YellowKey > 0)
                                 {
-                                    current_floor[x, y].HideImage(a, DoorType.黄门);
-                                    yellowKey--;
+                                    ((DoorImage)current_floor[x, y]).HideImage();
+                                    YellowKey--;
                                 }
                                 break;
                             case DoorType.蓝门:
-                                if (blueKey > 0)
+                                if (BlueKey > 0)
                                 {
-                                    current_floor[x, y].HideImage(a, DoorType.蓝门);
-                                    blueKey--;
+                                    ((DoorImage)current_floor[x, y]).HideImage();
+                                    BlueKey--;
                                 }
                                 break;
                             case DoorType.红门:
-                                if (redKey > 0)
+                                if (RedKey > 0)
                                 {
-                                    current_floor[x, y].HideImage(a, DoorType.红门);
-                                    redKey--;
+                                    ((DoorImage)current_floor[x, y]).HideImage();
+                                    RedKey--;
                                 }
                                 break;
                             case DoorType.铁门:
-                                current_floor[x, y].HideImage(a, DoorType.铁门);
+                                ((DoorImage)current_floor[x, y]).HideImage();
                                 break;
                         }
-                        current_floor[x, y].isImageExist = false;
+                        ((DoorImage)current_floor[x, y]).isImageExist = false;
                     }
                     return false;
                 case Atype.宝石:
                     switch (e)
                     {
                         case GemstoneType.红宝石:
-                            atk += 3;
+                            Atk += 3;
                             break;
                         case GemstoneType.蓝宝石:
-                            def += 3;
+                            Def += 3;
                             break;
                         case GemstoneType.绿宝石:
-                            res += 3;
+                            Res += 3;
                             break;
                         case GemstoneType.红血瓶:
-                            hp += 100;
+                            Hp += 100;
                             break;
                         case GemstoneType.蓝血瓶:
-                            hp += 300;
+                            Hp += 300;
                             break;
                         case GemstoneType.黄血瓶:
-                            hp += 500;
+                            Hp += 500;
                             break;
                         case GemstoneType.绿血瓶:
-                            hp += 1000;
+                            Hp += 1000;
                             break;
                         case GemstoneType.铁剑:
-                            atk += 10;
+                            Atk += 10;
                             break;
                         case GemstoneType.铁盾:
-                            def += 10;
+                            Def += 10;
                             break;
                         case GemstoneType.银剑:
-                            atk += 30;
+                            Atk += 30;
                             break;
                         case GemstoneType.银盾:
-                            def += 30;
+                            Def += 30;
                             break;
                         case GemstoneType.骑士剑:
-                            atk += 70;
+                            Atk += 70;
                             break;
                         case GemstoneType.骑士盾:
-                            def += 70;
+                            Def += 70;
                             break;
                         case GemstoneType.圣剑:
-                            atk += 100;
+                            Atk += 100;
                             break;
                         case GemstoneType.圣盾:
-                            def += 100;
+                            Def += 100;
                             break;
                     }
-                    current_floor[x, y].HideImage(a);
+                    current_floor[x, y].HideImage();
                     return true;
                 case Atype.特殊物品:
                     return true;
@@ -213,24 +220,24 @@ namespace Mota.CommonUtility
                     switch ((KeyType)e)
                     {
                         case KeyType.黄钥匙:
-                            yellowKey++;
-                            current_floor[x, y].HideImage(a, KeyType.黄钥匙);
+                            YellowKey++;
+                            current_floor[x, y].HideImage();
                             break;
                         case KeyType.蓝钥匙:
-                            blueKey++;
-                            current_floor[x, y].HideImage(a, KeyType.蓝钥匙);
+                            BlueKey++;
+                            current_floor[x, y].HideImage();
                             break;
                         case KeyType.红钥匙:
-                            redKey++;
-                            current_floor[x, y].HideImage(a, KeyType.红钥匙);
+                            RedKey++;
+                            current_floor[x, y].HideImage();
                             break;
                     }
                     return true;
                 case Atype.怪物:
-                    Monster monster = new Monster((MonsterType)e);
-                    if (Battle(monster))
+                    MonsterImage monster = new MonsterImage((MonsterType)e);
+                    if (CalculationUtility.Battle(monster))
                     {
-                        current_floor[x, y].HideImage(a);
+                        current_floor[x, y].HideImage();
                     }
                     return false;
             }
@@ -254,7 +261,7 @@ namespace Mota.CommonUtility
             }
             else
             {
-                RefreshStatus();
+                CalculationUtility.RefreshStatus();
                 Canvas.SetTop(floorFactory.GetHeroImage(), Canvas.GetTop(floorFactory.GetHeroImage()) - 50);
                 floorFactory.GetHeroImage().Source = new BitmapImage(new Uri("/res/icons/characters/hero12.png", UriKind.Relative));
             }
@@ -274,7 +281,7 @@ namespace Mota.CommonUtility
             }
             else
             {
-                RefreshStatus();
+                CalculationUtility.RefreshStatus();
                 Canvas.SetTop(floorFactory.GetHeroImage(), Canvas.GetTop(floorFactory.GetHeroImage()) + 50);
                 floorFactory.GetHeroImage().Source = new BitmapImage(new Uri("/res/icons/characters/hero0.png", UriKind.Relative));
             }
@@ -294,7 +301,7 @@ namespace Mota.CommonUtility
             }
             else
             {
-                RefreshStatus();
+                CalculationUtility.RefreshStatus();
                 Canvas.SetLeft(floorFactory.GetHeroImage(), Canvas.GetLeft(floorFactory.GetHeroImage()) - 50);
                 floorFactory.GetHeroImage().Source = new BitmapImage(new Uri("/res/icons/characters/hero5.png", UriKind.Relative));
             }
@@ -314,90 +321,10 @@ namespace Mota.CommonUtility
             }
             else
             {
-                RefreshStatus();
+                CalculationUtility.RefreshStatus();
                 Canvas.SetLeft(floorFactory.GetHeroImage(), Canvas.GetLeft(floorFactory.GetHeroImage()) + 50);
                 floorFactory.GetHeroImage().Source = new BitmapImage(new Uri("/res/icons/characters/hero11.png", UriKind.Relative));
             }
-        }
-
-        /// <summary>
-        /// 计算与怪物战斗的伤害，经验，金币
-        /// </summary>
-        /// <param name="monster"></param>
-        private bool Battle(Monster monster)
-        {
-            if (atk <= monster.def)
-            {
-                return false;
-            }
-
-            int damage = 0;
-            int monsterHp = monster.hp;
-            switch (monster.specialAbility)
-            {
-                case Monster.SpecialAbility.普通:
-                    monsterHp = monsterHp - (atk - monster.def);
-                    while (monsterHp > 0)
-                    {
-                        damage += (monster.atk - def);
-                        monsterHp = monsterHp - (atk - monster.def);
-                    }
-                    break;
-                case Monster.SpecialAbility.魔攻:
-                    monsterHp = monsterHp - (atk - monster.def);
-                    while (monsterHp > 0)
-                    {
-                        damage += monster.atk;
-                        monsterHp = monsterHp - (atk - monster.def);
-                    }
-                    break;
-                case Monster.SpecialAbility.坚固:
-                    monsterHp = monsterHp - 1;
-                    while (monsterHp > 0)
-                    {
-                        damage += (monster.atk - def);
-                        monsterHp = monsterHp - 1;
-                    }
-                    break;
-                case Monster.SpecialAbility.先攻:
-                    while (monsterHp > 0)
-                    {
-                        damage += (monster.atk - def);
-                        monsterHp = monsterHp - (atk - monster.def);
-                    }
-                    break;
-            }
-            damage -= res;
-            if (damage >= hp)
-            {
-                return false;
-            }
-            else
-            {
-                hp -= damage;
-                exp += monster.exp;
-                gold += monster.gold;
-                RefreshStatus();
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// 刷新状态栏
-        /// </summary>
-        private void RefreshStatus()
-        {
-            state.floorNumber.Text = floorFactory.GetFloorNum().ToString() + "F";
-            state.heroLevel.Text = level.ToString();
-            state.heroHP.Text = hp.ToString();
-            state.heroATK.Text = atk.ToString();
-            state.heroDEF.Text = def.ToString();
-            state.heroRES.Text = res.ToString();
-            state.heroEXP.Text = exp.ToString();
-            state.heroGold.Text = gold.ToString();
-            state.heroYellowKey.Text = "x" + yellowKey.ToString();
-            state.heroBlueKey.Text = "x" + blueKey.ToString();
-            state.heroRedKey.Text = "x" + redKey.ToString();
         }
     }
 }

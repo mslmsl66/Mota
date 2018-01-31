@@ -1,4 +1,5 @@
-﻿using Mota.CommonUtility;
+﻿using Mota.CellImage;
+using Mota.CommonUtility;
 using System;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -6,7 +7,7 @@ using System.Windows.Media.Imaging;
 namespace Mota.page
 {
     /// <summary>
-    /// 楼层工厂类，初始化楼层、保存楼层记录数组
+    /// 楼层工厂类,初始化楼层、保存楼层记录数组
     /// </summary>
     public partial class FloorFactory : Page
     {
@@ -18,9 +19,9 @@ namespace Mota.page
         private Image heroImage;
 
         /// <summary>
-        /// 当前人物所处楼层，对应的地图数组
+        /// 当前人物所处楼层,对应的地图数组
         /// </summary>
-        private CellImage[,] current_floor;
+        private IBaseImage[,] current_floor;
 
         /// <summary>
         /// 核心地图panel
@@ -35,7 +36,7 @@ namespace Mota.page
         private FloorFactory()
         {
             InitializeComponent();
-            //读取记录，获取保存的楼层
+            //读取记录,获取保存的楼层
             //getRecordFloor();
             canvas = panelCenter;
             AddMap();
@@ -56,7 +57,7 @@ namespace Mota.page
         }
 
         /// <summary>
-        /// 创建英雄图片，放置顶层
+        /// 创建英雄图片,放置顶层
         /// </summary>
         /// <returns></returns>
         internal Image CreateHeroImage(int left, int top)
@@ -95,7 +96,7 @@ namespace Mota.page
         /// </summary>
         /// <param name="floor"></param>
         /// <returns></returns>
-        internal CellImage[,] CoreMap(int floor = 0)
+        internal IBaseImage[,] CoreMap(int floor = 0)
         {
             floorNum = floor;
             //删除canvas容器里的元素
@@ -111,7 +112,7 @@ namespace Mota.page
         /// 返回英雄所在的楼层
         /// </summary>
         /// <returns></returns>
-        internal CellImage[,] GetCurrentFloor()
+        internal IBaseImage[,] GetCurrentFloor()
         {
             return current_floor;
         }

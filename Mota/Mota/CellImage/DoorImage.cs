@@ -1,16 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
-namespace Mota.CommonUtility.ItemType
+namespace Mota.CellImage
 {
-    public class Door
+    public class DoorImage : DynamicImageImpl
     {
-        public static String GetImagePath(DoorType ftype)
+        public DoorImage(DoorType type) : base()
         {
-            switch (ftype)
+            SetImageSource(GetImagePath(type));
+            //实现开门效果的数组
+            dynamicPath = GetImagePaths(type);
+            coarseType = Atype.门;
+            fineType = type;
+        }
+
+        /// <summary>
+        /// 切换四张图片,实现关门效果
+        /// </summary>
+        /// <param name="o"></param>
+        public new void HideImage()
+        {
+            isImageExist = false;
+            timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(100)
+            };
+            timer.Tick += new EventHandler(ChangeTick);
+            timer.Start();
+        }
+
+        private void ChangeTick(object sender, EventArgs e)
+        {
+            if (i == 3)
+            {
+                Source = new BitmapImage(new Uri("/res/icons/background/0.png", UriKind.Relative));
+                timer.Stop();
+                coarseType = Atype.地板;
+                fineType = FloorType.地板;
+                return;
+            }
+            Source = new BitmapImage(new Uri(dynamicPath[i++], UriKind.Relative));
+        }
+
+        /// <summary>
+        /// 返回单个图片路径
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static String GetImagePath(DoorType type)
+        {
+            switch (type)
             {
                 case DoorType.黄门:
                     return "/res/icons/background/8.png";
@@ -25,13 +65,13 @@ namespace Mota.CommonUtility.ItemType
         }
 
         /// <summary>
-        /// 返回四张图片 形成动画
+        /// 返回四张图片路径,形成动画
         /// </summary>
         /// <param name="ftype">何种类型的门</param>
         /// <returns></returns>
-        public static String[] GetImagePaths(DoorType ftype)
+        public String[] GetImagePaths(DoorType type)
         {
-            switch (ftype)
+            switch (type)
             {
                 //case door_type.商店中:
                 //   return new string[] { "/res/icons/background/29.png", "/res/icons/background/31.png", "/res/icons/background/29.png", "/res/icons/background/31.png" };
@@ -47,6 +87,5 @@ namespace Mota.CommonUtility.ItemType
             return null;
         }
     }
-
     public enum DoorType { 黄门, 蓝门, 红门, 铁门 };
 }

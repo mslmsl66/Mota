@@ -36,7 +36,7 @@ namespace Mota.page
         }
 
         /// <summary>
-        /// 按钮点击事件，给panel重设置page
+        /// 按钮点击事件,给panel重设置page
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
