@@ -17,6 +17,16 @@ namespace Mota.CommonUtility
         private static List<IBaseImage[,]> floor_list;
 
         /// <summary>
+        /// 存放当前楼层中所有怪物
+        /// </summary>
+        private static List<IBaseImage> MonsterList = new List<IBaseImage>();
+
+        /// <summary>
+        /// 存放怪物坐标
+        /// </summary>
+        private static List<KeyValuePair<int, int>> MonsterPosition = new List<KeyValuePair<int, int>>();
+
+        /// <summary>
         /// 给地图添加四边
         /// </summary>
         /// <param name="panelUp">边框上部分</param>
@@ -55,14 +65,39 @@ namespace Mota.CommonUtility
         /// <param name="coreImag">第X层的地图数组</param>
         private static void DrawFloor(IBaseImage[,] coreImag)
         {
+            MonsterList.Clear();
+            MonsterPosition.Clear();
             for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 11; j++)
                 {
+                    if (coreImag[i, j].GetCoarseType() == Atype.怪物)
+                    {
+                        ((MonsterImage)coreImag[i, j]).ShowDamage(50 * j + 30, 50 * i + 30);
+                        MonsterList.Add(coreImag[i, j]);
+                        MonsterPosition.Add(new KeyValuePair<int, int>(i, j));
+                    }
                     Canvas.SetLeft((UIElement)coreImag[i, j], 50 * j);
                     Canvas.SetTop((UIElement)coreImag[i, j], 50 * i);
                     Panel.SetZIndex((UIElement)coreImag[i, j], 1);
                     FloorFactory.canvas.Children.Add((UIElement)coreImag[i, j]);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 能力值更改时，更新显伤脚本
+        /// </summary>
+        public static void UpdateDamage()
+        {
+            if (MonsterList.Count > 0)
+            {
+                for (int i = 0; i < MonsterList.Count; i++)
+                {
+                    if (MonsterList[i].GetCoarseType() != Atype.地板)
+                    {
+                        ((MonsterImage)MonsterList[i]).ShowDamage(50 * MonsterPosition[i].Value + 30, 50 * MonsterPosition[i].Key + 30);
+                    }
                 }
             }
         }

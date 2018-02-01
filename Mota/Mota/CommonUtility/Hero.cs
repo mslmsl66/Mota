@@ -213,6 +213,8 @@ namespace Mota.CommonUtility
                             break;
                     }
                     current_floor[x, y].HideImage();
+                    //更新显伤脚本
+                    MapUtility.UpdateDamage();
                     return true;
                 case Atype.特殊物品:
                     return true;
@@ -237,7 +239,9 @@ namespace Mota.CommonUtility
                     MonsterImage monster = new MonsterImage((MonsterType)e);
                     if (CalculationUtility.Battle(monster))
                     {
+                        //删除怪物和显伤脚本
                         current_floor[x, y].HideImage();
+                        ((MonsterImage)current_floor[x, y]).HideDamage();
                     }
                     return false;
             }

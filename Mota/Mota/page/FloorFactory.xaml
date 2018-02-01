@@ -27,7 +27,7 @@
             <Image Source="/res/icons/background/3.png" Height="50" Width="50"></Image>
         </WrapPanel>
         <WrapPanel Grid.Row="1" Grid.Column="0" Name="panelLeft" ItemHeight="50" ItemWidth="50"/>
-        <Canvas Grid.Row="1" Grid.Column="1" Name="panelCenter">
+        <Canvas Grid.Row="1" Grid.Column="1" Name="CenterCanvas">
             <Canvas.Background>
                 <ImageBrush ImageSource="/res/icons/background/00.png"></ImageBrush>
             </Canvas.Background>

@@ -1,10 +1,5 @@
 ﻿using Mota.CellImage;
 using Mota.page;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mota.CommonUtility
 {
@@ -17,16 +12,34 @@ namespace Mota.CommonUtility
         private static FloorFactory floorFactory = FloorFactory.GetInstance();
 
         /// <summary>
-        /// 计算与怪物战斗的伤害,经验,金币
+        /// 战斗扣除血量,加经验,金币
         /// </summary>
         /// <param name="monster"></param>
         public static bool Battle(MonsterImage monster)
         {
-            if (hero.Atk <= monster.Def)
+            int damage = CalculateDamage(monster);
+            if (damage >= hero.Hp || damage == -1)
             {
                 return false;
             }
+            hero.Hp -= damage;
+            hero.Exp += monster.Exp;
+            hero.Gold += monster.Gold;
+            RefreshStatus();
+            return true;
+        }
 
+        /// <summary>
+        /// 计算与怪物战斗的伤害
+        /// </summary>
+        /// <param name="monster"></param>
+        /// <returns></returns>
+        public static int CalculateDamage(MonsterImage monster)
+        {
+            if (hero.Atk <= monster.Def)
+            {
+                return -1;
+            }
             int damage = 0;
             int monsterHp = monster.Hp;
             switch (monster.Ability)
@@ -63,19 +76,12 @@ namespace Mota.CommonUtility
                     }
                     break;
             }
-            damage -= hero.Res;
-            if (damage >= hero.Hp)
+            damage = damage - hero.Res;
+            if (damage < 0)
             {
-                return false;
+                return 0;
             }
-            else
-            {
-                hero.Hp -= damage;
-                hero.Exp += monster.Exp;
-                hero.Gold += monster.Gold;
-                RefreshStatus();
-                return true;
-            }
+            return damage;
         }
 
         /// <summary>
@@ -94,6 +100,7 @@ namespace Mota.CommonUtility
             state.heroYellowKey.Text = "x" + hero.YellowKey.ToString();
             state.heroBlueKey.Text = "x" + hero.BlueKey.ToString();
             state.heroRedKey.Text = "x" + hero.RedKey.ToString();
+            //ShowDamage();
         }
     }
 }

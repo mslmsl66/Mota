@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 
 namespace Mota.CellImage
 {

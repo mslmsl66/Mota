@@ -1,6 +1,10 @@
-﻿using System;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
+﻿using Mota.CommonUtility;
+using Mota.page;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace Mota.CellImage
 {
@@ -36,6 +40,11 @@ namespace Mota.CellImage
         /// </summary>
         public SpecialAbility Ability { get; set; }
 
+        /// <summary>
+        /// 显伤脚本TextBlock
+        /// </summary>
+        public TextBlock textBlock;
+
         public MonsterImage(MonsterType type)
         {
             switch (type)
@@ -54,6 +63,50 @@ namespace Mota.CellImage
             SetImageSource(GetImagePaths(type));
             coarseType = Atype.怪物;
             fineType = type;
+        }
+
+        /// <summary>
+        /// 显伤脚本
+        /// </summary>
+        /// <param name="monster">对应的怪物</param>
+        public void ShowDamage(int left, int top)
+        {
+            if (textBlock != null)
+            {
+                HideDamage();
+            }
+            Run run = new Run()
+            {
+                Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 150, 0)),
+                FontWeight = FontWeight.FromOpenTypeWeight(999)
+            };
+            int damage = CalculationUtility.CalculateDamage(this);
+            // -1代表不可战斗显示问号
+            if (damage == -1)
+            {
+                run.Text = "???";
+            }
+            else
+            {
+                run.Text = damage + "";
+            }
+            textBlock = new TextBlock(run)
+            {
+                Height = 20,
+                FontSize = 13
+            };
+            Canvas.SetLeft(textBlock, left);
+            Canvas.SetTop(textBlock, top);
+            Panel.SetZIndex(textBlock, 9);
+            FloorFactory.canvas.Children.Add(textBlock);
+        }
+
+        /// <summary>
+        /// 清楚显伤脚本
+        /// </summary>
+        public void HideDamage()
+        {
+            FloorFactory.canvas.Children.Remove(textBlock);
         }
 
         /// <summary>

@@ -38,7 +38,7 @@ namespace Mota.page
             InitializeComponent();
             //读取记录,获取保存的楼层
             //getRecordFloor();
-            canvas = panelCenter;
+            canvas = CenterCanvas;
             AddMap();
             heroImage = CreateHeroImage(500, 500);
         }
