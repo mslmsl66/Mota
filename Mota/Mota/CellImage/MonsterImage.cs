@@ -102,7 +102,7 @@ namespace Mota.CellImage
         }
 
         /// <summary>
-        /// 清楚显伤脚本
+        /// 清除显伤脚本
         /// </summary>
         public void HideDamage()
         {

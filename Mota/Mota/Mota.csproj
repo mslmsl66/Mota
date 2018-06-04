@@ -75,17 +75,30 @@
     <Compile Include="CellImage\NPCImage.cs" />
     <Compile Include="CellImage\SpecialItemImage.cs" />
     <Compile Include="CommonUtility\CalculationUtility.cs" />
+    <Compile Include="CommonUtility\DialogUtility.cs" />
     <Compile Include="CommonUtility\Hero.cs" />
     <Compile Include="CommonUtility\MapUtility.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="page\AbilityIntroduction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="page\FloorFactory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="page\Index.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="page\MenuLeft.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="page\MonsterData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -95,11 +108,20 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="page\AbilityIntroduction.xaml.cs">
+      <DependentUpon>AbilityIntroduction.xaml</DependentUpon>
+    </Compile>
     <Compile Include="page\FloorFactory.xaml.cs">
       <DependentUpon>FloorFactory.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\Index.xaml.cs">
       <DependentUpon>Index.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\MenuLeft.xaml.cs">
+      <DependentUpon>MenuLeft.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\MonsterData.xaml.cs">
+      <DependentUpon>MonsterData.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\State.xaml.cs">
       <DependentUpon>State.xaml</DependentUpon>
@@ -259,9 +281,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="res\icons\item\e10.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="res\bg2.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="res\icons\characters\NPC01-01.png" />

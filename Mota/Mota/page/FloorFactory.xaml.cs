@@ -134,5 +134,13 @@ namespace Mota.page
         {
             return heroImage;
         }
+
+        /// <summary>
+        /// 复原地图
+        /// </summary>
+        internal void ReStart()
+        {
+            CoreMap();
+        }
     }
 }

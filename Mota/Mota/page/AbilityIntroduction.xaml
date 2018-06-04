@@ -1,0 +1,26 @@
+﻿<Page x:Class="Mota.page.AbilityIntroduction"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Mota.page"
+      mc:Ignorable="d" 
+      Height="650" Width="650"
+      Title="AbilityIntroduction">
+
+    <Grid>
+        <Border CornerRadius ="10" BorderBrush="White" BorderThickness="5" Background="#FF6E6E6E"></Border>
+        <WrapPanel Grid.Row="0" Grid.Column="0" ItemHeight="45" ItemWidth="550" HorizontalAlignment="Center" Margin="0,90,0,90">
+            <TextBox Text="先攻：先一回合进行攻击" Background="Transparent" BorderThickness="0" FontSize="30" FontWeight="Bold" Foreground="#FFF3F1EE" Margin="20,0,0,0"></TextBox>
+            <TextBox Text="魔攻：无视勇士的防御力" Background="Transparent" BorderThickness="0" FontSize="30" FontWeight="Bold" Foreground="#FFF3F1EE" Margin="20,0,0,0"></TextBox>
+            <TextBox Text="坚固：防御力随着勇士的攻击力而增加" Background="Transparent" BorderThickness="0" FontSize="30" FontWeight="Bold" Foreground="#FFF3F1EE" Margin="20,0,0,0"></TextBox>
+            <TextBox Text="二连击：每回合连续攻击两次" Background="Transparent" BorderThickness="0" FontSize="30" FontWeight="Bold" Foreground="#FFF3F1EE" Margin="20,0,0,0"></TextBox>
+            <TextBox Text="三连击：每回合连续攻击三次" Background="Transparent" BorderThickness="0" FontSize="30" FontWeight="Bold" Foreground="#FFF3F1EE" Margin="20,0,0,0"></TextBox>
+            <TextBox Text="暴击：附加勇士的90%攻击力伤害" Background="Transparent" BorderThickness="0" FontSize="30" FontWeight="Bold" Foreground="#FFF3F1EE" Margin="20,0,0,0"></TextBox>
+            <TextBox Text="净化：附加勇士的300%魔防伤害" Background="Transparent" BorderThickness="0" FontSize="30" FontWeight="Bold" Foreground="#FFF3F1EE" Margin="20,0,0,0"></TextBox>
+            <TextBox Text="硬肤：附加勇士的90%防御力伤害" Background="Transparent" BorderThickness="0" FontSize="30" FontWeight="Bold" Foreground="#FFF3F1EE" Margin="20,0,0,0"></TextBox>
+            <TextBox Text="激进：每回合增加10%攻击力" Background="Transparent" BorderThickness="0" FontSize="30" FontWeight="Bold" Foreground="#FFF3F1EE" Margin="20,0,0,0"></TextBox>
+            <TextBox Text="夺宝：偷取勇士的少量金币" Background="Transparent" BorderThickness="0" FontSize="30" FontWeight="Bold" Foreground="#FFF3F1EE" Margin="20,0,0,0"></TextBox>
+        </WrapPanel>
+    </Grid>
+</Page>

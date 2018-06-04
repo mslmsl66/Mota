@@ -1,24 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Mota.CommonUtility;
+using Mota.page;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Mota.page;
-using Mota.CommonUtility;
 
-/// <summary>
-/// Todo List
-/// 1.CellImage CoreMap改变clear children逻辑
-/// </summary>
 namespace Mota
 {
     /// <summary>
@@ -26,8 +11,25 @@ namespace Mota
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// 窗体右边框放置游戏主体，左边框设置状态栏
+        /// </summary>
         public static Frame GlobalRight, GlobalLeft;
+
         public static Viewbox GlobalViewbox;
+
+        private Hero hero = Hero.GetInstance();
+
+        /// <summary>
+        /// 标识菜单栏位置
+        /// </summary>
+        private int itemNum = 0;
+
+        /// <summary>
+        /// 标识是否进入菜单页
+        /// </summary>
+        private bool isMenuOpened = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -48,19 +50,101 @@ namespace Mota
             {
                 return;
             }
+            //对话界面
+            if (hero.IsTalking)
+            {
+                if (e.Key == Key.Space || e.Key == Key.Enter)
+                {
+                    hero.NPC.NextText();
+                }
+                return;
+            }
+            //菜单项监听
+            if (isMenuOpened)
+            {
+                double itemTop = Canvas.GetTop(MenuLeft.ToggleCanvas);
+                switch (e.Key)
+                {
+                    case Key.Down:
+                        if (itemTop == 257)
+                        {
+                            Canvas.SetTop(MenuLeft.ToggleCanvas, 7);
+                            itemNum = 0;
+                        }
+                        else
+                        {
+                            Canvas.SetTop(MenuLeft.ToggleCanvas, Canvas.GetTop(MenuLeft.ToggleCanvas) + 50);
+                            itemNum++;
+                        }
+                        break;
+                    case Key.Up:
+                        if (itemTop == 7)
+                        {
+                            Canvas.SetTop(MenuLeft.ToggleCanvas, 257);
+                            itemNum = 5;
+                        }
+                        else
+                        {
+                            Canvas.SetTop(MenuLeft.ToggleCanvas, Canvas.GetTop(MenuLeft.ToggleCanvas) - 50);
+                            itemNum--;
+                        }
+                        break;
+                    case Key.Enter:
+                        //切换菜单项右边的显示
+                        switch (itemNum)
+                        {
+                            case 0:
+                                GlobalRight.Navigate(MonsterData.GetInstance());
+                                break;
+                            case 1:
+                                GlobalRight.Navigate(AbilityIntroduction.GetInstance());
+                                break;
+                            case 4:
+                                //isMenuOpened = false;
+                                //GlobalLeft.Navigate(State.GetInstance());
+                                //GlobalRight.Navigate(FloorFactory.GetInstance());
+                                //FloorFactory.GetInstance().CoreMap();
+                                break;
+                        }
+                        break;
+                    case Key.Escape:
+                        GlobalLeft.Navigate(MenuLeft.GetInstance());
+                        GlobalRight.Navigate(MonsterData.GetInstance());
+                        MonsterData.GetInstance().ShowContentItem();
+                        break;
+                }
+            }
+            //英雄移动和菜单项开关
             switch (e.Key)
             {
                 case Key.Up:
-                    Hero.GetInstance().MoveUp();
+                    hero.MoveUp();
                     break;
                 case Key.Down:
-                    Hero.GetInstance().MoveDown();
+                    hero.MoveDown();
                     break;
                 case Key.Left:
-                    Hero.GetInstance().MoveLeft();
+                    hero.MoveLeft();
                     break;
                 case Key.Right:
-                    Hero.GetInstance().MoveRight();
+                    hero.MoveRight();
+                    break;
+                case Key.Escape:
+                    if (isMenuOpened)
+                    {
+                        isMenuOpened = false;
+                        GlobalLeft.Navigate(State.GetInstance());
+                        GlobalRight.Navigate(FloorFactory.GetInstance());
+                        Canvas.SetTop(MenuLeft.ToggleCanvas, 7);
+                        MonsterData.GetInstance().ContentItem.Children.Clear();
+                    }
+                    else
+                    {
+                        isMenuOpened = true;
+                        GlobalLeft.Navigate(MenuLeft.GetInstance());
+                        GlobalRight.Navigate(MonsterData.GetInstance());
+                        MonsterData.GetInstance().ShowContentItem();
+                    }
                     break;
             }
         }

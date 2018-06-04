@@ -1,17 +1,19 @@
 ﻿using Mota.CellImage;
 using Mota.page;
 using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 /// <summary>
 /// Todo List
-/// 1.显伤脚本
-/// 2.存档读档
-/// 3.ESC界面
-/// 4.NPC对话界面
+/// 1.显伤脚本 done
+/// 2.存档读档 
+/// 3.ESC界面 done
+/// 4.NPC对话界面 done
 /// 5.剧情
 /// 6.图片 base64
+/// 7.音效 音乐 特效
 /// </summary>
 namespace Mota.CommonUtility
 {
@@ -79,6 +81,16 @@ namespace Mota.CommonUtility
         /// 英雄当前楼层地图
         /// </summary>
         private IBaseImage[,] current_floor;
+
+        /// <summary>
+        /// 玩家是否在进行对话
+        /// </summary>
+        public bool IsTalking { set; get; }
+
+        /// <summary>
+        /// 正在对话的NPC
+        /// </summary>
+        public NPCImage NPC { set; get; }
 
         private static Hero instance;
 
@@ -239,11 +251,26 @@ namespace Mota.CommonUtility
                     MonsterImage monster = new MonsterImage((MonsterType)e);
                     if (CalculationUtility.Battle(monster))
                     {
-                        //删除怪物和显伤脚本
+                        //删除怪物图片和显伤脚本
                         current_floor[x, y].HideImage();
                         ((MonsterImage)current_floor[x, y]).HideDamage();
+                        //从列表中删除怪物和位置
+                        MapUtility.MonsterList.Remove(current_floor[x, y]);
+                        foreach (KeyValuePair<int, int> pair in MapUtility.MonsterPosition)
+                        {
+                            if (pair.Key == x && pair.Value == y)
+                            {
+                                MapUtility.MonsterPosition.Remove(pair);
+                                break;
+                            }
+                        }
                     }
                     return false;
+                case Atype.NPC:
+                    IsTalking = true;
+                    NPC = (NPCImage)current_floor[x, y];
+                    ((NPCImage)current_floor[x, y]).ShowDialog();
+                    break;
             }
             return false;
         }

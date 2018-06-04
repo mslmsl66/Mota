@@ -5,7 +5,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Mota.page"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
       Title="Floor_zero"
       Height="650" Width="650">
     <Grid Name="mapBox" FocusManager.FocusedElement="{Binding ElementName=panelCenter}">

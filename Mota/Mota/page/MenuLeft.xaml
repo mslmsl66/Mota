@@ -1,0 +1,94 @@
+﻿<Page x:Class="Mota.page.MenuLeft"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      Height="650" Width="250"
+      Title="Menu">
+    <Grid Opacity="0.8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Canvas Grid.Row="0" Grid.Column="0" Name="MenuItem">
+            <Canvas.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0.00" Color="#FF6E6E6E"></GradientStop>
+                        <GradientStop Offset="0.80" Color="#FF252525"></GradientStop>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Canvas.Background>
+            <Canvas Name="toggleItem" Width="250" Height="50" Background="White" Canvas.Top="7" Opacity="0.5"></Canvas>
+            <TextBlock FontSize="30" Height="80" Width="165" Canvas.Left="55" Canvas.Top="10">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">怪物资料</Run>
+            </TextBlock>
+            <TextBlock FontSize="30" Height="80" Width="165" Canvas.Left="55" Canvas.Top="60">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">能力简介</Run>
+            </TextBlock>
+            <TextBlock FontSize="30" Height="80" Width="165" Canvas.Left="55" Canvas.Top="110">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">存储进度</Run>
+            </TextBlock>
+            <TextBlock FontSize="30" Height="80" Width="165" Canvas.Left="55" Canvas.Top="160">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">读取进度</Run>
+            </TextBlock>
+            <TextBlock FontSize="30" Height="80" Width="165" Canvas.Left="55" Canvas.Top="210">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">重新开始</Run>
+            </TextBlock>
+            <TextBlock FontSize="30" Height="80" Width="165" Canvas.Left="55" Canvas.Top="260">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">版权说明</Run>
+            </TextBlock>
+        </Canvas>
+        <Canvas Grid.Row="1" Grid.Column="0">
+            <Canvas.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0.00" Color="#FF6E6E6E"></GradientStop>
+                        <GradientStop Offset="0.70" Color="#FF252525"></GradientStop>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Canvas.Background>
+            <TextBlock FontSize="25" Height="80" Width="165" Canvas.Left="25" Canvas.Top="10">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">游戏时间</Run>
+            </TextBlock>
+            <TextBlock FontSize="25" Height="80" Width="165" Canvas.Left="115" Canvas.Top="60">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">00:00:00</Run>
+            </TextBlock>
+        </Canvas>
+        <Canvas Grid.Row="2" Grid.Column="0">
+            <Canvas.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0.00" Color="#FF6E6E6E"></GradientStop>
+                        <GradientStop Offset="0.70" Color="#FF252525"></GradientStop>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Canvas.Background>
+            <TextBlock FontSize="25" Height="80" Width="165" Canvas.Left="25" Canvas.Top="10">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">游戏版本</Run>
+            </TextBlock>
+            <TextBlock FontSize="25" Height="80" Width="165" Canvas.Left="115" Canvas.Top="60">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">Ver1.0.0</Run>
+            </TextBlock>
+        </Canvas>
+        <Canvas Grid.Row="3" Grid.Column="0">
+            <Canvas.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0.00" Color="#FF6E6E6E"></GradientStop>
+                        <GradientStop Offset="0.70" Color="#FF252525"></GradientStop>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Canvas.Background>
+            <TextBlock FontSize="25" Height="80" Width="165" Canvas.Left="25" Canvas.Top="10">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">游戏作者</Run>
+            </TextBlock>
+            <TextBlock FontSize="25" Height="80" Width="165" Canvas.Left="115" Canvas.Top="60">
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">钢铁老蛙</Run>
+            </TextBlock>
+        </Canvas>
+    </Grid>
+</Page>

@@ -19,12 +19,12 @@ namespace Mota.CommonUtility
         /// <summary>
         /// 存放当前楼层中所有怪物
         /// </summary>
-        private static List<IBaseImage> MonsterList = new List<IBaseImage>();
+        public static List<IBaseImage> MonsterList = new List<IBaseImage>();
 
         /// <summary>
         /// 存放怪物坐标
         /// </summary>
-        private static List<KeyValuePair<int, int>> MonsterPosition = new List<KeyValuePair<int, int>>();
+        public static List<KeyValuePair<int, int>> MonsterPosition = new List<KeyValuePair<int, int>>();
 
         /// <summary>
         /// 给地图添加四边
@@ -171,6 +171,7 @@ namespace Mota.CommonUtility
 
             #region 第1层地图
 
+            floor_list[1][0, 0] = new NPCImage(NPCType.老人, DialogUtility.dialog_1_0_0);
             floor_list[1][0, 3] = new MonsterImage(MonsterType.绿史莱姆);
             floor_list[1][0, 5] = new FloorImage(FloorType.楼梯下);
             floor_list[1][0, 6] = new FloorImage(FloorType.白墙);
@@ -248,7 +249,6 @@ namespace Mota.CommonUtility
             floor_list[1][9, 9] = new MonsterImage(MonsterType.红史莱姆);
             floor_list[1][9, 10] = new MonsterImage(MonsterType.红史莱姆);
 
-            floor_list[1][10, 0] = new NPCImage(NPCType.老人);
             floor_list[1][10, 1] = new KeyImage(KeyType.黄钥匙);
             floor_list[1][10, 2] = new FloorImage(FloorType.白墙);
             floor_list[1][10, 3] = new MonsterImage(MonsterType.绿史莱姆);
@@ -257,7 +257,7 @@ namespace Mota.CommonUtility
             floor_list[1][10, 6] = new FloorImage(FloorType.白墙);
             floor_list[1][10, 8] = new FloorImage(FloorType.白墙);
             floor_list[1][10, 9] = new GemstoneImage(GemstoneType.蓝血瓶);
-            floor_list[1][10, 10] = new NPCImage(NPCType.老人);
+            floor_list[1][10, 10] = new NPCImage(NPCType.老人, DialogUtility.dialog_1_10_10);
             #endregion
 
             //默认添加地板

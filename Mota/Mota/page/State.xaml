@@ -3,62 +3,66 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Mota.page"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="State"
       Height="650" Width="250">
 
-    <Grid>
+    <Grid Opacity="0.8">
         <Canvas Name="StateCanvas">
             <Canvas.Background>
-                <ImageBrush ImageSource="/res/bg2.jpg" Opacity="0.8"></ImageBrush>
+                <LinearGradientBrush>
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0.00" Color="#FF6E6E6E"></GradientStop>
+                        <GradientStop Offset="0.80" Color="#FF252525"></GradientStop>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
             </Canvas.Background>
             <Image Source="/res/icons/characters/hero0.png" Height="60" Canvas.Left="40" Canvas.Top="50"></Image>
             <TextBlock Height="80" Background="Transparent" FontSize="60" Canvas.Left="142" Canvas.Top="37">
-                <Run Name="floorNum" Foreground="#FF3D6999">0F</Run>
+                <Run Name="floorNum" Foreground="#FFF3F1EE">0F</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="30" Canvas.Left="40" Canvas.Top="120">
-                <Run Foreground="#FFC5341D" FontWeight="Bold">等级</Run>
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">等级</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="35" Canvas.Left="162" Canvas.Top="117">
-                <Run Name="level" Foreground="#FFC13333" FontWeight="Bold">1</Run>
+                <Run Name="level" Foreground="#FFF3F1EE" FontWeight="Bold">1</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="204">
-                <Run Foreground="#FFD1852A" FontWeight="Bold">生命值</Run>
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">生命值</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="204">
-                <Run Name="hp" Foreground="#FFE8AB29" FontWeight="Bold">300</Run>
+                <Run Name="hp" Foreground="#FFF3F1EE" FontWeight="Bold">300</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="244">
-                <Run Foreground="#FFD1852A" FontWeight="Bold">攻击</Run>
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">攻击</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="244">
-                <Run Name="atk" Foreground="#FFE8AB29" FontWeight="Bold">10</Run>
+                <Run Name="atk" Foreground="#FFF3F1EE" FontWeight="Bold">10</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="284">
-                <Run Foreground="#FFD1852A" FontWeight="Bold">防御</Run>
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">防御</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="284">
-                <Run Name="def" Foreground="#FFE8AB29" FontWeight="Bold">10</Run>
+                <Run Name="def" Foreground="#FFF3F1EE" FontWeight="Bold">10</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="324">
-                <Run Foreground="#FFD1852A" FontWeight="Bold">魔防</Run>
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">魔防</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="324">
-                <Run Name="res" Foreground="#FFE8AB29" FontWeight="Bold">0</Run>
+                <Run Name="res" Foreground="#FFF3F1EE" FontWeight="Bold">0</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="364">
-                <Run Foreground="#FFB9B928" FontWeight="Bold">经验值</Run>
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">经验值</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="364">
-                <Run Name="exp" Foreground="#FFB9B928" FontWeight="Bold">0</Run>
+                <Run Name="exp" Foreground="#FFF3F1EE" FontWeight="Bold">0</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="40" Canvas.Top="404">
-                <Run Foreground="#FFB9B928" FontWeight="Bold">金币</Run>
+                <Run Foreground="#FFF3F1EE" FontWeight="Bold">金币</Run>
             </TextBlock>
             <TextBlock Height="60" Background="Transparent" FontSize="25" Canvas.Left="162" Canvas.Top="404">
-                <Run Name="gold" Foreground="#FFB9B928" FontWeight="Bold">0</Run>
+                <Run Name="gold" Foreground="#FFF3F1EE" FontWeight="Bold">0</Run>
             </TextBlock>
             <Image Source="/res/icons/item/a0.png" Height="45" Canvas.Left="40" Canvas.Top="460"></Image>
             <TextBlock Height="60" Background="Transparent" FontSize="30" Canvas.Left="155" Canvas.Top="460">

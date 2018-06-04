@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Mota.CommonUtility;
+using Mota.page;
+using System;
+using System.Collections.Generic;
+using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -21,12 +26,69 @@ namespace Mota.CellImage
         /// </summary>
         private DispatcherTimer timer;
 
-        public NPCImage(NPCType type) : base()
+        /// <summary>
+        /// 对话内容
+        /// </summary>
+        private List<string> dialog = new List<string>();
+
+        /// <summary>
+        /// 对话进度计数
+        /// </summary>
+        private int j = 0;
+
+        /// <summary>
+        /// 对话框
+        /// </summary>
+        private TextBlock textBlock;
+
+        /// <summary>
+        /// 创建一个NPC
+        /// </summary>
+        /// <param name="type">NPC种类</param>
+        /// <param name="dialog">对话内容</param>
+        public NPCImage(NPCType type, List<string> dialog) : base()
         {
             dynamicPath = GetImagePaths(type);
             SetImageSource(dynamicPath);
+            this.dialog = dialog;
             coarseType = Atype.NPC;
             fineType = type;
+        }
+        /// <summary>
+        /// 与NPC进行对话
+        /// </summary>
+        public void ShowDialog()
+        {
+            textBlock = new TextBlock()
+            {
+                Height = 150,
+                Width = 550,
+                FontSize = 25,
+                Text = dialog[j++],
+                Background = new SolidColorBrush(Color.FromArgb(240, 80, 80, 80)),
+                TextWrapping = System.Windows.TextWrapping.Wrap
+            };
+            Canvas.SetLeft(textBlock, 0);
+            Canvas.SetBottom(textBlock, 0);
+            Panel.SetZIndex(textBlock, 9);
+            FloorFactory.canvas.Children.Add(textBlock);
+        }
+
+        /// <summary>
+        /// 显示之后的对话
+        /// </summary>
+        public void NextText()
+        {
+            if (j >= dialog.Count)
+            {
+                FloorFactory.canvas.Children.Remove(textBlock);
+                j = 0;
+                Hero.GetInstance().IsTalking = false;
+            }
+            else
+            {
+                textBlock.Text = dialog[j++];
+            }
         }
 
         /// <summary>
