@@ -11,6 +11,8 @@ namespace Mota.CellImage
 {
     public class NPCImage : StaticImageImpl
     {
+        public MediaPlayer npcPlayer = new MediaPlayer();
+
         /// <summary>
         /// 动态图片有四张,切换图片形成动画
         /// </summary>
@@ -54,6 +56,12 @@ namespace Mota.CellImage
             coarseType = Atype.NPC;
             fineType = type;
         }
+
+        public override MediaPlayer GetPlayer()
+        {
+            return npcPlayer;
+        }
+
         /// <summary>
         /// 与NPC进行对话
         /// </summary>

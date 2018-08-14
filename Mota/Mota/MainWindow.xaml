@@ -19,6 +19,6 @@
             </Grid.RowDefinitions>
             <Frame Grid.Row="0" Grid.Column="0" Name="left" NavigationUIVisibility="Hidden"></Frame>
             <Frame Grid.Row="0" Grid.Column="1" Name="right" NavigationUIVisibility="Hidden"></Frame>
-        </Grid>
+            </Grid>
     </Viewbox>
 </Window>

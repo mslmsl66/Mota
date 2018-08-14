@@ -92,6 +92,11 @@ namespace Mota.CommonUtility
         /// </summary>
         public NPCImage NPC { set; get; }
 
+        /// <summary>
+        /// 英雄的攻击方式
+        /// </summary>
+        private string weapon = CommonString.WEAPON_FIST;
+
         private static Hero instance;
 
         public int Hp { get => hp; set => hp = value; }
@@ -105,16 +110,18 @@ namespace Mota.CommonUtility
         public int BlueKey { get => blueKey; set => blueKey = value; }
         public int RedKey { get => redKey; set => redKey = value; }
 
-        private Hero()
+        private Hero(int hp = 1000, int atk = 10, int def = 10, int res = 0, int level = 1,
+            int gold = 0, int exp = 0, int yellow = 0, int blue = 0, int red = 0)
         {
             floorFactory = FloorFactory.GetInstance();
             current_floor = floorFactory.GetCurrentFloor();
         }
-        public static Hero GetInstance()
+        public static Hero GetInstance(int hp = 1000, int atk = 10, int def = 10, int res = 0, int level = 1,
+            int gold = 0, int exp = 0, int yellow = 0, int blue = 0, int red = 0)
         {
             if (instance == null)
             {
-                instance = new Hero();
+                instance = new Hero(hp, atk, def, res, level, gold, exp, yellow, blue, red);
             }
             return instance;
         }
@@ -125,54 +132,70 @@ namespace Mota.CommonUtility
         /// <param name="a"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        private bool IsTouch(Atype a, Enum e)
+        private bool IsTouch(IBaseImage image)
         {
-            switch (a)
+            // 细分类
+            Enum e = image.GetFineType();
+            switch (image.GetCoarseType())
             {
                 case Atype.地板:
                     switch (e)
                     {
                         case FloorType.地板:
+                            image.PlayMusic(image.GetPlayer(),"../../res/se/走路.MP3");
                             return true;
                         case FloorType.楼梯上:
+                            image.PlayMusic(image.GetPlayer(), "../../res/se/上下楼.MP3");
                             current_floor = floorFactory.CoreMap(floorFactory.GetFloorNum() + 1);
                             return true;
                         case FloorType.楼梯下:
+                            image.PlayMusic(image.GetPlayer(), "../../res/se/上下楼.MP3");
                             current_floor = floorFactory.CoreMap(floorFactory.GetFloorNum() - 1);
                             return true;
                     }
                     return false;
                 case Atype.门:
-                    if (((DoorImage)current_floor[x, y]).isImageExist)
+                    if (image.isImageExist())
                     {
                         switch (e)
                         {
                             case DoorType.黄门:
                                 if (YellowKey > 0)
                                 {
-                                    ((DoorImage)current_floor[x, y]).HideImage();
+                                    image.HideImage();
                                     YellowKey--;
+                                }
+                                else
+                                {
+                                    image.PlayMusic(image.GetPlayer(), "../../res/se/开门失败.MP3");
                                 }
                                 break;
                             case DoorType.蓝门:
                                 if (BlueKey > 0)
                                 {
-                                    ((DoorImage)current_floor[x, y]).HideImage();
+                                    image.HideImage();
                                     BlueKey--;
+                                }
+                                else
+                                {
+                                    image.PlayMusic(image.GetPlayer(), "../../res/se/开门失败.MP3");
                                 }
                                 break;
                             case DoorType.红门:
                                 if (RedKey > 0)
                                 {
-                                    ((DoorImage)current_floor[x, y]).HideImage();
+                                    image.HideImage();
                                     RedKey--;
+                                }
+                                else
+                                {
+                                    image.PlayMusic(image.GetPlayer(), "../../res/se/开门失败.MP3");
                                 }
                                 break;
                             case DoorType.铁门:
-                                ((DoorImage)current_floor[x, y]).HideImage();
+                                image.HideImage();
                                 break;
                         }
-                        ((DoorImage)current_floor[x, y]).isImageExist = false;
                     }
                     return false;
                 case Atype.宝石:
@@ -201,6 +224,7 @@ namespace Mota.CommonUtility
                             break;
                         case GemstoneType.铁剑:
                             Atk += 10;
+                            weapon = CommonString.WEAPON_SWORD;
                             break;
                         case GemstoneType.铁盾:
                             Def += 10;
@@ -224,38 +248,42 @@ namespace Mota.CommonUtility
                             Def += 100;
                             break;
                     }
-                    current_floor[x, y].HideImage();
+                    image.PlayMusic(image.GetPlayer(),"../../res/se/吃物品.MP3");
+                    image.HideImage();
                     //更新显伤脚本
                     MapUtility.UpdateDamage();
                     return true;
                 case Atype.特殊物品:
+                    image.PlayMusic(image.GetPlayer(), "../../res/se/吃物品.MP3");
                     return true;
                 case Atype.钥匙:
                     switch ((KeyType)e)
                     {
                         case KeyType.黄钥匙:
                             YellowKey++;
-                            current_floor[x, y].HideImage();
+                            image.HideImage();
                             break;
                         case KeyType.蓝钥匙:
                             BlueKey++;
-                            current_floor[x, y].HideImage();
+                            image.HideImage();
                             break;
                         case KeyType.红钥匙:
                             RedKey++;
-                            current_floor[x, y].HideImage();
+                            image.HideImage();
                             break;
                     }
+                    image.PlayMusic(image.GetPlayer(), "../../res/se/吃物品.MP3");
                     return true;
                 case Atype.怪物:
                     MonsterImage monster = new MonsterImage((MonsterType)e);
                     if (CalculationUtility.Battle(monster))
                     {
+                        image.PlayMusic(image.GetPlayer(), "../../res/se/" + weapon + ".MP3");
                         //删除怪物图片和显伤脚本
-                        current_floor[x, y].HideImage();
-                        ((MonsterImage)current_floor[x, y]).HideDamage();
+                        image.HideImage();
+                        ((MonsterImage)image).HideDamage();
                         //从列表中删除怪物和位置
-                        MapUtility.MonsterList.Remove(current_floor[x, y]);
+                        MapUtility.MonsterList.Remove(image);
                         foreach (KeyValuePair<int, int> pair in MapUtility.MonsterPosition)
                         {
                             if (pair.Key == x && pair.Value == y)
@@ -268,8 +296,8 @@ namespace Mota.CommonUtility
                     return false;
                 case Atype.NPC:
                     IsTalking = true;
-                    NPC = (NPCImage)current_floor[x, y];
-                    ((NPCImage)current_floor[x, y]).ShowDialog();
+                    NPC = (NPCImage)image;
+                    NPC.ShowDialog();
                     break;
             }
             return false;
@@ -285,7 +313,8 @@ namespace Mota.CommonUtility
                 return;
             }
             x--;
-            if (IsTouch(current_floor[x, y].GetCoarseType(), current_floor[x, y].GetFineType()) == false)
+            // if (IsTouch(current_floor[x, y].GetCoarseType(), current_floor[x, y].GetFineType()) == false)
+            if (IsTouch(current_floor[x, y]) == false)
             {
                 x++;
                 return;
@@ -305,7 +334,8 @@ namespace Mota.CommonUtility
                 return;
             }
             x++;
-            if (IsTouch(current_floor[x, y].GetCoarseType(), current_floor[x, y].GetFineType()) == false)
+            // if (IsTouch(current_floor[x, y].GetCoarseType(), current_floor[x, y].GetFineType()) == false)
+            if (IsTouch(current_floor[x, y]) == false)
             {
                 x--;
                 return;
@@ -325,7 +355,8 @@ namespace Mota.CommonUtility
                 return;
             }
             y--;
-            if (IsTouch(current_floor[x, y].GetCoarseType(), current_floor[x, y].GetFineType()) == false)
+            // if (IsTouch(current_floor[x, y].GetCoarseType(), current_floor[x, y].GetFineType()) == false)
+            if (IsTouch(current_floor[x, y]) == false)
             {
                 y++;
                 return;
@@ -345,7 +376,8 @@ namespace Mota.CommonUtility
                 return;
             }
             y++;
-            if (IsTouch(current_floor[x, y].GetCoarseType(), current_floor[x, y].GetFineType()) == false)
+            // if (IsTouch(current_floor[x, y].GetCoarseType(), current_floor[x, y].GetFineType()) == false)
+            if (IsTouch(current_floor[x, y]) == false)
             {
                 y--;
                 return;

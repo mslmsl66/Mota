@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Windows.Media;
 
 namespace Mota.CellImage
 {
     public class FloorImage : DynamicImageImpl
     {
+        public MediaPlayer floorPlayer = new MediaPlayer();
+
         public FloorImage(FloorType type) : base()
         {
             if (type == FloorType.熔浆 || type == FloorType.天空)
@@ -16,6 +19,11 @@ namespace Mota.CellImage
             }
             coarseType = Atype.地板;
             fineType = type;
+        }
+
+        public override MediaPlayer GetPlayer()
+        {
+            return floorPlayer;
         }
 
         public String GetImagePath(FloorType type)

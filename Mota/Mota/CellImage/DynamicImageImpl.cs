@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -103,6 +104,22 @@ namespace Mota.CellImage
         public Enum GetFineType()
         {
             return fineType;
+        }
+
+        public virtual void PlayMusic(MediaPlayer player,string url)
+        {
+            player.Open(new Uri(url, UriKind.Relative));
+            player.Play();
+        }
+
+        public virtual MediaPlayer GetPlayer()
+        {
+            return null;
+        }
+
+        bool IBaseImage.isImageExist()
+        {
+            return isImageExist;
         }
     }
 }

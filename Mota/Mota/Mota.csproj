@@ -75,6 +75,7 @@
     <Compile Include="CellImage\NPCImage.cs" />
     <Compile Include="CellImage\SpecialItemImage.cs" />
     <Compile Include="CommonUtility\CalculationUtility.cs" />
+    <Compile Include="CommonUtility\CommonString.cs" />
     <Compile Include="CommonUtility\DialogUtility.cs" />
     <Compile Include="CommonUtility\Hero.cs" />
     <Compile Include="CommonUtility\MapUtility.cs" />
@@ -392,6 +393,59 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="res\background.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="res\bgm\0层声音.MP3" />
+    <Content Include="res\bgm\1717.MP3" />
+    <Content Include="res\bgm\Gameover.MP3" />
+    <Content Include="res\bgm\地上声音.MP3" />
+    <Content Include="res\bgm\地下声音.MP3" />
+    <Content Include="res\se\1009.MP3" />
+    <Content Include="res\se\1028.MP3" />
+    <Content Include="res\se\1041.MP3" />
+    <Content Include="res\se\1045.MP3" />
+    <Content Include="res\se\1065.MP3" />
+    <Content Include="res\se\1076.MP3" />
+    <Content Include="res\se\1085.MP3" />
+    <Content Include="res\se\剑.MP3" />
+    <Content Include="res\se\1101.MP3" />
+    <Content Include="res\se\1114.MP3" />
+    <Content Include="res\se\1125.MP3" />
+    <Content Include="res\se\1134.MP3" />
+    <Content Include="res\se\1143.MP3" />
+    <Content Include="res\se\1154.MP3" />
+    <Content Include="res\se\1165.MP3" />
+    <Content Include="res\se\1172.MP3" />
+    <Content Include="res\se\1175.MP3" />
+    <Content Include="res\se\1181.MP3" />
+    <Content Include="res\se\1184.MP3" />
+    <Content Include="res\se\1269.MP3" />
+    <Content Include="res\se\1365.MP3" />
+    <Content Include="res\se\吃物品.MP3" />
+    <Content Include="res\se\开门失败.MP3" />
+    <Content Include="res\se\1620.MP3" />
+    <Content Include="res\se\1622.MP3" />
+    <Content Include="res\se\1624.MP3" />
+    <Content Include="res\se\走路.MP3" />
+    <Content Include="res\se\33.MP3" />
+    <Content Include="res\se\34.MP3" />
+    <Content Include="res\se\开门.MP3" />
+    <Content Include="res\se\拳头.MP3" />
+    <Content Include="res\se\918.MP3" />
+    <Content Include="res\se\929.MP3" />
+    <Content Include="res\se\942.MP3" />
+    <Content Include="res\se\958.MP3" />
+    <Content Include="res\se\969.MP3" />
+    <Content Include="res\se\978.MP3" />
+    <Content Include="res\se\987.MP3" />
+    <Content Include="res\se\998.MP3" />
+    <Content Include="res\se\Gameover.MP3" />
+    <Content Include="res\se\上下楼.MP3" />
+    <Content Include="res\se\吸血.MP3" />
+    <Content Include="res\se\没钱.MP3" />
+    <Content Include="res\se\火焰.MP3" />
+    <Content Include="res\se\给钱.MP3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

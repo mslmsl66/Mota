@@ -31,6 +31,7 @@ namespace Mota.page
         /// <param name="e"></param>
         private void StartClick(object sender, RoutedEventArgs e)
         {
+            MainWindow.PlayMusic("../../res/bgm/0层声音.MP3");
             MainWindow.GlobalViewbox.Stretch = Stretch.Fill;
             MainWindow.GlobalLeft.Navigate(State.GetInstance());
             MainWindow.GlobalRight.Navigate(FloorFactory.GetInstance());

@@ -10,6 +10,8 @@ namespace Mota.CellImage
 {
     public class MonsterImage : DynamicImageImpl
     {
+        public MediaPlayer monsterPlayer = new MediaPlayer();
+
         /// <summary>
         /// 攻击
         /// </summary>
@@ -63,6 +65,11 @@ namespace Mota.CellImage
             SetImageSource(GetImagePaths(type));
             coarseType = Atype.怪物;
             fineType = type;
+        }
+
+        public override MediaPlayer GetPlayer()
+        {
+            return monsterPlayer;
         }
 
         /// <summary>

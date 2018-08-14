@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Windows.Media;
 
 namespace Mota.CellImage
 {
     public class SpecialItemImage : StaticImageImpl
     {
+        public MediaPlayer specialPlayer = new MediaPlayer();
+
         public SpecialItemImage(SpecialItemType type) : base()
         {
             SetImageSource(GetImagePath(type));
@@ -31,6 +34,11 @@ namespace Mota.CellImage
                     return "/res/icons/item/c5.png";
             }
             return null;
+        }
+
+        public override MediaPlayer GetPlayer()
+        {
+            return specialPlayer;
         }
     }
     public enum SpecialItemType { 怪物手册, 楼层飞跃器, 大金币, 圣水, 十字架, 解毒剂, 解衰剂 };

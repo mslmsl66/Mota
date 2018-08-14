@@ -1,14 +1,21 @@
 ﻿using System;
+using System.Windows.Media;
 
 namespace Mota.CellImage
 {
     public class GemstoneImage : StaticImageImpl
     {
+        public MediaPlayer gemstonePlayer = new MediaPlayer();
         public GemstoneImage(GemstoneType type) : base()
         {
             SetImageSource(GetImagePath(type));
             coarseType = Atype.宝石;
             fineType = type;
+        }
+
+        public override MediaPlayer GetPlayer()
+        {
+            return gemstonePlayer;
         }
 
         public String GetImagePath(GemstoneType gtype)

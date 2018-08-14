@@ -49,7 +49,7 @@ namespace Mota.page
         /// <returns></returns>
         public static FloorFactory GetInstance()
         {
-            if (instance == null)
+            if(instance == null)
             {
                 instance = new FloorFactory();
             }

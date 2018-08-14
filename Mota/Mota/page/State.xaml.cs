@@ -82,12 +82,11 @@ namespace Mota.page
         }
         public static State GetInstance()
         {
-            if (instance == null)
+            if (instance == null) 
             {
                 instance = new State();
             }
             return instance;
         }
-
     }
 }

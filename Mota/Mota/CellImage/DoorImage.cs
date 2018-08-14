@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -6,6 +7,8 @@ namespace Mota.CellImage
 {
     public class DoorImage : DynamicImageImpl
     {
+        public MediaPlayer doorPlayer = new MediaPlayer();
+
         public DoorImage(DoorType type) : base()
         {
             SetImageSource(GetImagePath(type));
@@ -15,16 +18,22 @@ namespace Mota.CellImage
             fineType = type;
         }
 
+        public override MediaPlayer GetPlayer()
+        {
+            return doorPlayer;
+        }
+
         /// <summary>
-        /// 切换四张图片,实现关门效果
+        /// 切换四张图片,实现开门效果，并播放音效
         /// </summary>
         /// <param name="o"></param>
         public new void HideImage()
         {
+            PlayMusic(doorPlayer,"../../res/se/开门.MP3");
             isImageExist = false;
             timer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromMilliseconds(100)
+                Interval = TimeSpan.FromMilliseconds(50)
             };
             timer.Tick += new EventHandler(ChangeTick);
             timer.Start();

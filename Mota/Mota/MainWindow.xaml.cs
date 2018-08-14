@@ -1,8 +1,11 @@
 ﻿using Mota.CommonUtility;
 using Mota.page;
+using System;
+using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Mota
 {
@@ -20,6 +23,8 @@ namespace Mota
 
         private Hero hero = Hero.GetInstance();
 
+        private static MediaPlayer player = new MediaPlayer();
+
         /// <summary>
         /// 标识菜单栏位置
         /// </summary>
@@ -30,6 +35,11 @@ namespace Mota
         /// </summary>
         private bool isMenuOpened = false;
 
+        /// <summary>
+        /// 背景音乐的url
+        /// </summary>
+        private static string url;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,6 +47,29 @@ namespace Mota
             GlobalRight = right;
             GlobalLeft = left;
             GlobalViewbox = viewbox;
+        }
+
+        /// <summary>
+        /// 播放音频
+        /// </summary>
+        public static void PlayMusic(string url)
+        {
+            player.Open(new Uri(url, UriKind.Relative));
+            player.Play();
+            MainWindow.url = url;
+            // 为播放器添加播放结束事件
+            player.MediaEnded += new EventHandler(MediaEnded);
+        }
+
+        /// <summary>
+        /// 循环播放，播放结束时被调用
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void MediaEnded(object sender, EventArgs e)
+        {
+            player.Open(new Uri(url, UriKind.Relative));
+            player.Play();
         }
 
         /// <summary>
@@ -133,8 +166,8 @@ namespace Mota
                     if (isMenuOpened)
                     {
                         isMenuOpened = false;
-                        GlobalLeft.Navigate(State.GetInstance());
-                        GlobalRight.Navigate(FloorFactory.GetInstance());
+                        left.Navigate(State.GetInstance());
+                        right.Navigate(FloorFactory.GetInstance());
                         Canvas.SetTop(MenuLeft.ToggleCanvas, 7);
                         MonsterData.GetInstance().ContentItem.Children.Clear();
                     }
