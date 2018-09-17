@@ -1,7 +1,8 @@
 ﻿using Mota.CommonUtility;
+using Mota.FileController;
+using Mota.HeroCore;
 using Mota.page;
 using System;
-using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -109,6 +110,7 @@ namespace Mota
                             Canvas.SetTop(MenuLeft.ToggleCanvas, Canvas.GetTop(MenuLeft.ToggleCanvas) + 50);
                             itemNum++;
                         }
+                        ShowRightWindow(itemNum);
                         break;
                     case Key.Up:
                         if (itemTop == 7)
@@ -121,29 +123,13 @@ namespace Mota
                             Canvas.SetTop(MenuLeft.ToggleCanvas, Canvas.GetTop(MenuLeft.ToggleCanvas) - 50);
                             itemNum--;
                         }
-                        break;
-                    case Key.Enter:
-                        //切换菜单项右边的显示
-                        switch (itemNum)
-                        {
-                            case 0:
-                                GlobalRight.Navigate(MonsterData.GetInstance());
-                                break;
-                            case 1:
-                                GlobalRight.Navigate(AbilityIntroduction.GetInstance());
-                                break;
-                            case 4:
-                                //isMenuOpened = false;
-                                //GlobalLeft.Navigate(State.GetInstance());
-                                //GlobalRight.Navigate(FloorFactory.GetInstance());
-                                //FloorFactory.GetInstance().CoreMap();
-                                break;
-                        }
+                        ShowRightWindow(itemNum);
                         break;
                     case Key.Escape:
                         GlobalLeft.Navigate(MenuLeft.GetInstance());
                         GlobalRight.Navigate(MonsterData.GetInstance());
                         MonsterData.GetInstance().ShowContentItem();
+                        itemNum = 0;
                         break;
                 }
             }
@@ -180,6 +166,30 @@ namespace Mota
                     }
                     break;
             }
+        }
+
+        /// <summary>
+        /// 根据左侧菜单栏显示右侧内容
+        /// </summary>
+        /// <param name="num"></param>
+        private void ShowRightWindow(int num)
+        {
+            switch (num)
+            {
+                case 0:
+                    GlobalRight.Navigate(MonsterData.GetInstance());
+                    break;
+                case 1:
+                    GlobalRight.Navigate(AbilityIntroduction.GetInstance());
+                    break;
+                case 2:
+                    SaveData.Save("Save1");
+                    break;
+                case 3:
+                    LoadData.Load("Save1");
+                    break;
+            }
+
         }
     }
 }

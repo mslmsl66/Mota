@@ -27,9 +27,8 @@ namespace Mota.CellImage
         /// 切换四张图片,实现开门效果，并播放音效
         /// </summary>
         /// <param name="o"></param>
-        public new void HideImage()
+        public override void HideImage()
         {
-            PlayMusic(doorPlayer,"../../res/se/开门.MP3");
             isImageExist = false;
             timer = new DispatcherTimer
             {
@@ -45,8 +44,6 @@ namespace Mota.CellImage
             {
                 Source = new BitmapImage(new Uri("/res/icons/background/0.png", UriKind.Relative));
                 timer.Stop();
-                coarseType = Atype.地板;
-                fineType = FloorType.地板;
                 return;
             }
             Source = new BitmapImage(new Uri(dynamicPath[i++], UriKind.Relative));

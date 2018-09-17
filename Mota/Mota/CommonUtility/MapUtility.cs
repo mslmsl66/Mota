@@ -1,4 +1,5 @@
-﻿using Mota.CellImage;
+﻿using System;
+using Mota.CellImage;
 using Mota.page;
 using System.Collections.Generic;
 using System.Windows;
@@ -20,7 +21,7 @@ namespace Mota.CommonUtility
         /// 存放当前楼层中所有怪物
         /// </summary>
         public static List<IBaseImage> MonsterList = new List<IBaseImage>();
-
+        
         /// <summary>
         /// 存放怪物坐标
         /// </summary>
@@ -103,6 +104,18 @@ namespace Mota.CommonUtility
         }
 
         /// <summary>
+        /// 把某一个Image删除并修改为其他Image，例如怪物死亡后改为地板
+        /// </summary>
+        /// <param name="floorNum"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="image"></param>
+        public static void ChangeToImage(int floorNum,int x,int y,IBaseImage image)
+        {
+            floor_list[floorNum][x, y] = image;
+        }
+
+        /// <summary>
         /// 在list中初始化20楼层
         /// </summary>
         private static void ConstructList()
@@ -113,13 +126,77 @@ namespace Mota.CommonUtility
             {
                 floor_list.Add(new IBaseImage[11, 11]);
             }
-            DesignFloor();
+            InitializeFloor();
+        }
+
+        /// <summary>
+        /// 返回当前地图每个单元的类型
+        /// </summary>
+        /// <returns></returns>
+        public static List<List<KeyValuePair<Atype, Enum>>> GetAllFloorType()
+        {
+            List<List<KeyValuePair<Atype, Enum>>> list = new List<List<KeyValuePair<Atype, Enum>>>();
+            foreach (IBaseImage[,] image in floor_list)
+            {
+                List<KeyValuePair<Atype, Enum>> list1 = new List<KeyValuePair<Atype, Enum>>();
+                for (int i = 0; i < 11; i++)
+                {
+                    for (int j = 0; j < 11; j++)
+                    {
+                        list1.Add(new KeyValuePair<Atype, Enum>(image[i, j].GetCoarseType(), image[i, j].GetFineType()));
+                    }
+                }
+                list.Add(list1);
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 根据参数重新初始化地图
+        /// </summary>
+        /// <param name="map"></param>
+        /// public enum Atype { 宝石, 钥匙, 怪物, 特殊物品, 地板, 英雄, 门, NPC };
+        public static void UpdateFloor(List<List<KeyValuePair<int, int>>> map)
+        {
+            int k = 0;
+            foreach (var list in map)
+            {
+                for (int i = 0; i < 11; i++)
+                {
+                    for (int j = 0; j < 11; j++)
+                    {
+                        var kv = list[i * 11 + j];
+                        switch (kv.Key) {
+                            case 0:
+                                floor_list[k][i, j] = new GemstoneImage((GemstoneType)kv.Value);
+                                break;
+                            case 1:
+                                floor_list[k][i, j] = new KeyImage((KeyType)kv.Value);
+                                break;
+                            case 2:
+                                floor_list[k][i, j] = new MonsterImage((MonsterType)kv.Value);
+                                break;
+                            case 3:
+                                floor_list[k][i, j] = new SpecialItemImage((SpecialItemType)kv.Value);
+                                break;
+                            case 4:
+                                floor_list[k][i, j] = new FloorImage((FloorType)kv.Value);
+                                break;
+                            case 6:
+                                floor_list[k][i, j] = new DoorImage((DoorType)kv.Value);
+                                break;
+                        }
+                    }
+                }
+                k++;
+            }
+            CalculationUtility.RefreshStatus();
         }
 
         /// <summary>
         /// 初始化所有楼层地图内容
-        /// </summary>
-        private static void DesignFloor()
+        /// </summary>5p
+        private static void InitializeFloor()
         {
             #region 第0层地图
 

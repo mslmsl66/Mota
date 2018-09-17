@@ -11,17 +11,17 @@ namespace Mota.CellImage
         /// <summary>
         /// 动态图片有四张,切换图片形成动画
         /// </summary>
-        internal string[] dynamicPath;
+        protected string[] dynamicPath;
 
         /// <summary>
         /// 切换动态图片计数
         /// </summary>
-        internal int i = 0;
+        protected int i = 0;
 
         /// <summary>
         /// 实现动态地图的定时器
         /// </summary>
-        internal DispatcherTimer timer;
+        protected DispatcherTimer timer;
 
         /// <summary>
         /// 标记图片是否还存在
@@ -91,9 +91,9 @@ namespace Mota.CellImage
             {
                 timer.Stop();
             }
-            isImageExist = false;
-            coarseType = Atype.地板;
-            fineType = FloorType.地板;
+            //isImageExist = false;
+            //coarseType = Atype.地板;
+            //fineType = FloorType.地板;
         }
 
         public Atype GetCoarseType()

@@ -40,7 +40,8 @@ namespace Mota.page
             //getRecordFloor();
             canvas = CenterCanvas;
             AddMap();
-            heroImage = CreateHeroImage(500, 500);
+            heroImage = CreateHeroImage();
+            DrawHeroImage(10, 10);
         }
 
         /// <summary>
@@ -60,17 +61,23 @@ namespace Mota.page
         /// 创建英雄图片,放置顶层
         /// </summary>
         /// <returns></returns>
-        internal Image CreateHeroImage(int left, int top)
+        internal Image CreateHeroImage()
         {
-            Image hero = new Image();
-            hero.Source = new BitmapImage(new Uri("/res/icons/characters/hero0.png", UriKind.Relative));
-            hero.Height = 50;
-            hero.Width = 50;
-            Canvas.SetLeft(hero, left);
-            Canvas.SetTop(hero, top);
+            Image hero = new Image
+            {
+                Source = new BitmapImage(new Uri("/res/icons/characters/hero0.png", UriKind.Relative)),
+                Height = 50,
+                Width = 50
+            };
             Panel.SetZIndex(hero, 9);
             canvas.Children.Add(hero);
             return hero;
+        }
+
+        internal void DrawHeroImage(int left, int top)
+        {
+            Canvas.SetLeft(heroImage, left * 50);
+            Canvas.SetTop(heroImage, top * 50);
         }
 
         /// <summary>
@@ -124,6 +131,15 @@ namespace Mota.page
         internal int GetFloorNum()
         {
             return floorNum;
+        }
+
+        /// <summary>
+        /// 设置当前楼层的层数
+        /// </summary>
+        /// <param name="floor"></param>
+        internal void SetFloorNum(int floor)
+        {
+            floorNum = floor;
         }
 
         /// <summary>

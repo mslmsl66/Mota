@@ -46,9 +46,9 @@ namespace Mota.CellImage
         public void HideImage()
         {
             Source = new BitmapImage(new Uri("/res/icons/background/0.png", UriKind.Relative));
-            isImageExist = false;
-            coarseType = Atype.地板;
-            fineType = FloorType.地板;
+            //isImageExist = false;
+            //coarseType = Atype.地板;
+            //fineType = FloorType.地板;
         }
 
         public Atype GetCoarseType()

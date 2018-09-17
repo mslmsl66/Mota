@@ -1,4 +1,5 @@
 ﻿using Mota.CellImage;
+using Mota.HeroCore;
 using Mota.page;
 
 namespace Mota.CommonUtility
@@ -18,13 +19,13 @@ namespace Mota.CommonUtility
         public static bool Battle(MonsterImage monster)
         {
             int damage = CalculateDamage(monster);
-            if (damage >= hero.Hp || damage == -1)
+            if (damage >= hero.properties.hp || damage == -1)
             {
                 return false;
             }
-            hero.Hp -= damage;
-            hero.Exp += monster.Exp;
-            hero.Gold += monster.Gold;
+            hero.properties.hp -= damage;
+            hero.properties.exp += monster.Exp;
+            hero.properties.gold += monster.Gold;
             RefreshStatus();
             return true;
         }
@@ -36,7 +37,7 @@ namespace Mota.CommonUtility
         /// <returns></returns>
         public static int CalculateDamage(MonsterImage monster)
         {
-            if (hero.Atk <= monster.Def)
+            if (hero.properties.atk <= monster.Def)
             {
                 return -1;
             }
@@ -45,38 +46,38 @@ namespace Mota.CommonUtility
             switch (monster.Ability)
             {
                 case SpecialAbility.普通:
-                    monsterHp = monsterHp - (hero.Atk - monster.Def);
+                    monsterHp = monsterHp - (hero.properties.atk - monster.Def);
                     while (monsterHp > 0)
                     {
-                        damage += (monster.Atk - hero.Def);
-                        monsterHp = monsterHp - (hero.Atk - monster.Def);
+                        damage += (monster.Atk - hero.properties.def);
+                        monsterHp = monsterHp - (hero.properties.atk - monster.Def);
                     }
                     break;
                 case SpecialAbility.魔攻:
-                    monsterHp = monsterHp - (hero.Atk - monster.Def);
+                    monsterHp = monsterHp - (hero.properties.atk - monster.Def);
                     while (monsterHp > 0)
                     {
                         damage += monster.Atk;
-                        monsterHp = monsterHp - (hero.Atk - monster.Def);
+                        monsterHp = monsterHp - (hero.properties.atk - monster.Def);
                     }
                     break;
                 case SpecialAbility.坚固:
                     monsterHp = monsterHp - 1;
                     while (monsterHp > 0)
                     {
-                        damage += (monster.Atk - hero.Def);
+                        damage += (monster.Atk - hero.properties.def);
                         monsterHp = monsterHp - 1;
                     }
                     break;
                 case SpecialAbility.先攻:
                     while (monsterHp > 0)
                     {
-                        damage += (monster.Atk - hero.Def);
-                        monsterHp = monsterHp - (hero.Atk - monster.Def);
+                        damage += (monster.Atk - hero.properties.def);
+                        monsterHp = monsterHp - (hero.properties.atk - monster.Def);
                     }
                     break;
             }
-            damage = damage - hero.Res;
+            damage = damage - hero.properties.res;
             if (damage < 0)
             {
                 return 0;
@@ -90,16 +91,16 @@ namespace Mota.CommonUtility
         public static void RefreshStatus()
         {
             state.floorNumber.Text = floorFactory.GetFloorNum().ToString() + "F";
-            state.heroLevel.Text = hero.Level.ToString();
-            state.heroHP.Text = hero.Hp.ToString();
-            state.heroATK.Text = hero.Atk.ToString();
-            state.heroDEF.Text = hero.Def.ToString();
-            state.heroRES.Text = hero.Res.ToString();
-            state.heroEXP.Text = hero.Exp.ToString();
-            state.heroGold.Text = hero.Gold.ToString();
-            state.heroYellowKey.Text = "x" + hero.YellowKey.ToString();
-            state.heroBlueKey.Text = "x" + hero.BlueKey.ToString();
-            state.heroRedKey.Text = "x" + hero.RedKey.ToString();
+            state.heroLevel.Text = hero.properties.level.ToString();
+            state.heroHP.Text = hero.properties.hp.ToString();
+            state.heroATK.Text = hero.properties.atk.ToString();
+            state.heroDEF.Text = hero.properties.def.ToString();
+            state.heroRES.Text = hero.properties.res.ToString();
+            state.heroEXP.Text = hero.properties.exp.ToString();
+            state.heroGold.Text = hero.properties.gold.ToString();
+            state.heroYellowKey.Text = "x" + hero.properties.yellowKey.ToString();
+            state.heroBlueKey.Text = "x" + hero.properties.blueKey.ToString();
+            state.heroRedKey.Text = "x" + hero.properties.redKey.ToString();
             //ShowDamage();
         }
     }
