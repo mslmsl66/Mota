@@ -93,9 +93,36 @@ namespace Mota
                 }
                 return;
             }
-            //菜单项监听
-            if (isMenuOpened)
+
+            // 游戏界面中
+            if (!isMenuOpened)
             {
+                //英雄移动和菜单项开关
+                switch (e.Key)
+                {
+                    case Key.Up:
+                        hero.MoveUp();
+                        break;
+                    case Key.Down:
+                        hero.MoveDown();
+                        break;
+                    case Key.Left:
+                        hero.MoveLeft();
+                        break;
+                    case Key.Right:
+                        hero.MoveRight();
+                        break;
+                    case Key.Escape:
+                        isMenuOpened = true;
+                        GlobalLeft.Navigate(MenuLeft.GetInstance());
+                        GlobalRight.Navigate(MonsterData.GetInstance());
+                        MonsterData.GetInstance().ShowContentItem();
+                        break;
+                }
+            }
+            else
+            {
+                //菜单栏监听
                 double itemTop = Canvas.GetTop(MenuLeft.ToggleCanvas);
                 switch (e.Key)
                 {
@@ -126,47 +153,15 @@ namespace Mota
                         ShowRightWindow(itemNum);
                         break;
                     case Key.Escape:
-                        GlobalLeft.Navigate(MenuLeft.GetInstance());
-                        GlobalRight.Navigate(MonsterData.GetInstance());
-                        MonsterData.GetInstance().ShowContentItem();
+                        isMenuOpened = false;
+                        GlobalLeft.Navigate(State.GetInstance());
+                        GlobalRight.Navigate(FloorFactory.GetInstance());
+                        Canvas.SetTop(MenuLeft.ToggleCanvas, 7);
+                        MonsterData.GetInstance().ContentItem.Children.Clear();
                         itemNum = 0;
                         break;
                 }
-            }
-            //英雄移动和菜单项开关
-            switch (e.Key)
-            {
-                case Key.Up:
-                    hero.MoveUp();
-                    break;
-                case Key.Down:
-                    hero.MoveDown();
-                    break;
-                case Key.Left:
-                    hero.MoveLeft();
-                    break;
-                case Key.Right:
-                    hero.MoveRight();
-                    break;
-                case Key.Escape:
-                    if (isMenuOpened)
-                    {
-                        isMenuOpened = false;
-                        left.Navigate(State.GetInstance());
-                        right.Navigate(FloorFactory.GetInstance());
-                        Canvas.SetTop(MenuLeft.ToggleCanvas, 7);
-                        MonsterData.GetInstance().ContentItem.Children.Clear();
-                    }
-                    else
-                    {
-                        isMenuOpened = true;
-                        GlobalLeft.Navigate(MenuLeft.GetInstance());
-                        GlobalRight.Navigate(MonsterData.GetInstance());
-                        MonsterData.GetInstance().ShowContentItem();
-                    }
-                    break;
-            }
-        }
+            }        }
 
         /// <summary>
         /// 根据左侧菜单栏显示右侧内容
