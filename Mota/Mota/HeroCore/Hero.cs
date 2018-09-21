@@ -93,6 +93,7 @@ namespace Mota.HeroCore
                     return false;
                 case Atype.门:
                     if (image.isImageExist())
+
                     {
                         switch (e)
                         {

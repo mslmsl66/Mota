@@ -80,6 +80,7 @@
     <Compile Include="CommonUtility\CalculationUtility.cs" />
     <Compile Include="CommonUtility\CommonString.cs" />
     <Compile Include="CommonUtility\DialogUtility.cs" />
+    <Compile Include="CommonUtility\WPFUtility.cs" />
     <Compile Include="HeroCore\Hero.cs" />
     <Compile Include="CommonUtility\MapUtility.cs" />
     <Compile Include="FileController\LoadData.cs" />
@@ -109,6 +110,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="page\SaveAndLoadMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="page\State.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,11 +129,12 @@
     <Compile Include="page\Index.xaml.cs">
       <DependentUpon>Index.xaml</DependentUpon>
     </Compile>
-    <Compile Include="page\MenuLeft.xaml.cs">
-      <DependentUpon>MenuLeft.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="page\MenuLeft.cs" />
     <Compile Include="page\MonsterData.xaml.cs">
       <DependentUpon>MonsterData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\SaveAndLoadMenu.xaml.cs">
+      <DependentUpon>SaveAndLoadMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\State.xaml.cs">
       <DependentUpon>State.xaml</DependentUpon>

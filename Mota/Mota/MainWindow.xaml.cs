@@ -37,6 +37,11 @@ namespace Mota
         private bool isMenuOpened = false;
 
         /// <summary>
+        /// 标识是否进入子菜单页
+        /// </summary>
+        private bool isSecondMenuOpened = false;
+
+        /// <summary>
         /// 背景音乐的url
         /// </summary>
         private static string url;
@@ -116,41 +121,64 @@ namespace Mota
                         isMenuOpened = true;
                         GlobalLeft.Navigate(MenuLeft.GetInstance());
                         GlobalRight.Navigate(MonsterData.GetInstance());
-                        MonsterData.GetInstance().ShowContentItem();
+                        MonsterData.GetInstance().InitContentItem();
+                        SaveAndLoadMenu.GetInstance().InitContentItem();
                         break;
                 }
             }
             else
             {
                 //菜单栏监听
-                double itemTop = Canvas.GetTop(MenuLeft.ToggleCanvas);
                 switch (e.Key)
                 {
                     case Key.Down:
-                        if (itemTop == 257)
+                        if (!isSecondMenuOpened)
                         {
-                            Canvas.SetTop(MenuLeft.ToggleCanvas, 7);
-                            itemNum = 0;
+                            if (itemNum == 5)
+                            {
+                                Canvas.SetTop(MenuLeft.ToggleCanvas, 7);
+                                itemNum = 0;
+                            }
+                            else
+                            {
+                                Canvas.SetTop(MenuLeft.ToggleCanvas, Canvas.GetTop(MenuLeft.ToggleCanvas) + 50);
+                                itemNum++;
+                            }
+                            ShowRightWindow(itemNum);
                         }
                         else
                         {
-                            Canvas.SetTop(MenuLeft.ToggleCanvas, Canvas.GetTop(MenuLeft.ToggleCanvas) + 50);
-                            itemNum++;
+                            //子菜单上下
+
                         }
-                        ShowRightWindow(itemNum);
                         break;
                     case Key.Up:
-                        if (itemTop == 7)
+                        if (!isSecondMenuOpened)
                         {
-                            Canvas.SetTop(MenuLeft.ToggleCanvas, 257);
-                            itemNum = 5;
+                            if (itemNum == 0)
+                            {
+                                Canvas.SetTop(MenuLeft.ToggleCanvas, 257);
+                                itemNum = 5;
+                            }
+                            else
+                            {
+                                Canvas.SetTop(MenuLeft.ToggleCanvas, Canvas.GetTop(MenuLeft.ToggleCanvas) - 50);
+                                itemNum--;
+                            }
+                            ShowRightWindow(itemNum);
                         }
                         else
                         {
-                            Canvas.SetTop(MenuLeft.ToggleCanvas, Canvas.GetTop(MenuLeft.ToggleCanvas) - 50);
-                            itemNum--;
+                            //子菜单上下
                         }
-                        ShowRightWindow(itemNum);
+                        break;
+                    case Key.Right:
+                        if (itemNum == 2 || itemNum == 3)
+                        {
+                            // 隐藏左侧闪烁条
+                            MenuLeft.ToggleCanvas.Visibility = Visibility.Hidden;
+
+                        }
                         break;
                     case Key.Escape:
                         isMenuOpened = false;
@@ -178,13 +206,20 @@ namespace Mota
                     GlobalRight.Navigate(AbilityIntroduction.GetInstance());
                     break;
                 case 2:
-                    SaveData.Save("Save1");
+                    GlobalRight.Navigate(SaveAndLoadMenu.GetInstance());
+                    //SaveData.Save("Save1");
                     break;
                 case 3:
-                    LoadData.Load("Save1");
+                    GlobalRight.Navigate(LoadMenu.GetInstance());
+                    //LoadData.Load("Save1");
                     break;
             }
 
         }
+
+        /// <summary>
+        /// 操作菜单栏右侧内容
+        /// </summary>
+        //private void 
     }
 }

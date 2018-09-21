@@ -1,0 +1,17 @@
+﻿<Page x:Class="Mota.page.SaveAndLoadMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Mota.page"
+      mc:Ignorable="d" 
+      Height="650" Width="650"
+      Title="MenuRight">
+
+    <Grid>
+        <Border CornerRadius ="10" BorderBrush="White" BorderThickness="5" Background="#FF6E6E6E"></Border>
+        <WrapPanel Grid.Row="0" Grid.Column="0" Name="ContentItem" ItemHeight="78" ItemWidth="550" HorizontalAlignment="Center" Margin="0,20,0,20">
+        </WrapPanel>
+        <Canvas Name="toggleItem" Width="650" Height="78" Background="White" Opacity="0.5" Margin="0,22,0,570" Visibility="Hidden"></Canvas>
+    </Grid>
+</Page>
