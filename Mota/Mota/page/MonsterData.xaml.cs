@@ -117,7 +117,7 @@ namespace Mota.page
             };
             parennt.Children.Add(canvas);
             #endregion
-            ContentItem.Children.Add(parennt);
+            PanelItem.Children.Add(parennt);
         }
     }
 }

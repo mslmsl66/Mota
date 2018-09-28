@@ -14,13 +14,43 @@ namespace Mota.FileController
 
         private static Hero hero = Hero.GetInstance();
 
-        public static void Load(string fileName)
+        /// <summary>
+        /// 读取单个指定的记录
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static bool Load(string fileName)
         {
             string path = "../../Saves/" + fileName + ".json";
             if (File.Exists(path))
             {
                 Deserialize(File.ReadAllText(path));
+                return true;
             }
+            return false;
+        }
+
+        /// <summary>
+        /// 返回每个存档的楼层数和存档的时间
+        /// </summary>
+        /// <returns></returns>
+        public static List<KeyValuePair<string, string>> GetAllSavesDate()
+        {
+            List<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>();
+            for (int i = 1; i < 9; i++)
+            {
+                string path = "../../Saves/Save" + i + ".json";
+                if (File.Exists(path))
+                {
+                    data = JsonConvert.DeserializeObject<DataLoad>(File.ReadAllText(path));
+                    list.Add(new KeyValuePair<string, string>(data.FloorNum.ToString(), data.Date));
+                }
+                else
+                {
+                    list.Add(new KeyValuePair<string, string>(null, null));
+                }
+            }
+            return list;
         }
         
         /// <summary>
@@ -57,6 +87,7 @@ namespace Mota.FileController
             public HeroProperties Properties;
             public List<List<KeyValuePair<int, int>>> Map;
             public int FloorNum;
+            public string Date;
         }
     }
 }

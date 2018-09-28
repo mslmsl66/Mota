@@ -10,7 +10,7 @@
 
     <Grid>
         <Border CornerRadius ="10" BorderBrush="White" BorderThickness="5" Background="#FF6E6E6E"></Border>
-        <WrapPanel Grid.Row="0" Grid.Column="0" Name="ContentItem" ItemHeight="80" ItemWidth="550" HorizontalAlignment="Center" Margin="0,20,0,20">
+        <WrapPanel Grid.Row="0" Grid.Column="0" Name="PanelItem" ItemHeight="80" ItemWidth="550" HorizontalAlignment="Center" Margin="0,20,0,20">
             
         </WrapPanel>
     </Grid>

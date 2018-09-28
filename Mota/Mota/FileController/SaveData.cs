@@ -41,8 +41,9 @@ namespace Mota.CommonUtility
                     y = hero.properties.y
                 },
                 Map = MapUtility.GetAllFloorType(),
-                FloorNum = FloorFactory.GetInstance().GetFloorNum()
-            };
+                FloorNum = FloorFactory.GetInstance().GetFloorNum(),
+                Date = DateTime.Now.ToLocalTime().ToString()
+        };
             return JsonConvert.SerializeObject(data);
         }
 
@@ -54,6 +55,7 @@ namespace Mota.CommonUtility
             public HeroProperties Properties;
             public List<List<KeyValuePair<Atype, Enum>>> Map;
             public int FloorNum;
+            public string Date;
         }
     }
 }

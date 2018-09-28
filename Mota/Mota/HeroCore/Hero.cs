@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 /// <summary>
 /// Todo List
 /// 1.显伤脚本 done
-/// 2.存档读档 改图片位置 界面
+/// 2.存档读档 done
 /// 3.ESC界面 done
 /// 4.NPC对话界面 done
 /// 5.剧情

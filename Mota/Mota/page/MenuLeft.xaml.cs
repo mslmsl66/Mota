@@ -2,12 +2,10 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.Windows;
 
 namespace Mota.page
 {
-    /// <summary>
-    /// Menu.xaml 的交互逻辑
-    /// </summary>
     public partial class MenuLeft : Page
     {
         private static MenuLeft instance;
@@ -22,13 +20,12 @@ namespace Mota.page
         /// </summary>
         public static Canvas ToggleCanvas;
 
-        private MenuLeft()
+        public MenuLeft()
         {
             InitializeComponent();
             ToggleCanvas = toggleItem;
             ToggleItem();
         }
-
         public static MenuLeft GetInstance()
         {
             if (instance == null)
@@ -36,6 +33,22 @@ namespace Mota.page
                 instance = new MenuLeft();
             }
             return instance;
+        }
+
+        /// <summary>
+        /// 显示或隐藏右侧菜单项
+        /// </summary>
+        /// <param name="toggle"></param>
+        public void SetCanvasVisibility(bool toggle)
+        {
+            if (toggle)
+            {
+                toggleItem.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                toggleItem.Visibility = Visibility.Hidden;
+            }
         }
 
         private void ToggleItem()
@@ -47,7 +60,7 @@ namespace Mota.page
         }
 
         /// <summary>
-        /// 定时器触发任务,循环切换四张图
+        /// 定时器触发任务,循环切换图片
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

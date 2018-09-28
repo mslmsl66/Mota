@@ -81,15 +81,6 @@ namespace Mota.page
         }
 
         /// <summary>
-        /// 查看楼层是否初始化
-        /// </summary>
-        /// <returns></returns>
-        internal bool IsInitialize()
-        {
-            return !(instance == null);
-        }
-
-        /// <summary>
         /// 构建地图
         /// </summary>
         internal void AddMap()

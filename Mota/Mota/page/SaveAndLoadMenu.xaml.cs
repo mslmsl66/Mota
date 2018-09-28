@@ -2,6 +2,8 @@
 using System.Windows.Media;
 using Mota.CommonUtility;
 using System.Windows;
+using Mota.FileController;
+using System.Collections.Generic;
 
 namespace Mota.page
 {
@@ -12,9 +14,13 @@ namespace Mota.page
     {
         private static SaveAndLoadMenu instance;
 
+        public static Canvas ToggleCanvas;
+
         private SaveAndLoadMenu()
         {
             InitializeComponent();
+            InitPanelItem();
+            ToggleCanvas = toggleItem;
         }
 
         public static SaveAndLoadMenu GetInstance()
@@ -27,25 +33,53 @@ namespace Mota.page
         }
 
         /// <summary>
+        /// 更新Panel
+        /// </summary>
+        public void UpdatePanel()
+        {
+            PanelItem.Children.Clear();
+            InitPanelItem();
+        }
+
+        /// <summary>
         /// 初始化存档栏
         /// </summary>
-        public void InitContentItem()
+        private void InitPanelItem()
         {
+            List<KeyValuePair<string, string>> list = LoadData.GetAllSavesDate();
             for (int i = 0; i < 8; i++)
             {
-                AddChildCanvas("存档" + (i + 1));
+                AddChildCanvas("存档" + (i + 1), list[i].Key, list[i].Value);
             }
         }
 
         /// <summary>
         /// 向Panel添加显示存档独挡读档栏的Canvas
         /// </summary>
-        private void AddChildCanvas(string text)
+        private void AddChildCanvas(string text, string floor, string date)
         {
             Canvas parennt = new Canvas();
-            TextBox textBox = WPFUtility.CreateTextBox(text, new SolidColorBrush(Color.FromRgb(255, 255, 255)), 245, 20);
-            textBox.FontSize = 25;
-            parennt.Children.Add(textBox);
+            if (floor != null && date != null)
+            {
+                TextBox textBox = WPFUtility.CreateTextBox(text, new SolidColorBrush(Color.FromRgb(255, 255, 255)), 80, 20);
+                textBox.FontSize = 20;
+                parennt.Children.Add(textBox);
+
+                TextBox textBox2 = WPFUtility.CreateTextBox(floor+"F", new SolidColorBrush(Color.FromRgb(255, 255, 255)), 180, 20);
+                textBox.FontSize = 20;
+                parennt.Children.Add(textBox2);
+
+                TextBox textBox3 = WPFUtility.CreateTextBox(date, new SolidColorBrush(Color.FromRgb(255, 255, 255)), 260, 20);
+                textBox.FontSize = 20;
+                parennt.Children.Add(textBox3);
+            }
+            else
+            {
+                TextBox textBox = WPFUtility.CreateTextBox("暂无存档", new SolidColorBrush(Color.FromRgb(255, 255, 255)), 245, 20);
+                textBox.FontSize = 20;
+                parennt.Children.Add(textBox);
+            }
+
             #region 添加分割线
             Canvas canvas = new Canvas
             {
@@ -55,14 +89,14 @@ namespace Mota.page
             };
             parennt.Children.Add(canvas);
             #endregion
-            ContentItem.Children.Add(parennt);
+            PanelItem.Children.Add(parennt);
         }
 
         /// <summary>
         /// 显示或隐藏右侧菜单项
         /// </summary>
         /// <param name="toggle"></param>
-        private void SetCanvasVisibility(bool toggle)
+        public void SetCanvasVisibility(bool toggle)
         {
             if (toggle)
             {

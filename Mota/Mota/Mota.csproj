@@ -129,7 +129,9 @@
     <Compile Include="page\Index.xaml.cs">
       <DependentUpon>Index.xaml</DependentUpon>
     </Compile>
-    <Compile Include="page\MenuLeft.cs" />
+    <Compile Include="page\MenuLeft.xaml.cs">
+      <DependentUpon>MenuLeft.xaml</DependentUpon>
+    </Compile>
     <Compile Include="page\MonsterData.xaml.cs">
       <DependentUpon>MonsterData.xaml</DependentUpon>
     </Compile>
@@ -412,10 +414,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="res\bgm\0层声音.MP3" />
-    <Content Include="res\bgm\1717.MP3" />
-    <Content Include="res\bgm\Gameover.MP3" />
     <Content Include="res\bgm\地上声音.MP3" />
     <Content Include="res\bgm\地下声音.MP3" />
+    <Content Include="res\bgm\最终BOSS.MP3" />
     <Content Include="res\se\1009.MP3" />
     <Content Include="res\se\1028.MP3" />
     <Content Include="res\se\1041.MP3" />
@@ -436,15 +437,12 @@
     <Content Include="res\se\1181.MP3" />
     <Content Include="res\se\1184.MP3" />
     <Content Include="res\se\1269.MP3" />
-    <Content Include="res\se\1365.MP3" />
     <Content Include="res\se\吃物品.MP3" />
     <Content Include="res\se\开门失败.MP3" />
     <Content Include="res\se\1620.MP3" />
     <Content Include="res\se\1622.MP3" />
     <Content Include="res\se\1624.MP3" />
     <Content Include="res\se\走路.MP3" />
-    <Content Include="res\se\33.MP3" />
-    <Content Include="res\se\34.MP3" />
     <Content Include="res\se\开门.MP3" />
     <Content Include="res\se\拳头.MP3" />
     <Content Include="res\se\918.MP3" />
@@ -455,12 +453,14 @@
     <Content Include="res\se\978.MP3" />
     <Content Include="res\se\987.MP3" />
     <Content Include="res\se\998.MP3" />
-    <Content Include="res\se\Gameover.MP3" />
     <Content Include="res\se\上下楼.MP3" />
     <Content Include="res\se\吸血.MP3" />
     <Content Include="res\se\没钱.MP3" />
     <Content Include="res\se\火焰.MP3" />
     <Content Include="res\se\给钱.MP3" />
+    <Content Include="res\se\选项失败.MP3" />
+    <Content Include="res\se\选项成功.MP3" />
+    <Content Include="res\se\选项移动.MP3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
