@@ -15,5 +15,7 @@ namespace Mota.CommonUtility
         public static List<string> dialog_1_0_0 = new List<string>() { "老人：你好，勇士。这座魔塔已经有50年没人进来过了。", "勇士：我要迎娶白富美，走上人生巅峰！" };
 
         public static List<string> dialog_1_10_10 = new List<string>() { "铁剑在三楼，铁盾在五楼" };
+
+        public static List<string> dialog_2_10_10 = new List<string>() { "贪婪之神：给我"+0+"金币，你可以按1获得3攻，按2获得3防，按3获得300血" };
     }
 }

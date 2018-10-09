@@ -43,7 +43,7 @@ namespace Mota.HeroCore
         /// <summary>
         /// 英雄的攻击方式
         /// </summary>
-        private string weapon = CommonString.WEAPON_FIST;
+        private string weapon = CommonVariable.WEAPON_FIST;
 
         private static Hero instance;
 
@@ -166,7 +166,7 @@ namespace Mota.HeroCore
                             break;
                         case GemstoneType.铁剑:
                             properties.atk += 10;
-                            weapon = CommonString.WEAPON_SWORD;
+                            weapon = CommonVariable.WEAPON_SWORD;
                             break;
                         case GemstoneType.铁盾:
                             properties.def += 10;

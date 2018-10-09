@@ -61,6 +61,12 @@ namespace Mota.CellImage
                     Atk = 50; Def = 0; Hp = 70; Exp = 1; Gold = 2; Ability = SpecialAbility.普通; break;
                 case MonsterType.兽人:
                     Atk = 90; Def = 35; Hp = 140; Exp = 3; Gold = 5; Ability = SpecialAbility.普通; break;
+                case MonsterType.黑史莱姆:
+                    Atk = 40; Def = 15; Hp = 80; Exp = 2; Gold = 3; Ability = SpecialAbility.普通; break;
+                case MonsterType.初级法师:
+                    Atk = 30; Def = 10; Hp = 40; Exp = 2; Gold = 3; Ability = SpecialAbility.魔攻; break;
+                case MonsterType.大蝙蝠:
+                    Atk = 60; Def = 5; Hp = 80; Exp = 2; Gold = 3; Ability = SpecialAbility.二连击; break;
             }
             SetImageSource(GetImagePaths(type));
             coarseType = Atype.怪物;
@@ -135,11 +141,17 @@ namespace Mota.CellImage
                     return new string[] { "/res/icons/monster/Monster02-01_01.png", "/res/icons/monster/Monster02-01_02.png", "/res/icons/monster/Monster02-01_03.png", "/res/icons/monster/Monster02-01_04.png" };
                 case MonsterType.兽人:
                     return new string[] { "/res/icons/monster/Monster09-01_01.png", "/res/icons/monster/Monster09-01_02.png", "/res/icons/monster/Monster09-01_03.png", "/res/icons/monster/Monster09-01_04.png" };
+                case MonsterType.黑史莱姆:
+                    return new string[] { "/res/icons/monster/Monster01-01_09.png", "/res/icons/monster/Monster01-01_10.png", "/res/icons/monster/Monster01-01_11.png", "/res/icons/monster/Monster01-01_12.png" };
+                case MonsterType.初级法师:
+                    return new string[] { "/res/icons/monster/Monster06-01_01.png", "/res/icons/monster/Monster06-01_02.png", "/res/icons/monster/Monster06-01_03.png", "/res/icons/monster/Monster06-01_04.png" };
+                case MonsterType.大蝙蝠:
+                    return new string[] { "/res/icons/monster/Monster03-01_05.png", "/res/icons/monster/Monster03-01_06.png", "/res/icons/monster/Monster03-01_07.png", "/res/icons/monster/Monster03-01_08.png" };
             }
             return null;
         }
     }
-    public enum MonsterType { 绿史莱姆, 红史莱姆, 小蝙蝠, 骷髅, 兽人 };
+    public enum MonsterType { 绿史莱姆, 红史莱姆, 小蝙蝠, 骷髅, 兽人, 黑史莱姆, 初级法师, 大蝙蝠};
 
     public enum SpecialAbility { 普通, 魔攻, 坚固, 二连击, 先攻 };
 }

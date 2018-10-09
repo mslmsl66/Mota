@@ -46,9 +46,6 @@ namespace Mota.CellImage
         public void HideImage()
         {
             Source = new BitmapImage(new Uri("/res/icons/background/0.png", UriKind.Relative));
-            //isImageExist = false;
-            //coarseType = Atype.地板;
-            //fineType = FloorType.地板;
         }
 
         public Atype GetCoarseType()
@@ -76,7 +73,7 @@ namespace Mota.CellImage
         {
             return isImageExist;
         }
-    }
+    } 
 
     public enum Atype { 宝石, 钥匙, 怪物, 特殊物品, 地板, 英雄, 门, NPC };
 }

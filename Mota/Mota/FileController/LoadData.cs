@@ -60,6 +60,7 @@ namespace Mota.FileController
         private static void Deserialize(string str)
         {
             data = JsonConvert.DeserializeObject<DataLoad>(str);
+            CommonVariable.PRICE = data.Price;
             hero.properties = data.Properties;
             FloorFactory.GetInstance().SetFloorNum(data.FloorNum);
             DrawFloorAndHero();
@@ -88,6 +89,7 @@ namespace Mota.FileController
             public List<List<KeyValuePair<int, int>>> Map;
             public int FloorNum;
             public string Date;
+            public int Price;
         }
     }
 }

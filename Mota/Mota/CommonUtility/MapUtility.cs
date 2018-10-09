@@ -337,6 +337,96 @@ namespace Mota.CommonUtility
             floor_list[1][10, 10] = new NPCImage(NPCType.老人, DialogUtility.dialog_1_10_10);
             #endregion
 
+            #region 第2层地图
+            floor_list[2][0, 0] = new NPCImage(NPCType.老人, DialogUtility.dialog_1_0_0);
+            floor_list[2][0, 3] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[2][0, 5] = new FloorImage(FloorType.楼梯下);
+            floor_list[2][0, 6] = new FloorImage(FloorType.白墙);
+            floor_list[2][0, 8] = new DoorImage(DoorType.黄门);
+            floor_list[2][0, 9] = new MonsterImage(MonsterType.绿史莱姆);
+                       
+            floor_list[2][1, 0] = new FloorImage(FloorType.白墙);
+            floor_list[2][1, 1] = new FloorImage(FloorType.白墙);
+            floor_list[2][1, 3] = new FloorImage(FloorType.白墙);
+            floor_list[2][1, 4] = new FloorImage(FloorType.白墙);
+            floor_list[2][1, 5] = new FloorImage(FloorType.白墙);
+            floor_list[2][1, 6] = new FloorImage(FloorType.白墙);
+            floor_list[2][1, 8] = new FloorImage(FloorType.白墙);
+            floor_list[2][1, 9] = new FloorImage(FloorType.白墙);
+            floor_list[2][1, 10] = new GemstoneImage(GemstoneType.红宝石);
+                       
+            floor_list[2][2, 1] = new FloorImage(FloorType.白墙);
+            floor_list[2][2, 3] = new MonsterImage(MonsterType.小蝙蝠);
+            floor_list[2][2, 4] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[2][2, 8] = new FloorImage(FloorType.白墙);
+            floor_list[2][2, 9] = new FloorImage(FloorType.白墙);
+                       
+            floor_list[2][3, 1] = new FloorImage(FloorType.白墙);
+            floor_list[2][3, 3] = new FloorImage(FloorType.白墙);
+            floor_list[2][3, 4] = new FloorImage(FloorType.白墙);
+            floor_list[2][3, 5] = new FloorImage(FloorType.白墙);
+            floor_list[2][3, 6] = new FloorImage(FloorType.白墙);
+            floor_list[2][3, 8] = new FloorImage(FloorType.白墙);
+            floor_list[2][3, 9] = new FloorImage(FloorType.白墙);
+
+            floor_list[2][4, 0] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[2][4, 1] = new DoorImage(DoorType.黄门);
+            floor_list[2][4, 3] = new FloorImage(FloorType.白墙);
+            floor_list[2][4, 4] = new FloorImage(FloorType.白墙);
+            floor_list[2][4, 5] = new FloorImage(FloorType.白墙);
+            floor_list[2][4, 6] = new FloorImage(FloorType.白墙);
+            floor_list[2][4, 7] = new MonsterImage(MonsterType.骷髅);
+            floor_list[2][4, 10] = new FloorImage(FloorType.楼梯下);
+                       
+            floor_list[2][5, 0] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[2][5, 1] = new FloorImage(FloorType.白墙);
+            floor_list[2][5, 3] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[2][5, 5] = new KeyImage(KeyType.黄钥匙);
+            floor_list[2][5, 6] = new FloorImage(FloorType.白墙);
+            floor_list[2][5, 8] = new DoorImage(DoorType.黄门);
+                       
+            floor_list[2][6, 0] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[2][6, 1] = new FloorImage(FloorType.白墙);
+            floor_list[2][6, 3] = new FloorImage(FloorType.白墙);
+            floor_list[2][6, 5] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[2][6, 6] = new DoorImage(DoorType.黄门);
+            floor_list[2][6, 8] = new FloorImage(FloorType.白墙);
+                       
+            floor_list[2][7, 0] = new GemstoneImage(GemstoneType.蓝宝石);
+            floor_list[2][7, 1] = new FloorImage(FloorType.白墙);
+            floor_list[2][7, 2] = new FloorImage(FloorType.白墙);
+            floor_list[2][7, 3] = new FloorImage(FloorType.白墙);
+            floor_list[2][7, 4] = new FloorImage(FloorType.白墙);
+            floor_list[2][7, 5] = new FloorImage(FloorType.白墙);
+            floor_list[2][7, 6] = new FloorImage(FloorType.白墙);
+            floor_list[2][7, 8] = new FloorImage(FloorType.白墙);
+                       
+            floor_list[2][8, 2] = new FloorImage(FloorType.白墙);
+            floor_list[2][8, 3] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[2][8, 4] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[2][8, 5] = new GemstoneImage(GemstoneType.红宝石);
+            floor_list[2][8, 6] = new FloorImage(FloorType.白墙);
+            floor_list[2][8, 8] = new FloorImage(FloorType.白墙);
+                       
+            floor_list[2][9, 2] = new DoorImage(DoorType.蓝门);
+            floor_list[2][9, 3] = new MonsterImage(MonsterType.小蝙蝠);
+            floor_list[2][9, 4] = new MonsterImage(MonsterType.兽人);
+            floor_list[2][9, 5] = new GemstoneImage(GemstoneType.红血瓶);
+            floor_list[2][9, 6] = new FloorImage(FloorType.白墙);
+            floor_list[2][9, 8] = new FloorImage(FloorType.白墙);
+            floor_list[2][9, 9] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[2][9, 10] = new MonsterImage(MonsterType.红史莱姆);
+                       
+            floor_list[2][10, 1] = new KeyImage(KeyType.黄钥匙);
+            floor_list[2][10, 2] = new FloorImage(FloorType.白墙);
+            floor_list[2][10, 3] = new MonsterImage(MonsterType.绿史莱姆);
+            floor_list[2][10, 4] = new MonsterImage(MonsterType.红史莱姆);
+            floor_list[2][10, 5] = new GemstoneImage(GemstoneType.蓝宝石);
+            floor_list[2][10, 6] = new FloorImage(FloorType.白墙);
+            floor_list[2][10, 8] = new FloorImage(FloorType.白墙);
+            floor_list[2][10, 9] = new GemstoneImage(GemstoneType.蓝血瓶);
+            floor_list[2][10, 10] = new NPCImage(NPCType.老人, DialogUtility.dialog_1_10_10);
+            #endregion
             //默认添加地板
             foreach (IBaseImage[,] image in floor_list)
             {

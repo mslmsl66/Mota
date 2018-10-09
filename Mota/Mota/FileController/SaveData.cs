@@ -42,7 +42,8 @@ namespace Mota.CommonUtility
                 },
                 Map = MapUtility.GetAllFloorType(),
                 FloorNum = FloorFactory.GetInstance().GetFloorNum(),
-                Date = DateTime.Now.ToLocalTime().ToString()
+                Date = DateTime.Now.ToLocalTime().ToString(),
+                Price = CommonVariable.PRICE
         };
             return JsonConvert.SerializeObject(data);
         }
@@ -56,6 +57,7 @@ namespace Mota.CommonUtility
             public List<List<KeyValuePair<Atype, Enum>>> Map;
             public int FloorNum;
             public string Date;
+            public int Price;
         }
     }
 }
